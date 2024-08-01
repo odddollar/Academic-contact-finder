@@ -7,6 +7,8 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
 
@@ -29,45 +31,67 @@ func main() {
 	institutionLabel := widget.NewLabel("Institution:")
 	institution := widget.NewEntry()
 
-	// Create output box
-	// TEMPORARY TEXT BOX
-	// ACUTAL OUTPUT WILL HAVE MORE DATA
-	output := widget.NewMultiLineEntry()
-
 	// Create search button
 	searchButton := widget.NewButton("Search", func() {})
 	searchButton.Importance = widget.HighImportance
 
-	// Create window layout
-	layout := container.NewBorder(
-		container.NewVBox(
-			title,
-			container.NewBorder(
-				nil,
-				nil,
-				container.NewVBox(
-					firstNameLabel,
-					lastNameLabel,
-					institutionLabel,
-				),
-				nil,
-				container.NewVBox(
-					firstName,
-					lastName,
-					institution,
-				),
-			),
-			searchButton,
+	// Create results found label
+	numResults := canvas.NewText("Found 2 results", color.Black)
+	numResults.Alignment = fyne.TextAlignTrailing
+	numResults.TextSize = 12
+
+	// Create output box
+	// TEMPORARY OUTPUT FORMAT
+	output1 := widget.NewCard(
+		"First Name, Last Name",
+		"Example Institution",
+		container.NewHBox(
+			widget.NewLabel("email@example.com"),
+			layout.NewSpacer(),
+			widget.NewButtonWithIcon("Copy", theme.ContentCopyIcon(), func() {}),
+			widget.NewButtonWithIcon("Forward", theme.MailForwardIcon(), func() {}),
+			widget.NewButtonWithIcon("Website", theme.SearchIcon(), func() {}),
 		),
-		nil,
-		nil,
-		nil,
-		output,
+	)
+	output2 := widget.NewCard(
+		"First Name, Last Name",
+		"Example Institution",
+		container.NewHBox(
+			widget.NewLabel("email@example.com"),
+			layout.NewSpacer(),
+			widget.NewButtonWithIcon("Copy", theme.ContentCopyIcon(), func() {}),
+			widget.NewButtonWithIcon("Forward", theme.MailForwardIcon(), func() {}),
+			widget.NewButtonWithIcon("Website", theme.SearchIcon(), func() {}),
+		),
+	)
+
+	// Create window layout
+	layout := container.NewVBox(
+		title,
+		container.NewBorder(
+			nil,
+			nil,
+			container.NewVBox(
+				firstNameLabel,
+				lastNameLabel,
+				institutionLabel,
+			),
+			nil,
+			container.NewVBox(
+				firstName,
+				lastName,
+				institution,
+			),
+		),
+		searchButton,
+		numResults,
+		output1,
+		output2,
 	)
 	w.SetContent(layout)
 
 	// Show window and run app
-	w.Resize(fyne.NewSize(1024, 512))
+	w.Resize(fyne.NewSize(1024, 0))
 	w.Show()
 	a.Run()
 }
