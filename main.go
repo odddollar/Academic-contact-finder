@@ -45,23 +45,17 @@ func main() {
 			container.NewBorder(
 				nil,
 				nil,
-				firstNameLabel,
+				container.NewVBox(
+					firstNameLabel,
+					lastNameLabel,
+					institutionLabel,
+				),
 				nil,
-				firstName,
-			),
-			container.NewBorder(
-				nil,
-				nil,
-				lastNameLabel,
-				nil,
-				lastName,
-			),
-			container.NewBorder(
-				nil,
-				nil,
-				institutionLabel,
-				nil,
-				institution,
+				container.NewVBox(
+					firstName,
+					lastName,
+					institution,
+				),
 			),
 			searchButton,
 		),
