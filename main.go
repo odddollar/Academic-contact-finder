@@ -18,7 +18,7 @@ func main() {
 	w := a.NewWindow("Academic Contact Finder")
 
 	// Create title widget
-	title := canvas.NewText("Academic Contact Finder", color.Black)
+	title := canvas.NewText("Academic Contact Finder", color.NRGBA{86, 86, 86, 255})
 	title.Alignment = fyne.TextAlignCenter
 	title.TextStyle.Bold = true
 	title.TextSize = 20
@@ -36,7 +36,7 @@ func main() {
 	searchButton.Importance = widget.HighImportance
 
 	// Create results found label
-	numResults := canvas.NewText("Found 2 results", color.Black)
+	numResults := canvas.NewText("Found 2 results", color.NRGBA{86, 86, 86, 255})
 	numResults.Alignment = fyne.TextAlignTrailing
 	numResults.TextSize = 12
 
