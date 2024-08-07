@@ -7,91 +7,67 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/layout"
-	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/odddollar/CITS3200-Project/global"
 )
 
 func main() {
 	// Create window
-	a := app.New()
-	w := a.NewWindow("Academic Contact Finder")
+	global.A = app.New()
+	global.W = global.A.NewWindow("Academic Contact Finder")
 
 	// Create title widget
-	title := canvas.NewText("Academic Contact Finder", color.NRGBA{86, 86, 86, 255})
-	title.Alignment = fyne.TextAlignCenter
-	title.TextStyle.Bold = true
-	title.TextSize = 20
+	global.Ui.Title = canvas.NewText("Academic Contact Finder", color.NRGBA{86, 86, 86, 255})
+	global.Ui.Title.Alignment = fyne.TextAlignCenter
+	global.Ui.Title.TextStyle.Bold = true
+	global.Ui.Title.TextSize = 20
 
 	// Create search entry widgets
-	firstNameLabel := widget.NewLabel("First Name:")
-	firstName := widget.NewEntry()
-	lastNameLabel := widget.NewLabel("Last Name:")
-	lastName := widget.NewEntry()
-	institutionLabel := widget.NewLabel("Institution:")
-	institution := widget.NewEntry()
+	global.Ui.FirstNameLabel = widget.NewLabel("First Name:")
+	global.Ui.FirstName = widget.NewEntry()
+	global.Ui.LastNameLabel = widget.NewLabel("Last Name:")
+	global.Ui.LastName = widget.NewEntry()
+	global.Ui.InstitutionLabel = widget.NewLabel("Institution:")
+	global.Ui.Institution = widget.NewEntry()
 
 	// Create search button
-	searchButton := widget.NewButton("Search", func() {})
-	searchButton.Importance = widget.HighImportance
+	global.Ui.Search = widget.NewButton("Search", func() {})
+	global.Ui.Search.Importance = widget.HighImportance
 
 	// Create results found label
-	numResults := canvas.NewText("Found 2 results", color.NRGBA{86, 86, 86, 255})
-	numResults.Alignment = fyne.TextAlignTrailing
-	numResults.TextSize = 12
+	global.Ui.NumResults = canvas.NewText("Found 0 results", color.NRGBA{86, 86, 86, 255})
+	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
+	global.Ui.NumResults.TextSize = 12
 
-	// Create output box
-	// TEMPORARY OUTPUT FORMAT
-	output1 := widget.NewCard(
-		"First Name, Last Name",
-		"Example Institution",
-		container.NewHBox(
-			widget.NewLabel("email@example.com"),
-			layout.NewSpacer(),
-			widget.NewButtonWithIcon("Copy", theme.ContentCopyIcon(), func() {}),
-			widget.NewButtonWithIcon("Forward", theme.MailForwardIcon(), func() {}),
-			widget.NewButtonWithIcon("Website", theme.SearchIcon(), func() {}),
-		),
-	)
-	output2 := widget.NewCard(
-		"First Name, Last Name",
-		"Example Institution",
-		container.NewHBox(
-			widget.NewLabel("email@example.com"),
-			layout.NewSpacer(),
-			widget.NewButtonWithIcon("Copy", theme.ContentCopyIcon(), func() {}),
-			widget.NewButtonWithIcon("Forward", theme.MailForwardIcon(), func() {}),
-			widget.NewButtonWithIcon("Website", theme.SearchIcon(), func() {}),
-		),
-	)
+	// Create empty container that will hold output
+	global.Ui.Output = container.NewVBox()
 
 	// Create window layout
 	layout := container.NewVBox(
-		title,
+		global.Ui.Title,
 		container.NewBorder(
 			nil,
 			nil,
 			container.NewVBox(
-				firstNameLabel,
-				lastNameLabel,
-				institutionLabel,
+				global.Ui.FirstNameLabel,
+				global.Ui.LastNameLabel,
+				global.Ui.InstitutionLabel,
 			),
 			nil,
 			container.NewVBox(
-				firstName,
-				lastName,
-				institution,
+				global.Ui.FirstName,
+				global.Ui.LastName,
+				global.Ui.Institution,
 			),
 		),
-		searchButton,
-		numResults,
-		output1,
-		output2,
+		global.Ui.Search,
+		global.Ui.NumResults,
+		global.Ui.Output,
 	)
-	w.SetContent(layout)
+	global.W.SetContent(layout)
 
 	// Show window and run app
-	w.Resize(fyne.NewSize(1024, 0))
-	w.Show()
-	a.Run()
+	global.W.Resize(fyne.NewSize(1024, 0))
+	global.W.Show()
+	global.A.Run()
 }
