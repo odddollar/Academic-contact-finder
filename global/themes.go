@@ -9,6 +9,7 @@ import (
 
 var Grey color.NRGBA = color.NRGBA{86, 86, 86, 255}
 var Purple color.NRGBA = color.NRGBA{138, 94, 169, 255}
+var LightPurple color.NRGBA = color.NRGBA{198, 154, 229, 255}
 var White color.NRGBA = color.NRGBA{255, 255, 255, 255}
 
 // Theme struct that implements fyne's Theme interface

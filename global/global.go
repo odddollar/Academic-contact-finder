@@ -24,7 +24,7 @@ var Ui struct {
 
 type FoundContactStruct struct {
 	Name        string
+	Salutation  string
 	Email       string
 	Institution string
-	Salutation  string
 }

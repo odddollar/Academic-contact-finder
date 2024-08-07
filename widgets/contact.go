@@ -6,6 +6,7 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
 )
@@ -14,18 +15,18 @@ import (
 type FoundContact struct {
 	widget.BaseWidget
 	name        string
+	salutation  string
 	email       string
 	institution string
-	salutation  string
 }
 
 // Create FoundContact widget with data
 func NewFoundContact(s global.FoundContactStruct) *FoundContact {
 	contact := &FoundContact{
 		name:        s.Name,
+		salutation:  s.Salutation,
 		email:       s.Email,
 		institution: s.Institution,
-		salutation:  s.Salutation,
 	}
 	contact.ExtendBaseWidget(contact)
 
@@ -36,11 +37,11 @@ func NewFoundContact(s global.FoundContactStruct) *FoundContact {
 func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 	return &foundContactRenderer{
 		contact:     fc,
-		background:  canvas.NewRectangle(color.NRGBA{128, 128, 0, 255}),
+		background:  canvas.NewRectangle(global.LightPurple),
 		name:        canvas.NewText(fc.name, color.Black),
+		salutation:  canvas.NewText(fc.salutation, color.Black),
 		email:       canvas.NewText(fc.email, color.Black),
 		institution: canvas.NewText(fc.institution, color.Black),
-		salutation:  canvas.NewText(fc.salutation, color.Black),
 	}
 }
 
@@ -49,30 +50,55 @@ type foundContactRenderer struct {
 	contact     *FoundContact
 	background  *canvas.Rectangle
 	name        *canvas.Text
+	salutation  *canvas.Text
 	email       *canvas.Text
 	institution *canvas.Text
-	salutation  *canvas.Text
 }
 
 // Returns minimum size of FoundContact widget
 func (r *foundContactRenderer) MinSize() fyne.Size {
 	return container.NewVBox(
 		r.name,
+		r.salutation,
 		r.email,
 		r.institution,
-		r.salutation,
 	).MinSize()
 }
 
 // Lays out data and resizes FoundContact widget to fit available space
 func (r *foundContactRenderer) Layout(size fyne.Size) {
+	// Resize background to fill space
 	r.background.Resize(size)
+	r.background.CornerRadius = theme.InputRadiusSize()
+
+	// Calculate padding
+	padding := theme.Padding()
+	width := size.Width - 2*padding
+
+	// Move and resize name
+	r.name.Move(fyne.NewPos(padding, padding))
+	r.name.Resize(fyne.NewSize(width, r.name.MinSize().Height))
+
+	// Move and resize salutation
+	r.salutation.Move(fyne.NewPos(padding, r.name.Position().Y+r.name.Size().Height+padding))
+	r.salutation.Resize(fyne.NewSize(width, r.salutation.MinSize().Height))
+
+	// Move and resize email
+	r.email.Move(fyne.NewPos(padding, r.salutation.Position().Y+r.salutation.Size().Height+padding))
+	r.email.Resize(fyne.NewSize(width, r.email.MinSize().Height))
+
+	// Move and resize institution
+	r.institution.Move(fyne.NewPos(padding, r.email.Position().Y+r.email.Size().Height+padding))
+	r.institution.Resize(fyne.NewSize(width, r.institution.MinSize().Height))
 }
 
 // Refreshes elements within widget
 func (r *foundContactRenderer) Refresh() {
-	r.background.FillColor = color.NRGBA{128, 128, 0, 255}
 	r.background.Refresh()
+	r.name.Refresh()
+	r.salutation.Refresh()
+	r.email.Refresh()
+	r.institution.Refresh()
 }
 
 // Returns child elements of FoundContact
