@@ -10,7 +10,7 @@ var A fyne.App
 var W fyne.Window
 
 var Ui struct {
-	Title            *canvas.Text
+	Title            *canvas.Image
 	FirstNameLabel   *widget.Label
 	FirstName        *widget.Entry
 	LastNameLabel    *widget.Label

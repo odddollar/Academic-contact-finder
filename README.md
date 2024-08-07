@@ -22,6 +22,7 @@ These tools' commands must be accessible through a command line/terminal.
 Run the following command from the program's root directory:
 
 ```
+go generate
 go run .
 ```
 
@@ -32,6 +33,7 @@ First compilation *will* take a while. Subsequent compilations are significantly
 This will package everything into a single file that can be distributed without any dependencies. Run:
 
 ```
+go generate
 fyne package --release
 ```
 

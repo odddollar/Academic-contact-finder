@@ -1,3 +1,5 @@
+//go:generate fyne bundle -o static.go images/Header.png
+
 package main
 
 import (
@@ -16,10 +18,8 @@ func main() {
 	global.W = global.A.NewWindow("Academic Contact Finder")
 
 	// Create title widget
-	global.Ui.Title = canvas.NewText("Academic Contact Finder", global.TextColour)
-	global.Ui.Title.Alignment = fyne.TextAlignCenter
-	global.Ui.Title.TextStyle.Bold = true
-	global.Ui.Title.TextSize = 20
+	global.Ui.Title = canvas.NewImageFromResource(resourceHeaderPng)
+	global.Ui.Title.FillMode = canvas.ImageFillOriginal
 
 	// Create search entry widgets
 	global.Ui.FirstNameLabel = widget.NewLabel("First Name:")
