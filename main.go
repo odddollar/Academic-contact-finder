@@ -10,6 +10,7 @@ import (
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
+	"github.com/odddollar/CITS3200-Project/widgets"
 )
 
 func main() {
@@ -39,6 +40,12 @@ func main() {
 
 	// Create empty container that will hold output
 	global.Ui.Output = container.NewVBox()
+	global.Ui.Output.Add(widgets.NewFoundContact(global.FoundContactStruct{
+		Name:        "Example Example",
+		Email:       "example@example.com",
+		Institution: "University of example",
+		Salutation:  "Dr",
+	}))
 
 	// Create window layout
 	layout := container.NewVBox(
