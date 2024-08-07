@@ -38,8 +38,7 @@ func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 	return &foundContactRenderer{
 		contact:     fc,
 		background:  canvas.NewRectangle(global.LightPurple),
-		name:        canvas.NewText(fc.name, color.Black),
-		salutation:  canvas.NewText(fc.salutation, color.Black),
+		name:        canvas.NewText(fc.name+", "+fc.salutation, color.Black),
 		email:       canvas.NewText(fc.email, color.Black),
 		institution: canvas.NewText(fc.institution, color.Black),
 	}
@@ -50,7 +49,6 @@ type foundContactRenderer struct {
 	contact     *FoundContact
 	background  *canvas.Rectangle
 	name        *canvas.Text
-	salutation  *canvas.Text
 	email       *canvas.Text
 	institution *canvas.Text
 }
@@ -59,7 +57,6 @@ type foundContactRenderer struct {
 func (r *foundContactRenderer) MinSize() fyne.Size {
 	return container.NewVBox(
 		r.name,
-		r.salutation,
 		r.email,
 		r.institution,
 	).MinSize()
@@ -79,12 +76,8 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 	r.name.Move(fyne.NewPos(padding, padding))
 	r.name.Resize(fyne.NewSize(width, r.name.MinSize().Height))
 
-	// Move and resize salutation
-	r.salutation.Move(fyne.NewPos(padding, r.name.Position().Y+r.name.Size().Height+padding))
-	r.salutation.Resize(fyne.NewSize(width, r.salutation.MinSize().Height))
-
 	// Move and resize email
-	r.email.Move(fyne.NewPos(padding, r.salutation.Position().Y+r.salutation.Size().Height+padding))
+	r.email.Move(fyne.NewPos(padding, r.name.Position().Y+r.name.Size().Height+padding))
 	r.email.Resize(fyne.NewSize(width, r.email.MinSize().Height))
 
 	// Move and resize institution
@@ -96,7 +89,6 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 func (r *foundContactRenderer) Refresh() {
 	r.background.Refresh()
 	r.name.Refresh()
-	r.salutation.Refresh()
 	r.email.Refresh()
 	r.institution.Refresh()
 }
@@ -108,7 +100,6 @@ func (r *foundContactRenderer) Objects() []fyne.CanvasObject {
 		r.name,
 		r.email,
 		r.institution,
-		r.salutation,
 	}
 }
 
