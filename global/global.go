@@ -21,3 +21,10 @@ var Ui struct {
 	NumResults       *canvas.Text
 	Output           *fyne.Container
 }
+
+type FoundContactStruct struct {
+	Name        string
+	Email       string
+	Institution string
+	Salutation  string
+}
