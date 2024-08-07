@@ -16,14 +16,14 @@ var White color.NRGBA = color.NRGBA{255, 255, 255, 255}
 type MainTheme struct{}
 
 // Return custom colours, falling back to defaults otherwise
-func (t MainTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
+func (t MainTheme) Color(name fyne.ThemeColorName, _ fyne.ThemeVariant) color.Color {
 	switch name {
 	case theme.ColorNamePrimary:
 		return Purple
 	case theme.ColorNameWarning: // Used for setting things like backgrounds in certain widgets
 		return LightPurple
 	default:
-		return theme.DefaultTheme().Color(name, variant)
+		return theme.DefaultTheme().Color(name, theme.VariantLight)
 	}
 }
 
