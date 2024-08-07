@@ -32,11 +32,12 @@ func main() {
 
 	// Create search button
 	global.Ui.Search = widget.NewButtonWithIcon("Search", theme.SearchIcon(), func() {})
+	global.Ui.Search.Importance = widget.HighImportance
 
 	// Create results found label
 	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
-	global.Ui.NumResults.TextSize = 12
+	global.Ui.NumResults.TextSize = theme.CaptionTextSize()
 
 	// Create empty container that will hold output
 	global.Ui.Output = container.NewVBox()
@@ -65,7 +66,7 @@ func main() {
 				global.Ui.Institution,
 			),
 		),
-		container.NewThemeOverride(global.Ui.Search, global.ButtonTheme{}),
+		global.Ui.Search,
 		widget.NewSeparator(),
 		global.Ui.NumResults,
 		global.Ui.Output,

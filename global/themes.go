@@ -20,6 +20,8 @@ func (t MainTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) co
 	switch name {
 	case theme.ColorNamePrimary:
 		return Purple
+	case theme.ColorNameWarning: // Used for setting things like backgrounds in certain widgets
+		return LightPurple
 	default:
 		return theme.DefaultTheme().Color(name, variant)
 	}
@@ -37,35 +39,5 @@ func (t MainTheme) Font(style fyne.TextStyle) fyne.Resource {
 
 // Return default sizes
 func (t MainTheme) Size(name fyne.ThemeSizeName) float32 {
-	return theme.DefaultTheme().Size(name)
-}
-
-// Main button theme to give purple background with white text
-type ButtonTheme struct{}
-
-// Return custom colours, falling back to defaults otherwise
-func (t ButtonTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
-	switch name {
-	case theme.ColorNameForeground:
-		return White
-	case theme.ColorNameButton:
-		return Purple
-	default:
-		return theme.DefaultTheme().Color(name, variant)
-	}
-}
-
-// Return default icons
-func (t ButtonTheme) Icon(name fyne.ThemeIconName) fyne.Resource {
-	return theme.DefaultTheme().Icon(name)
-}
-
-// Return default fonts
-func (t ButtonTheme) Font(style fyne.TextStyle) fyne.Resource {
-	return theme.DefaultTheme().Font(style)
-}
-
-// Return default sizes
-func (t ButtonTheme) Size(name fyne.ThemeSizeName) float32 {
 	return theme.DefaultTheme().Size(name)
 }
