@@ -59,6 +59,7 @@ func (r *foundContactRenderer) MinSize() fyne.Size {
 		r.name,
 		r.email,
 		r.institution,
+		NewSpacer(fyne.NewSize(0, theme.Padding())),
 	).MinSize()
 }
 
