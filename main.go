@@ -1,12 +1,11 @@
 package main
 
 import (
-	"image/color"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
 )
@@ -17,7 +16,7 @@ func main() {
 	global.W = global.A.NewWindow("Academic Contact Finder")
 
 	// Create title widget
-	global.Ui.Title = canvas.NewText("Academic Contact Finder", color.NRGBA{86, 86, 86, 255})
+	global.Ui.Title = canvas.NewText("Academic Contact Finder", global.TextColour)
 	global.Ui.Title.Alignment = fyne.TextAlignCenter
 	global.Ui.Title.TextStyle.Bold = true
 	global.Ui.Title.TextSize = 20
@@ -31,11 +30,10 @@ func main() {
 	global.Ui.Institution = widget.NewEntry()
 
 	// Create search button
-	global.Ui.Search = widget.NewButton("Search", func() {})
-	global.Ui.Search.Importance = widget.HighImportance
+	global.Ui.Search = widget.NewButtonWithIcon("Search", theme.SearchIcon(), func() {})
 
 	// Create results found label
-	global.Ui.NumResults = canvas.NewText("Found 0 results", color.NRGBA{86, 86, 86, 255})
+	global.Ui.NumResults = canvas.NewText("Found 0 results", global.TextColour)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
 	global.Ui.NumResults.TextSize = 12
 
@@ -60,13 +58,15 @@ func main() {
 				global.Ui.Institution,
 			),
 		),
-		global.Ui.Search,
+		container.NewThemeOverride(global.Ui.Search, global.ButtonTheme{}),
+		widget.NewSeparator(),
 		global.Ui.NumResults,
 		global.Ui.Output,
 	)
 	global.W.SetContent(layout)
 
 	// Show window and run app
+	global.A.Settings().SetTheme(global.MainTheme{})
 	global.W.Resize(fyne.NewSize(1024, 0))
 	global.W.Show()
 	global.A.Run()
