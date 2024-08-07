@@ -16,6 +16,7 @@ import (
 func main() {
 	// Create window
 	global.A = app.New()
+	global.A.Settings().SetTheme(global.MainTheme{})
 	global.W = global.A.NewWindow("Academic Contact Finder")
 
 	// Create title widget
@@ -41,6 +42,12 @@ func main() {
 
 	// Create empty container that will hold output
 	global.Ui.Output = container.NewVBox()
+	global.Ui.Output.Add(widgets.NewFoundContact(global.FoundContactStruct{
+		Name:        "Example Example",
+		Email:       "example@example.com",
+		Institution: "University of example",
+		Salutation:  "Dr",
+	}))
 	global.Ui.Output.Add(widgets.NewFoundContact(global.FoundContactStruct{
 		Name:        "Example Example",
 		Email:       "example@example.com",
@@ -74,7 +81,6 @@ func main() {
 	global.W.SetContent(layout)
 
 	// Show window and run app
-	global.A.Settings().SetTheme(global.MainTheme{})
 	global.W.Resize(fyne.NewSize(1024, 0))
 	global.W.Show()
 	global.A.Run()

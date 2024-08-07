@@ -39,5 +39,10 @@ func (t MainTheme) Font(style fyne.TextStyle) fyne.Resource {
 
 // Return default sizes
 func (t MainTheme) Size(name fyne.ThemeSizeName) float32 {
-	return theme.DefaultTheme().Size(name)
+	switch name {
+	case theme.SizeNameCaptionText:
+		return 12
+	default:
+		return theme.DefaultTheme().Size(name)
+	}
 }
