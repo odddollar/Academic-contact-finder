@@ -7,16 +7,21 @@ import (
 	"fyne.io/fyne/v2/theme"
 )
 
-var TextColour color.NRGBA = color.NRGBA{86, 86, 86, 255}
-var ButtonColour color.NRGBA = color.NRGBA{138, 94, 169, 255}
-var ButtonTextColour color.NRGBA = color.NRGBA{255, 255, 255, 255}
+var Grey color.NRGBA = color.NRGBA{86, 86, 86, 255}
+var Purple color.NRGBA = color.NRGBA{138, 94, 169, 255}
+var White color.NRGBA = color.NRGBA{255, 255, 255, 255}
 
 // Theme struct that implements fyne's Theme interface
 type MainTheme struct{}
 
 // Return custom colours, falling back to defaults otherwise
 func (t MainTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
-	return theme.DefaultTheme().Color(name, variant)
+	switch name {
+	case theme.ColorNamePrimary:
+		return Purple
+	default:
+		return theme.DefaultTheme().Color(name, variant)
+	}
 }
 
 // Return default icons
@@ -41,9 +46,9 @@ type ButtonTheme struct{}
 func (t ButtonTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
 	switch name {
 	case theme.ColorNameForeground:
-		return ButtonTextColour
+		return White
 	case theme.ColorNameButton:
-		return ButtonColour
+		return Purple
 	default:
 		return theme.DefaultTheme().Color(name, variant)
 	}

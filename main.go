@@ -33,7 +33,7 @@ func main() {
 	global.Ui.Search = widget.NewButtonWithIcon("Search", theme.SearchIcon(), func() {})
 
 	// Create results found label
-	global.Ui.NumResults = canvas.NewText("Found 0 results", global.TextColour)
+	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
 	global.Ui.NumResults.TextSize = 12
 
