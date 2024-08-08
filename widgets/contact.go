@@ -79,19 +79,18 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 
 	// Calculate padding
 	padding := theme.Padding()
-	width := size.Width - 2*padding
 
 	// Move and resize name
 	r.name.Move(fyne.NewPos(padding, padding))
-	r.name.Resize(fyne.NewSize(width, r.name.MinSize().Height))
+	r.name.Resize(r.name.MinSize())
 
 	// Move and resize email
 	r.email.Move(fyne.NewPos(padding, r.name.Position().Y+r.name.Size().Height+padding))
-	r.email.Resize(fyne.NewSize(width, r.email.MinSize().Height))
+	r.email.Resize(r.email.MinSize())
 
 	// Move and resize institution
 	r.institution.Move(fyne.NewPos(padding, r.email.Position().Y+r.email.Size().Height+padding))
-	r.institution.Resize(fyne.NewSize(width, r.institution.MinSize().Height))
+	r.institution.Resize(r.institution.MinSize())
 }
 
 // Refreshes elements within widget
