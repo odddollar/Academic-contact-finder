@@ -6,9 +6,13 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-var A fyne.App
-var W fyne.Window
+// Main app elements
+var (
+	A fyne.App
+	W fyne.Window
+)
 
+// Main UI elements
 var Ui struct {
 	Title            *canvas.Image
 	FirstNameLabel   *widget.Label
@@ -18,10 +22,13 @@ var Ui struct {
 	InstitutionLabel *widget.Label
 	Institution      *widget.Entry
 	Search           *widget.Button
+	About            *widget.Button
 	NumResults       *canvas.Text
 	Output           *fyne.Container
 }
 
+// Struct containing data from found contacts
+// An array of these are returned by the web-scraper/api accessor
 type FoundContactStruct struct {
 	Name        string
 	Salutation  string

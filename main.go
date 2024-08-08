@@ -35,6 +35,9 @@ func main() {
 	global.Ui.Search = widget.NewButtonWithIcon("Search", theme.SearchIcon(), func() {})
 	global.Ui.Search.Importance = widget.HighImportance
 
+	// Create about button
+	global.Ui.About = widget.NewButtonWithIcon("", theme.InfoIcon(), aboutCallback)
+
 	// Create results found label
 	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
@@ -73,7 +76,13 @@ func main() {
 				global.Ui.Institution,
 			),
 		),
-		global.Ui.Search,
+		container.NewBorder(
+			nil,
+			nil,
+			nil,
+			global.Ui.About,
+			global.Ui.Search,
+		),
 		widget.NewSeparator(),
 		global.Ui.NumResults,
 		global.Ui.Output,
