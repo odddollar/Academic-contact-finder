@@ -82,7 +82,7 @@ func (r *emailMeRenderer) Layout(size fyne.Size) {
 	// Find the minimum of two values to allow it to expand up to a certain point
 	entrySize := fyne.NewSize(
 		min(
-			size.Width-r.label.MinSize().Width-r.send.MinSize().Width-2*padding,
+			size.Width-r.label.MinSize().Width-r.send.MinSize().Width-4*padding,
 			400,
 		),
 		size.Height,

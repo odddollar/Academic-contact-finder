@@ -12,19 +12,13 @@ import (
 // Custom widget for displaying found contact information
 type FoundContact struct {
 	widget.BaseWidget
-	name        string
-	salutation  string
-	email       string
-	institution string
+	global.FoundContactStruct
 }
 
 // Create FoundContact widget with data
 func NewFoundContact(s global.FoundContactStruct) *FoundContact {
 	contact := &FoundContact{
-		name:        s.Name,
-		salutation:  s.Salutation,
-		email:       s.Email,
-		institution: s.Institution,
+		FoundContactStruct: s,
 	}
 	contact.ExtendBaseWidget(contact)
 
@@ -33,32 +27,34 @@ func NewFoundContact(s global.FoundContactStruct) *FoundContact {
 
 // Returns new renderer for FoundContact
 func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
-	n := canvas.NewText(fc.name+", "+fc.salutation, theme.Color(theme.ColorNameForeground))
+	n := canvas.NewText(fc.FoundContactStruct.Name+", "+fc.FoundContactStruct.Salutation, theme.Color(theme.ColorNameForeground))
 	n.TextSize = theme.TextSubHeadingSize()
 	n.TextStyle.Bold = true
 
-	e := canvas.NewText(fc.email, theme.Color(theme.ColorNameForeground))
+	e := canvas.NewText(fc.FoundContactStruct.Email, theme.Color(theme.ColorNameForeground))
 	e.TextSize = theme.TextSize()
 
-	i := canvas.NewText(fc.institution, theme.Color(theme.ColorNameForeground))
+	i := canvas.NewText(fc.FoundContactStruct.Institution, theme.Color(theme.ColorNameForeground))
 	i.TextSize = theme.TextSize()
 
+	se := NewEmailMe(fc.FoundContactStruct)
+
 	return &foundContactRenderer{
-		contact:     fc,
 		background:  canvas.NewRectangle(theme.Color(theme.ColorNameWarning)),
 		name:        n,
 		email:       e,
 		institution: i,
+		sendEmail:   se,
 	}
 }
 
 // Renderer for FoundContact widget
 type foundContactRenderer struct {
-	contact     *FoundContact
 	background  *canvas.Rectangle
 	name        *canvas.Text
 	email       *canvas.Text
 	institution *canvas.Text
+	sendEmail   *EmailMe
 }
 
 // Returns minimum size of FoundContact widget
@@ -67,6 +63,7 @@ func (r *foundContactRenderer) MinSize() fyne.Size {
 		r.name,
 		r.email,
 		r.institution,
+		r.sendEmail,
 		NewSpacer(fyne.NewSize(0, theme.Padding())),
 	).MinSize()
 }
@@ -91,6 +88,10 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 	// Move and resize institution
 	r.institution.Move(fyne.NewPos(padding, r.email.Position().Y+r.email.Size().Height+padding))
 	r.institution.Resize(r.institution.MinSize())
+
+	// Move send email
+	r.sendEmail.Move(fyne.NewPos(padding, r.institution.Position().Y+r.institution.Size().Height+padding))
+	r.sendEmail.Resize(fyne.NewSize(size.Width, r.sendEmail.MinSize().Height))
 }
 
 // Refreshes elements within widget
@@ -99,6 +100,7 @@ func (r *foundContactRenderer) Refresh() {
 	r.name.Refresh()
 	r.email.Refresh()
 	r.institution.Refresh()
+	r.sendEmail.Refresh()
 }
 
 // Returns child elements of FoundContact
@@ -108,6 +110,7 @@ func (r *foundContactRenderer) Objects() []fyne.CanvasObject {
 		r.name,
 		r.email,
 		r.institution,
+		r.sendEmail,
 	}
 }
 
