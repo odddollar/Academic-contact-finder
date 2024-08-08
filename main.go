@@ -39,7 +39,7 @@ func main() {
 	global.Ui.About = widget.NewButtonWithIcon("", theme.InfoIcon(), aboutCallback)
 
 	// Create results found label
-	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
+	global.Ui.NumResults = canvas.NewText("Found 2 results", global.Grey)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
 	global.Ui.NumResults.TextSize = theme.CaptionTextSize()
 
