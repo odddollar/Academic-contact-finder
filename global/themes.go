@@ -7,10 +7,13 @@ import (
 	"fyne.io/fyne/v2/theme"
 )
 
-var Grey color.NRGBA = color.NRGBA{86, 86, 86, 255}
-var Purple color.NRGBA = color.NRGBA{138, 94, 169, 255}
-var LightPurple color.NRGBA = color.NRGBA{198, 154, 229, 255}
-var White color.NRGBA = color.NRGBA{255, 255, 255, 255}
+// Global colours
+var (
+	Grey        = color.NRGBA{86, 86, 86, 255}
+	Purple      = color.NRGBA{138, 94, 169, 255}
+	LightPurple = color.NRGBA{198, 154, 229, 255}
+	White       = color.NRGBA{255, 255, 255, 255}
+)
 
 // Theme struct that implements fyne's Theme interface
 type MainTheme struct{}
@@ -40,6 +43,10 @@ func (t MainTheme) Font(style fyne.TextStyle) fyne.Resource {
 // Return default sizes
 func (t MainTheme) Size(name fyne.ThemeSizeName) float32 {
 	switch name {
+	case theme.SizeNameSubHeadingText:
+		return 19
+	case theme.SizeNameText:
+		return 15
 	case theme.SizeNameCaptionText:
 		return 12
 	default:

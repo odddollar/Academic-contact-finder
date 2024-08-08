@@ -42,7 +42,7 @@ func (em *EmailMe) sendEmail() {
 
 // Returns new renderer for EmailMe
 func (em *EmailMe) CreateRenderer() fyne.WidgetRenderer {
-	l := canvas.NewText("Email me these details", theme.Color(theme.ColorNameForeground))
+	l := canvas.NewText("Email me these details:", theme.Color(theme.ColorNameForeground))
 	l.TextStyle.Bold = true
 
 	e := widget.NewEntryWithData(em.email)
