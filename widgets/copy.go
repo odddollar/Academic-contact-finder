@@ -22,7 +22,7 @@ func NewCopy(s global.FoundContactStruct) *Copy {
 	copy.SetText("")
 	copy.OnTapped = func() {
 		// Format struct to text string
-		str := fmt.Sprintf("%s, %s\nEmail: %s\nInstitution: %s", s.Name, s.Salutation, s.Email, s.Institution)
+		str := fmt.Sprintf("%s, %s\n%s\n%s", s.Name, s.Salutation, s.Email, s.Institution)
 
 		// Copied formatted text to clipboard
 		global.W.Clipboard().SetContent(str)
