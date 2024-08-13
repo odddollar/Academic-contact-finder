@@ -9,6 +9,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/odddollar/CITS3200-Project/background"
 	"github.com/odddollar/CITS3200-Project/global"
 	"github.com/odddollar/CITS3200-Project/widgets"
 )
@@ -88,6 +89,11 @@ func main() {
 		global.Ui.Output,
 	)
 	global.W.SetContent(layout)
+
+	// Ensure API key is present and valid
+	if !background.PresentAPIKey() || !background.ValidAPIKey() {
+		background.UpdateAPIKey()
+	}
 
 	// Show window and run app
 	global.W.Resize(fyne.NewSize(1024, 0))
