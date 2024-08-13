@@ -11,7 +11,6 @@ import (
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/background"
 	"github.com/odddollar/CITS3200-Project/global"
-	"github.com/odddollar/CITS3200-Project/widgets"
 )
 
 func main() {
@@ -33,31 +32,19 @@ func main() {
 	global.Ui.Institution = widget.NewEntry()
 
 	// Create search button
-	global.Ui.Search = widget.NewButtonWithIcon("Search", theme.SearchIcon(), func() {})
+	global.Ui.Search = widget.NewButtonWithIcon("Search", theme.SearchIcon(), background.Run)
 	global.Ui.Search.Importance = widget.HighImportance
 
 	// Create about button
 	global.Ui.About = widget.NewButtonWithIcon("", theme.InfoIcon(), aboutCallback)
 
 	// Create results found label
-	global.Ui.NumResults = canvas.NewText("Found 2 results", global.Grey)
+	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
 	global.Ui.NumResults.TextSize = theme.CaptionTextSize()
 
 	// Create empty container that will hold output
 	global.Ui.Output = container.NewVBox()
-	global.Ui.Output.Add(widgets.NewFoundContact(global.FoundContactStruct{
-		Name:        "Example Example",
-		Email:       "example@example.com",
-		Institution: "University of example",
-		Salutation:  "Dr",
-	}))
-	global.Ui.Output.Add(widgets.NewFoundContact(global.FoundContactStruct{
-		Name:        "Example Example",
-		Email:       "example@example.com",
-		Institution: "University of example",
-		Salutation:  "Dr",
-	}))
 
 	// Create window layout
 	layout := container.NewVBox(
