@@ -91,25 +91,26 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 
 	// Calculate padding
 	padding := theme.Padding()
+	innerPadding := theme.InnerPadding()
 
 	// Move and resize name
-	r.name.Move(fyne.NewPos(padding, padding))
+	r.name.Move(fyne.NewPos(innerPadding, padding))
 	r.name.Resize(r.name.MinSize())
 
 	// Move and resize email
-	r.email.Move(fyne.NewPos(padding, r.name.Position().Y+r.name.Size().Height+padding))
+	r.email.Move(fyne.NewPos(innerPadding, r.name.Position().Y+r.name.Size().Height+padding))
 	r.email.Resize(r.email.MinSize())
 
 	// Move and resize institution
-	r.institution.Move(fyne.NewPos(padding, r.email.Position().Y+r.email.Size().Height+padding))
+	r.institution.Move(fyne.NewPos(innerPadding, r.email.Position().Y+r.email.Size().Height+padding))
 	r.institution.Resize(r.institution.MinSize())
 
 	// Move send email
-	r.sendEmail.Move(fyne.NewPos(padding, r.institution.Position().Y+r.institution.Size().Height+padding))
+	r.sendEmail.Move(fyne.NewPos(innerPadding, r.institution.Position().Y+r.institution.Size().Height+padding))
 	r.sendEmail.Resize(fyne.NewSize(size.Width, r.sendEmail.MinSize().Height))
 
 	// Move copy button
-	r.copy.Move(fyne.NewPos(size.Width-r.copy.MinSize().Width-padding, padding))
+	r.copy.Move(fyne.NewPos(size.Width-r.copy.MinSize().Width-innerPadding, innerPadding))
 	r.copy.Resize(r.copy.MinSize())
 }
 
