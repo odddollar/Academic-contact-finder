@@ -1,6 +1,8 @@
 package widgets
 
 import (
+	"fmt"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
@@ -27,7 +29,14 @@ func NewFoundContact(s global.FoundContactStruct) *FoundContact {
 
 // Returns new renderer for FoundContact
 func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
-	n := canvas.NewText(fc.FoundContactStruct.Name+", "+fc.FoundContactStruct.Salutation, theme.Color(theme.ColorNameForeground))
+	n := canvas.NewText(
+		fmt.Sprintf(
+			"%s, %s",
+			fc.FoundContactStruct.Name,
+			fc.FoundContactStruct.Salutation,
+		),
+		theme.Color(theme.ColorNameForeground),
+	)
 	n.TextSize = theme.TextSubHeadingSize()
 	n.TextStyle.Bold = true
 
