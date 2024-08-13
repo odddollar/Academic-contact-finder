@@ -47,33 +47,38 @@ func main() {
 	global.Ui.Output = container.NewVBox()
 
 	// Create window layout
-	layout := container.NewVBox(
-		global.Ui.Title,
-		container.NewBorder(
-			nil,
-			nil,
-			container.NewVBox(
-				global.Ui.FirstNameLabel,
-				global.Ui.LastNameLabel,
-				global.Ui.InstitutionLabel,
+	layout := container.NewBorder(
+		container.NewVBox(
+			global.Ui.Title,
+			container.NewBorder(
+				nil,
+				nil,
+				container.NewVBox(
+					global.Ui.FirstNameLabel,
+					global.Ui.LastNameLabel,
+					global.Ui.InstitutionLabel,
+				),
+				nil,
+				container.NewVBox(
+					global.Ui.FirstName,
+					global.Ui.LastName,
+					global.Ui.Institution,
+				),
 			),
-			nil,
-			container.NewVBox(
-				global.Ui.FirstName,
-				global.Ui.LastName,
-				global.Ui.Institution,
+			container.NewBorder(
+				nil,
+				nil,
+				nil,
+				global.Ui.About,
+				global.Ui.Search,
 			),
+			widget.NewSeparator(),
+			global.Ui.NumResults,
 		),
-		container.NewBorder(
-			nil,
-			nil,
-			nil,
-			global.Ui.About,
-			global.Ui.Search,
-		),
-		widget.NewSeparator(),
-		global.Ui.NumResults,
-		global.Ui.Output,
+		nil,
+		nil,
+		nil,
+		container.NewScroll(global.Ui.Output),
 	)
 	global.W.SetContent(layout)
 
