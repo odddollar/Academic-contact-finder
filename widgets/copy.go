@@ -1,6 +1,8 @@
 package widgets
 
 import (
+	"fmt"
+
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
@@ -12,16 +14,18 @@ type Copy struct {
 }
 
 // Create Copy widget with widget to copy from
-func NewCopy(w *widget.Entry) *Copy {
+func NewCopy(s global.FoundContactStruct) *Copy {
 	copy := &Copy{}
 	copy.ExtendBaseWidget(copy)
 
 	copy.Icon = theme.ContentCopyIcon()
 	copy.SetText("")
 	copy.OnTapped = func() {
-		// Get text from provided entry
-		t := w.Text
-		global.W.Clipboard().SetContent(t)
+		// Format struct to text string
+		str := fmt.Sprintf("%s, %s\nEmail: %s\nInstitution: %s", s.Name, s.Salutation, s.Email, s.Institution)
+
+		// Copied formatted text to clipboard
+		global.W.Clipboard().SetContent(str)
 	}
 
 	return copy

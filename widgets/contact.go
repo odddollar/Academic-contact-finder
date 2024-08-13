@@ -39,12 +39,15 @@ func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 
 	se := NewEmailMe(fc.FoundContactStruct)
 
+	c := NewCopy(fc.FoundContactStruct)
+
 	return &foundContactRenderer{
 		background:  canvas.NewRectangle(theme.Color(theme.ColorNameWarning)),
 		name:        n,
 		email:       e,
 		institution: i,
 		sendEmail:   se,
+		copy:        c,
 	}
 }
 
@@ -55,16 +58,19 @@ type foundContactRenderer struct {
 	email       *canvas.Text
 	institution *canvas.Text
 	sendEmail   *EmailMe
+	copy        *Copy
 }
 
 // Returns minimum size of FoundContact widget
 func (r *foundContactRenderer) MinSize() fyne.Size {
 	return container.NewVBox(
-		r.name,
+		container.NewHBox(
+			r.name,
+			r.copy,
+		),
 		r.email,
 		r.institution,
 		r.sendEmail,
-		NewSpacer(fyne.NewSize(0, theme.Padding())),
 	).MinSize()
 }
 
@@ -92,6 +98,10 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 	// Move send email
 	r.sendEmail.Move(fyne.NewPos(padding, r.institution.Position().Y+r.institution.Size().Height+padding))
 	r.sendEmail.Resize(fyne.NewSize(size.Width, r.sendEmail.MinSize().Height))
+
+	// Move copy button
+	r.copy.Move(fyne.NewPos(size.Width-r.copy.MinSize().Width-padding, padding))
+	r.copy.Resize(r.copy.MinSize())
 }
 
 // Refreshes elements within widget
@@ -101,6 +111,7 @@ func (r *foundContactRenderer) Refresh() {
 	r.email.Refresh()
 	r.institution.Refresh()
 	r.sendEmail.Refresh()
+	r.copy.Refresh()
 }
 
 // Returns child elements of FoundContact
@@ -111,6 +122,7 @@ func (r *foundContactRenderer) Objects() []fyne.CanvasObject {
 		r.email,
 		r.institution,
 		r.sendEmail,
+		r.copy,
 	}
 }
 
