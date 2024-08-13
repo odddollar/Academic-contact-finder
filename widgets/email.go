@@ -35,8 +35,9 @@ func NewEmailMe(d global.FoundContactStruct) *EmailMe {
 
 // Send data to email address
 func (em *EmailMe) sendEmail() {
-	// Temporary action until emailing is implemented
 	address, _ := em.email.Get()
+
+	// TEMPORARY ACTION UNTIL EMAILING IS IMPLEMENTED
 	fmt.Printf("Sending email to \"%s\", with data \"%v\"\n", address, em.details)
 }
 
