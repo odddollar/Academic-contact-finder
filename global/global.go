@@ -14,17 +14,19 @@ var (
 
 // Main UI elements
 var Ui struct {
-	Title            *canvas.Image
-	FirstNameLabel   *widget.Label
-	FirstName        *widget.Entry
-	LastNameLabel    *widget.Label
-	LastName         *widget.Entry
-	InstitutionLabel *widget.Label
-	Institution      *widget.Entry
-	Search           *widget.Button
-	About            *widget.Button
-	NumResults       *canvas.Text
-	Output           *fyne.Container
+	Title              *canvas.Image
+	FirstNameLabel     *widget.Label
+	FirstName          *widget.Entry
+	LastNameLabel      *widget.Label
+	LastName           *widget.Entry
+	InstitutionLabel   *widget.Label
+	Institution        *widget.Entry
+	Search             *widget.Button
+	About              *widget.Button
+	NumResults         *canvas.Text
+	Output             *fyne.Container
+	EmailAll           *widget.Button
+	ChangeDefaultEmail *widget.Button
 }
 
 // Struct containing data from found contacts

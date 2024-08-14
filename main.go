@@ -46,6 +46,11 @@ func main() {
 	// Create empty container that will hold output
 	global.Ui.Output = container.NewVBox()
 
+	// Create buttons for sending emails and updating default address
+	global.Ui.EmailAll = widget.NewButton("Email all", func() {})
+	global.Ui.EmailAll.Importance = widget.HighImportance
+	global.Ui.ChangeDefaultEmail = widget.NewButton("Change default email", func() {})
+
 	// Create window layout
 	layout := container.NewBorder(
 		container.NewVBox(
@@ -75,7 +80,13 @@ func main() {
 			widget.NewSeparator(),
 			global.Ui.NumResults,
 		),
-		nil,
+		container.NewBorder(
+			nil,
+			nil,
+			nil,
+			global.Ui.ChangeDefaultEmail,
+			global.Ui.EmailAll,
+		),
 		nil,
 		nil,
 		container.NewScroll(global.Ui.Output),
