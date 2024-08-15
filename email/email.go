@@ -11,3 +11,6 @@ func SendEmail(address string, details []global.FoundContactStruct) {
 	// TEMPORARY ACTION UNTIL EMAILING IS IMPLEMENTED
 	fmt.Printf("Sending email to \"%s\", with data \"%v\"\n", address, details)
 }
+
+// Send email to address of all returned results
+func EmailAll() {}

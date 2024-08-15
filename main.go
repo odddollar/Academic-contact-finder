@@ -10,6 +10,7 @@ import (
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/background"
+	"github.com/odddollar/CITS3200-Project/email"
 	"github.com/odddollar/CITS3200-Project/global"
 )
 
@@ -47,10 +48,10 @@ func main() {
 	global.Ui.Output = container.NewVBox()
 
 	// Create buttons for sending emails and updating default address
-	global.Ui.EmailAll = widget.NewButton("Email all", func() {})
+	global.Ui.EmailAll = widget.NewButton("Email all", email.EmailAll)
 	global.Ui.EmailAll.Importance = widget.HighImportance
 	global.Ui.EmailAll.Disable()
-	global.Ui.ChangeDefaultEmail = widget.NewButton("Change default email", func() {})
+	global.Ui.ChangeDefaultEmail = widget.NewButton("Change default email", email.ChangeDefaultEmail)
 
 	// Create window layout
 	layout := container.NewBorder(
