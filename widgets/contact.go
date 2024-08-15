@@ -46,6 +46,8 @@ func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 	i := canvas.NewText(fc.FoundContactStruct.Institution, theme.Color(theme.ColorNameForeground))
 	i.TextSize = theme.TextSize()
 
+	u := widget.NewHyperlink(fc.URL.String(), fc.URL)
+
 	se := NewEmailMe(fc.FoundContactStruct)
 
 	c := NewCopy(fc.FoundContactStruct)
@@ -55,6 +57,7 @@ func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 		name:        n,
 		email:       e,
 		institution: i,
+		url:         u,
 		sendEmail:   se,
 		copy:        c,
 	}
@@ -66,21 +69,28 @@ type foundContactRenderer struct {
 	name        *canvas.Text
 	email       *canvas.Text
 	institution *canvas.Text
+	url         *widget.Hyperlink
 	sendEmail   *EmailMe
 	copy        *Copy
 }
 
 // Returns minimum size of FoundContact widget
 func (r *foundContactRenderer) MinSize() fyne.Size {
-	return container.NewVBox(
+	size := container.NewVBox(
 		container.NewHBox(
 			r.name,
 			r.copy,
 		),
 		r.email,
 		r.institution,
+		r.url,
 		r.sendEmail,
 	).MinSize()
+
+	// Used for better spacing
+	size.Height -= 2 * theme.Padding()
+
+	return size
 }
 
 // Lays out data and resizes FoundContact widget to fit available space
@@ -105,8 +115,12 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 	r.institution.Move(fyne.NewPos(innerPadding, r.email.Position().Y+r.email.Size().Height+padding))
 	r.institution.Resize(r.institution.MinSize())
 
+	// Move and resize url
+	r.url.Move(fyne.NewPos(0, r.institution.Position().Y+r.institution.Size().Height))
+	r.url.Resize(r.url.MinSize())
+
 	// Move send email
-	r.sendEmail.Move(fyne.NewPos(innerPadding, r.institution.Position().Y+r.institution.Size().Height+padding))
+	r.sendEmail.Move(fyne.NewPos(innerPadding, r.url.Position().Y+r.url.Size().Height))
 	r.sendEmail.Resize(fyne.NewSize(size.Width, r.sendEmail.MinSize().Height))
 
 	// Move copy button
@@ -120,6 +134,7 @@ func (r *foundContactRenderer) Refresh() {
 	r.name.Refresh()
 	r.email.Refresh()
 	r.institution.Refresh()
+	r.url.Refresh()
 	r.sendEmail.Refresh()
 	r.copy.Refresh()
 }
@@ -131,6 +146,7 @@ func (r *foundContactRenderer) Objects() []fyne.CanvasObject {
 		r.name,
 		r.email,
 		r.institution,
+		r.url,
 		r.sendEmail,
 		r.copy,
 	}

@@ -1,6 +1,8 @@
 package global
 
 import (
+	"net/url"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/widget"
@@ -36,4 +38,5 @@ type FoundContactStruct struct {
 	Salutation  string
 	Email       string
 	Institution string
+	URL         *url.URL
 }

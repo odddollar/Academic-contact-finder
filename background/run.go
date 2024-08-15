@@ -2,6 +2,7 @@ package background
 
 import (
 	"fmt"
+	"net/url"
 	"time"
 
 	"github.com/odddollar/CITS3200-Project/global"
@@ -43,18 +44,21 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 
 	// TEMPORARY DATA
 	// THIS IS WHERE THE REQUESTS TO THE API SHOULD BE INITIATED
+	u, _ := url.Parse("https://example.com")
 	return []global.FoundContactStruct{
 		{
 			Name:        "Example Example",
 			Email:       "example@example.com",
 			Institution: "University of example",
 			Salutation:  "Dr",
+			URL:         u,
 		},
 		{
 			Name:        "Example Example",
 			Email:       "example@example.com",
 			Institution: "University of example",
 			Salutation:  "Dr",
+			URL:         u,
 		},
 	}
 }
