@@ -66,9 +66,9 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 			URL:         u,
 		},
 		{
-			Name:        "Example Example",
-			Email:       "example@example.com",
-			Institution: "University of example",
+			Name:        "Example Example2",
+			Email:       "example2@example.com",
+			Institution: "University of example2",
 			Salutation:  "Dr",
 			URL:         u,
 		},
