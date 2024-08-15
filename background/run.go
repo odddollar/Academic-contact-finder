@@ -11,6 +11,15 @@ import (
 
 // Initiate api requesting and scraping, then update results
 func Run() {
+	// Ensure API key is present and valid
+	// Run here again, as if cancel clicked initially then still no api key
+	// This will appear until a valid key is entered every time run is clicked
+	// and will not progress running any futher
+	if !PresentAPIKey() || !ValidAPIKey() {
+		UpdateAPIKey()
+		return
+	}
+
 	// Get data from entry boxes
 	firstName := global.Ui.FirstName.Text
 	lastName := global.Ui.LastName.Text
