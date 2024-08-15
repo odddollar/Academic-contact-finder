@@ -32,6 +32,7 @@ func (em *EmailMe) CreateRenderer() fyne.WidgetRenderer {
 	l.TextStyle.Bold = true
 
 	e := widget.NewEntry()
+	e.SetText(global.A.Preferences().String("Default_email"))
 	e.SetPlaceHolder("Type email address here")
 
 	s := widget.NewButton("Send", func() {
@@ -94,6 +95,9 @@ func (r *emailMeRenderer) Refresh() {
 	r.label.Refresh()
 	r.entry.Refresh()
 	r.send.Refresh()
+
+	// Update entry text
+	r.entry.SetText(global.A.Preferences().String("Default_email"))
 }
 
 // Returns child elements of EmailMe

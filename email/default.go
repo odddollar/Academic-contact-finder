@@ -2,7 +2,6 @@ package email
 
 import (
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/data/validation"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
@@ -15,10 +14,6 @@ func ChangeDefaultEmail() {
 
 	// Set initial text to existing address
 	entry := widget.NewEntry()
-	entry.Validator = validation.NewRegexp(
-		"^[a-zA-Z0-9.!#$%&'\"*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
-		"Must be valid email address",
-	)
 	entry.SetText(address)
 
 	// Create form items
@@ -35,6 +30,9 @@ func ChangeDefaultEmail() {
 		func(b bool) {
 			if b {
 				global.A.Preferences().SetString("Default_email", entry.Text)
+
+				// Update output box to refresh emails in email me entries
+				global.Ui.Output.Refresh()
 			}
 		},
 		global.W,

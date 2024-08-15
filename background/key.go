@@ -2,7 +2,6 @@ package background
 
 import (
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/data/validation"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
@@ -31,7 +30,6 @@ func UpdateAPIKey() {
 
 	// Set initial text to existing key
 	entry := widget.NewEntry()
-	entry.Validator = validation.NewRegexp("[a-z0-9]+", "Only letters and numbers")
 	entry.SetText(key)
 
 	// Create form items
