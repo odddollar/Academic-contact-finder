@@ -29,6 +29,7 @@ func NewFoundContact(s global.FoundContactStruct) *FoundContact {
 
 // Returns new renderer for FoundContact
 func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
+	// Format name and salutation onto one line
 	n := canvas.NewText(
 		fmt.Sprintf(
 			"%s, %s",
@@ -40,16 +41,23 @@ func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 	n.TextSize = theme.TextSubHeadingSize()
 	n.TextStyle.Bold = true
 
+	// Create email display
 	e := canvas.NewText(fc.FoundContactStruct.Email, theme.Color(theme.ColorNameForeground))
 	e.TextSize = theme.TextSize()
 
+	// Create institution display
 	i := canvas.NewText(fc.FoundContactStruct.Institution, theme.Color(theme.ColorNameForeground))
 	i.TextSize = theme.TextSize()
 
+	// Create hyperlink with label
+	ul := canvas.NewText("Source:", theme.Color(theme.ColorNameForeground))
+	ul.TextSize = theme.TextSize()
 	u := widget.NewHyperlink(fc.URL.String(), fc.URL)
 
+	// Create EmailMe widget
 	se := NewEmailMe(fc.FoundContactStruct)
 
+	// Create Copy widget
 	c := NewCopy(fc.FoundContactStruct)
 
 	return &foundContactRenderer{
@@ -57,6 +65,7 @@ func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 		name:        n,
 		email:       e,
 		institution: i,
+		urlLabel:    ul,
 		url:         u,
 		sendEmail:   se,
 		copy:        c,
@@ -69,6 +78,7 @@ type foundContactRenderer struct {
 	name        *canvas.Text
 	email       *canvas.Text
 	institution *canvas.Text
+	urlLabel    *canvas.Text
 	url         *widget.Hyperlink
 	sendEmail   *EmailMe
 	copy        *Copy
@@ -83,12 +93,15 @@ func (r *foundContactRenderer) MinSize() fyne.Size {
 		),
 		r.email,
 		r.institution,
-		r.url,
+		container.NewHBox(
+			r.urlLabel,
+			r.url,
+		),
 		r.sendEmail,
 	).MinSize()
 
 	// Used for better spacing
-	size.Height -= 2 * theme.Padding()
+	size.Height -= 4*theme.Padding() - 1
 
 	return size
 }
@@ -115,12 +128,14 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 	r.institution.Move(fyne.NewPos(innerPadding, r.email.Position().Y+r.email.Size().Height+padding))
 	r.institution.Resize(r.institution.MinSize())
 
-	// Move and resize url
-	r.url.Move(fyne.NewPos(0, r.institution.Position().Y+r.institution.Size().Height))
+	// Move and resize url label and url
+	r.urlLabel.Move(fyne.NewPos(innerPadding, r.institution.Position().Y+r.institution.Size().Height+padding))
+	r.urlLabel.Resize(r.urlLabel.MinSize())
+	r.url.Move(fyne.NewPos(r.urlLabel.Position().X+r.urlLabel.Size().Width, r.institution.Position().Y+r.institution.Size().Height-padding))
 	r.url.Resize(r.url.MinSize())
 
 	// Move send email
-	r.sendEmail.Move(fyne.NewPos(innerPadding, r.url.Position().Y+r.url.Size().Height))
+	r.sendEmail.Move(fyne.NewPos(innerPadding, r.urlLabel.Position().Y+r.urlLabel.Size().Height+padding))
 	r.sendEmail.Resize(fyne.NewSize(size.Width, r.sendEmail.MinSize().Height))
 
 	// Move copy button
@@ -134,6 +149,7 @@ func (r *foundContactRenderer) Refresh() {
 	r.name.Refresh()
 	r.email.Refresh()
 	r.institution.Refresh()
+	r.urlLabel.Refresh()
 	r.url.Refresh()
 	r.sendEmail.Refresh()
 	r.copy.Refresh()
@@ -146,6 +162,7 @@ func (r *foundContactRenderer) Objects() []fyne.CanvasObject {
 		r.name,
 		r.email,
 		r.institution,
+		r.urlLabel,
 		r.url,
 		r.sendEmail,
 		r.copy,
