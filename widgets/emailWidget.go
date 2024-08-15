@@ -1,14 +1,12 @@
 package widgets
 
 import (
-	"fmt"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/data/binding"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/odddollar/CITS3200-Project/email"
 	"github.com/odddollar/CITS3200-Project/global"
 )
 
@@ -16,29 +14,16 @@ import (
 type EmailMe struct {
 	widget.BaseWidget
 	details global.FoundContactStruct
-	email   binding.String
 }
 
 // Create EmailMe widget with found contact details
 func NewEmailMe(d global.FoundContactStruct) *EmailMe {
-	// Create new string binding
-	e := binding.NewString()
-
 	email := &EmailMe{
 		details: d,
-		email:   e,
 	}
 	email.ExtendBaseWidget(email)
 
 	return email
-}
-
-// Send data to email address
-func (em *EmailMe) sendEmail() {
-	address, _ := em.email.Get()
-
-	// TEMPORARY ACTION UNTIL EMAILING IS IMPLEMENTED
-	fmt.Printf("Sending email to \"%s\", with data \"%v\"\n", address, em.details)
 }
 
 // Returns new renderer for EmailMe
@@ -46,10 +31,12 @@ func (em *EmailMe) CreateRenderer() fyne.WidgetRenderer {
 	l := canvas.NewText("Email me these details:", theme.Color(theme.ColorNameForeground))
 	l.TextStyle.Bold = true
 
-	e := widget.NewEntryWithData(em.email)
+	e := widget.NewEntry()
 	e.SetPlaceHolder("Type email address here")
 
-	s := widget.NewButton("Send", em.sendEmail)
+	s := widget.NewButton("Send", func() {
+		email.SendEmail(e.Text, []global.FoundContactStruct{em.details})
+	})
 	s.Importance = widget.HighImportance
 
 	return &emailMeRenderer{

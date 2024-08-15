@@ -31,7 +31,7 @@ var Ui struct {
 	ChangeDefaultEmail *widget.Button
 }
 
-// Struct containing data from found contacts
+// Struct containing data from found contacts.
 // An array of these are returned by the web-scraper/api accessor
 type FoundContactStruct struct {
 	Name        string
