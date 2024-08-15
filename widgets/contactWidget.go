@@ -101,7 +101,7 @@ func (r *foundContactRenderer) MinSize() fyne.Size {
 	).MinSize()
 
 	// Used for better spacing
-	size.Height -= 4*theme.Padding() - 1
+	size.Height -= 3*theme.Padding() + 1
 
 	return size
 }
@@ -135,7 +135,7 @@ func (r *foundContactRenderer) Layout(size fyne.Size) {
 	r.url.Resize(r.url.MinSize())
 
 	// Move send email
-	r.sendEmail.Move(fyne.NewPos(innerPadding, r.urlLabel.Position().Y+r.urlLabel.Size().Height+padding))
+	r.sendEmail.Move(fyne.NewPos(innerPadding, r.urlLabel.Position().Y+r.urlLabel.Size().Height+1.5*padding))
 	r.sendEmail.Resize(fyne.NewSize(size.Width, r.sendEmail.MinSize().Height))
 
 	// Move copy button
