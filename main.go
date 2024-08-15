@@ -49,6 +49,7 @@ func main() {
 	// Create buttons for sending emails and updating default address
 	global.Ui.EmailAll = widget.NewButton("Email all", func() {})
 	global.Ui.EmailAll.Importance = widget.HighImportance
+	global.Ui.EmailAll.Disable()
 	global.Ui.ChangeDefaultEmail = widget.NewButton("Change default email", func() {})
 
 	// Create window layout

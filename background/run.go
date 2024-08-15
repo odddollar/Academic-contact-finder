@@ -35,6 +35,9 @@ func Run() {
 	// Hide loading bar
 	loading.Hide()
 
+	// Enable email all button
+	global.Ui.EmailAll.Enable()
+
 	// Update number of results found
 	global.Ui.NumResults.Text = fmt.Sprintf("Found %d results", len(results))
 	global.Ui.NumResults.Refresh()
