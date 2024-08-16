@@ -40,3 +40,6 @@ type FoundContactStruct struct {
 	Institution string
 	URL         *url.URL
 }
+
+// Hold global state of found contacts.
+var AllFoundContacts []FoundContactStruct

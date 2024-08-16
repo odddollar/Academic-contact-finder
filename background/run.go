@@ -30,7 +30,7 @@ func Run() {
 	loading.Show()
 
 	// Make request and get results
-	results := request(firstName, lastName, institution)
+	global.AllFoundContacts = request(firstName, lastName, institution)
 
 	// Hide loading bar
 	loading.Hide()
@@ -39,13 +39,13 @@ func Run() {
 	global.Ui.EmailAll.Enable()
 
 	// Update number of results found
-	global.Ui.NumResults.Text = fmt.Sprintf("Found %d results", len(results))
+	global.Ui.NumResults.Text = fmt.Sprintf("Found %d results", len(global.AllFoundContacts))
 	global.Ui.NumResults.Refresh()
 
 	// Iterate through returned results and update UI
 	global.Ui.Output.RemoveAll()
-	for i := 0; i < len(results); i++ {
-		global.Ui.Output.Add(widgets.NewFoundContact(results[i]))
+	for i := 0; i < len(global.AllFoundContacts); i++ {
+		global.Ui.Output.Add(widgets.NewFoundContact(global.AllFoundContacts[i]))
 	}
 }
 
