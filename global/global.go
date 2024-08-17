@@ -1,6 +1,7 @@
 package global
 
 import (
+	"fmt"
 	"net/url"
 
 	"fyne.io/fyne/v2"
@@ -31,6 +32,9 @@ var Ui struct {
 	ChangeDefaultEmail *widget.Button
 }
 
+// Hold global state of found contacts.
+var AllFoundContacts []FoundContactStruct
+
 // Struct containing data from found contacts.
 // An array of these are returned by the web-scraper/api accessor
 type FoundContactStruct struct {
@@ -41,5 +45,7 @@ type FoundContactStruct struct {
 	URL         *url.URL
 }
 
-// Hold global state of found contacts.
-var AllFoundContacts []FoundContactStruct
+// Implement Stringer interface for FoundContactStruct
+func (fcs FoundContactStruct) String() string {
+	return fmt.Sprintf("%s, %s\n%s\n%s\nSource: %s", fcs.Name, fcs.Salutation, fcs.Email, fcs.Institution, fcs.URL.String())
+}
