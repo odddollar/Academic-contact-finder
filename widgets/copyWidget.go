@@ -1,7 +1,6 @@
 package widgets
 
 import (
-	"fmt"
 	"time"
 
 	"fyne.io/fyne/v2/theme"
@@ -22,18 +21,15 @@ func NewCopy(s global.FoundContactStruct) *Copy {
 	copy.Icon = theme.ContentCopyIcon()
 	copy.SetText("")
 	copy.OnTapped = func() {
-		// Format struct to text string
-		str := fmt.Sprintf("%s, %s\n%s\n%s\nSource: %s", s.Name, s.Salutation, s.Email, s.Institution, s.URL.String())
-
 		// Copied formatted text to clipboard
-		global.W.Clipboard().SetContent(str)
+		global.W.Clipboard().SetContent(s.String())
 
 		// Change icon to tick
 		copy.Icon = theme.ConfirmIcon()
 
 		// Wait one second and turn back to copy icon
 		go func() {
-			time.Sleep(time.Second)
+			time.Sleep(2 * time.Second)
 			copy.Icon = theme.ContentCopyIcon()
 			copy.Refresh()
 		}()
