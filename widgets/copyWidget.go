@@ -33,7 +33,7 @@ func NewCopy(s global.FoundContactStruct) *Copy {
 
 		// Wait one second and turn back to copy icon
 		go func() {
-			time.Sleep(time.Second)
+			time.Sleep(2 * time.Second)
 			copy.Icon = theme.ContentCopyIcon()
 			copy.Refresh()
 		}()
