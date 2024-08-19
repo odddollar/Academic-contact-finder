@@ -5,6 +5,7 @@ import (
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
+	"net/http"
 )
 
 // Checks if the API is present
@@ -18,9 +19,13 @@ func PresentAPIKey() bool {
 // error then key isn't valid
 func ValidAPIKey() bool {
 	key := global.A.Preferences().String("API_key")
+	url := "https://api.elsevier.com/content/author?author_id=57169566400&apiKey=" + key
 
-	// UPDATE HERE TO MAKE TEST REQUEST TO ENSURE API KEY WORKS
-	return key != ""
+	resp, err := http.Get(url)
+	if err != nil || resp.StatusCode != http.StatusOK {
+		return false
+	}
+	return true
 }
 
 // Opens dialog for entering new API key
