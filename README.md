@@ -12,7 +12,6 @@ This program is designed to make it easier to find any available email addresses
 - [Fyne](https://fyne.io/) CLI tool
     - Can be installed with `go install fyne.io/fyne/v2/cmd/fyne@latest`
 
-
 Will by default compile for the current system (e.g. Windows, MacOS). For cross-compiling to other platforms, use [Fyne-cross](https://github.com/fyne-io/fyne-cross) (requires [Docker](https://www.docker.com/)).
 
 These tools' commands must be accessible through a command line/terminal.
