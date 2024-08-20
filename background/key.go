@@ -33,6 +33,11 @@ func ValidAPIKey() bool {
 	}
 	defer resp.Body.Close()
 
+	// Check if the HTTP response status is OK
+	if resp.StatusCode != http.StatusOK {
+		return false
+	}
+
 	// Read the response body
 	body, _ := ioutil.ReadAll(resp.Body)
 	bodyStr := string(body)
