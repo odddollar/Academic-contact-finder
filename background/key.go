@@ -1,7 +1,7 @@
 package background
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 
@@ -39,7 +39,10 @@ func ValidAPIKey() bool {
 	}
 
 	// Read the response body
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return false
+	}
 	bodyStr := string(body)
 
 	// Check for specific XML error tags
