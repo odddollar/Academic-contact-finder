@@ -25,7 +25,12 @@ func ValidAPIKey() bool {
 	// we need an institution token to make this work outside of the institution network
 	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=57169566400?apiKey=" + key
 
-	resp, _ := http.Get(url)
+	//make the http request
+	resp, err := http.Get(url)
+	//checks if there was an error in making the request
+	if err != nil {
+		return false
+	}
 	defer resp.Body.Close()
 
 	// Read the response body
