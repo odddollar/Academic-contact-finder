@@ -1,11 +1,14 @@
 package background
 
 import (
+	"io/ioutil"
+	"net/http"
+	"strings"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/global"
-	"net/http"
 )
 
 // Checks if the API is present
@@ -19,13 +22,19 @@ func PresentAPIKey() bool {
 // error then key isn't valid
 func ValidAPIKey() bool {
 	key := global.A.Preferences().String("API_key")
-	url := "https://api.elsevier.com/content/author?author_id=57169566400&apiKey=" + key
+	// we need an institution token to make this work outside of the institution network
+	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=57169566400?apiKey=" + key
 
-	resp, err := http.Get(url)
-	if err != nil || resp.StatusCode != http.StatusOK {
-		return false
-	}
-	return true
+	resp, _ := http.Get(url)
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, _ := ioutil.ReadAll(resp.Body)
+	bodyStr := string(body)
+
+	// Check for specific XML error tags
+	return !(strings.Contains(bodyStr, "<statusCode>AUTHENTICATION_ERROR</statusCode>") &&
+		strings.Contains(bodyStr, "<statusText>Invalid API Key</statusText>"))
 }
 
 // Opens dialog for entering new API key
