@@ -46,8 +46,7 @@ func ValidAPIKey() bool {
 	bodyStr := string(body)
 
 	// Check for specific XML error tags
-	return !(strings.Contains(bodyStr, "<statusCode>AUTHENTICATION_ERROR</statusCode>") &&
-		strings.Contains(bodyStr, "<statusText>Invalid API Key</statusText>"))
+	return !(strings.Contains(bodyStr, "<statusCode>AUTHENTICATION_ERROR</statusCode>") && strings.Contains(bodyStr, "<statusText>Invalid API Key</statusText>"))
 }
 
 // Opens dialog for entering new API key
