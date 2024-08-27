@@ -1,10 +1,6 @@
 package background
 
 import (
-	"io"
-	"net/http"
-	"strings"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
@@ -25,28 +21,7 @@ func ValidAPIKey() bool {
 	// we need an institution token to make this work outside of the institution network
 	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=57169566400?apiKey=" + key
 
-	//make the http request
-	resp, err := http.Get(url)
-	//checks if there was an error in making the request
-	if err != nil {
-		return false
-	}
-	defer resp.Body.Close()
-
-	// Check if the HTTP response status is OK
-	if resp.StatusCode != http.StatusOK {
-		return false
-	}
-
-	// Read the response body
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return false
-	}
-	bodyStr := string(body)
-
-	// Check for specific XML error tags
-	return !(strings.Contains(bodyStr, "<statusCode>AUTHENTICATION_ERROR</statusCode>") && strings.Contains(bodyStr, "<statusText>Invalid API Key</statusText>"))
+	return key != ""
 }
 
 // Opens dialog for entering new API key
