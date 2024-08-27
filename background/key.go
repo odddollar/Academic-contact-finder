@@ -20,7 +20,7 @@ func PresentAPIKey() bool {
 func ValidAPIKey() bool {
 	key := global.A.Preferences().String("API_key")
 	// we need an institution token to make this work outside of the institution network
-	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=57169566400?apiKey=" + key
+	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=" + key
 
 	//very basic api check, does not error check
 	resp, _ := http.Get(url)
