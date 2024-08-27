@@ -1,6 +1,8 @@
 package background
 
 import (
+	"net/http"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
@@ -21,7 +23,9 @@ func ValidAPIKey() bool {
 	// we need an institution token to make this work outside of the institution network
 	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=57169566400?apiKey=" + key
 
-	return key != ""
+	resp, _ := http.Get(url)
+	defer resp.Body.Close()
+	return resp.StatusCode == http.StatusOK
 }
 
 // Opens dialog for entering new API key
