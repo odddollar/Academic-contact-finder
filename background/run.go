@@ -18,7 +18,7 @@ func Run() {
 	if !PresentAPIKey() || !ValidAPIKey() {
 		UpdateAPIKey()
 		return
-	} else {
+	} else { //popup for debug purposes, remove later
 		global.ShowSuccess("Scopus API Key Validated")
 	}
 
