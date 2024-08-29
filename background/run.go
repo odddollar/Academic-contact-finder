@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/odddollar/CITS3200-Project/email"
 	"github.com/odddollar/CITS3200-Project/global"
 	"github.com/odddollar/CITS3200-Project/widgets"
 )
@@ -19,7 +20,7 @@ func Run() {
 		UpdateAPIKey()
 		return
 	}
-
+	email.SendEmailTest()
 	// Get data from entry boxes
 	firstName := global.Ui.FirstName.Text
 	lastName := global.Ui.LastName.Text

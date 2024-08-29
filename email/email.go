@@ -2,6 +2,7 @@ package email
 
 import (
 	"fmt"
+	"os/exec"
 
 	"github.com/odddollar/CITS3200-Project/global"
 )
@@ -13,6 +14,14 @@ func SendEmail(address string, details []global.FoundContactStruct) {
 
 	// Show confirmation
 	global.ShowSuccess("Email sent to: " + address)
+}
+
+func SendEmailTest() { // (address string, subject string, body string) {
+	address := "example@example.com"
+	subject := "TestEmail"
+	body := "TestEmailBody"
+	mailToURL := fmt.Sprintf("mailto:%s?subject=%s&body=%s", address, subject, body)
+	exec.Command("Cmd", "/c", "start", mailToURL).Run()
 }
 
 // Send email to address of all returned results
