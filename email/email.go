@@ -19,9 +19,9 @@ func SendEmail(address string, details []global.FoundContactStruct) {
 func SendEmailTest() { // (address string, subject string, body string) {
 	address := "example@example.com"
 	subject := "TestEmail"
-	body := "TestEmailBody"
+	body := "Test Email Body"
 	mailToURL := fmt.Sprintf("mailto:%s?subject=%s&body=%s", address, subject, body)
-	exec.Command("Cmd", "/c", "start", mailToURL).Start()
+	exec.Command("powershell", "-Command", fmt.Sprintf("Start-Process '%s'", mailToURL)).Run()
 }
 
 // Send email to address of all returned results
