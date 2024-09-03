@@ -13,7 +13,34 @@ import (
 // Send data to email address
 func SendEmail(address string, details []global.FoundContactStruct) {
 	// TEMPORARY ACTION UNTIL EMAILING IS IMPLEMENTED
-	fmt.Printf("Sending email to \"%s\", with data \"%v\"\n", address, details)
+	//fmt.Printf("Sending email to \"%s\", with data \"%v\"\n", address, details)
+
+	subject := "Requested Emails"
+	var bodyContent strings.Builder
+	for _, detail := range details {
+		bodyContent.WriteString(fmt.Sprintf(
+			"Name: %s\nSalutation: %s\nEmail: %s\nInstitution: %s\nURL: %s\n\n",
+			detail.Name,
+			detail.Salutation,
+			detail.Email,
+			detail.Institution,
+			detail.URL.String(),
+		))
+	}
+	encodedBodyContent := url.QueryEscape(bodyContent.String())
+	encodedBodyContent = strings.ReplaceAll(encodedBodyContent, "+", "%20")
+	mailToURL := fmt.Sprintf("mailto:%s?subject=%s&body=%s", address, subject, encodedBodyContent)
+	switch runtime.GOOS {
+	case "windows":
+		// Use PowerShell to open the mailto URL on Windows
+		exec.Command("powershell", "-Command", fmt.Sprintf("Start-Process '%s'", mailToURL)).Run()
+	case "linux":
+		// Use xdg-open to open the mailto URL on Linux
+		exec.Command("xdg-open", mailToURL).Run()
+	case "darwin":
+		// Use open to open the mailto URL on macOS
+		exec.Command("open", mailToURL).Run()
+	}
 
 	// Show confirmation
 	global.ShowSuccess("Email sent to: " + address)
