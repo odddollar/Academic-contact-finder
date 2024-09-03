@@ -14,12 +14,6 @@ import (
 	"github.com/odddollar/CITS3200-Project/widgets"
 )
 
-type scopusResult struct {
-	first string
-	last  string
-	email string
-}
-
 // Initiate api requesting and scraping, then update results
 func Run() {
 	// Ensure API key is present and valid
@@ -85,56 +79,35 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-84922537253&origin=resultslist",
 	}
 
-	fn := "chris"
-	ln := "mcdonald"
+	desiredName := "chris mcdonald"
+	results := []global.FoundContactStruct{}
 
 	// Iterate through urls
 	for _, i := range urls {
 		fmt.Println("Source: ", i)
-		results := scrapeScopus(i, ctx)
+		r := scrapeScopus(i, ctx)
 
-		for _, j := range results {
-			if fuzzy.MatchFold(j.first, fn) && fuzzy.MatchFold(j.last, ln) {
+		for _, j := range r {
+			if fuzzy.MatchFold(j.Name, desiredName) {
 				fmt.Printf("Match %s\n", j)
 			} else {
 				fmt.Printf("No match %s\n", j)
 			}
 		}
 
-		fmt.Println()
+		results = append(results, r...)
 	}
 
-	// TEMPORARY TO SIMULATE TIME TAKEN TO PROCESS REQUEST
-	time.Sleep(2 * time.Second)
-
-	// TEMPORARY DATA
-	// THIS IS WHERE THE REQUESTS TO THE API SHOULD BE INITIATED
-	u, _ := url.Parse("https://example.com")
-	return []global.FoundContactStruct{
-		{
-			Name:        "Example Example",
-			Email:       "example@example.com",
-			Institution: "University of example",
-			Salutation:  "Dr",
-			URL:         u,
-		},
-		{
-			Name:        "Example Example2",
-			Email:       "example2@example.com",
-			Institution: "University of example2",
-			Salutation:  "Dr",
-			URL:         u,
-		},
-	}
+	return results
 }
 
-func scrapeScopus(url string, ctx context.Context) []scopusResult {
+func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 	// Create a variable to store the page's HTML
 	var htmlContent string
 
 	// Visit the webpage and get the HTML content
 	err := chromedp.Run(ctx,
-		chromedp.Navigate(url),
+		chromedp.Navigate(u),
 		chromedp.Sleep(1*time.Second), // Adding sleep for reliability
 		chromedp.OuterHTML("html", &htmlContent),
 	)
@@ -148,7 +121,7 @@ func scrapeScopus(url string, ctx context.Context) []scopusResult {
 		global.ShowError(err)
 	}
 
-	var toReturn []scopusResult
+	var toReturn []global.FoundContactStruct
 
 	// Find all <li> elements
 	doc.Find("li").Each(func(i int, s *goquery.Selection) {
@@ -158,10 +131,18 @@ func scrapeScopus(url string, ctx context.Context) []scopusResult {
 			if exists && strings.HasPrefix(href, "mailto:") {
 				// Find the <span> within the <button> to get the name
 				name := s.Find("button span").Text()
-				toReturn = append(toReturn, scopusResult{
-					strings.Split(name, ", ")[1],
-					strings.Split(name, ", ")[0],
-					href[7:],
+
+				// Format results to correct structure
+				up, _ := url.Parse(u)
+				toReturn = append(toReturn, global.FoundContactStruct{
+					Name: fmt.Sprintf("%s %s",
+						strings.Split(name, ", ")[1],
+						strings.Split(name, ", ")[0],
+					),
+					Salutation:  "Unknown",
+					Email:       href[7:],
+					Institution: "Unknown",
+					URL:         up,
 				})
 			}
 		})
