@@ -12,9 +12,6 @@ import (
 
 // Send data to email address
 func SendEmail(address string, details []global.FoundContactStruct) {
-	// TEMPORARY ACTION UNTIL EMAILING IS IMPLEMENTED
-	//fmt.Printf("Sending email to \"%s\", with data \"%v\"\n", address, details)
-
 	subject := "Requested Emails"
 	var bodyContent strings.Builder
 	for _, detail := range details {
@@ -41,15 +38,13 @@ func SendEmail(address string, details []global.FoundContactStruct) {
 		// Use open to open the mailto URL on macOS
 		exec.Command("open", mailToURL).Run()
 	}
-
 	// Show confirmation
 	global.ShowSuccess("Email sent to: " + address)
 }
 
-func SendEmailTest() { // (address string, subject string, body string) {
+func SendEmailTest() {
 	address := "example@example.com"
 	subject := "TestEmail"
-	//body := "Test Email Body"
 
 	dummyStruct := global.FoundContactStruct{
 		Name:        "Test Name",

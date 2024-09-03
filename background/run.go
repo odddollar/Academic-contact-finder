@@ -19,7 +19,7 @@ func Run() {
 	email.SendEmailTest()
 	if !PresentAPIKey() || !ValidAPIKey() {
 		UpdateAPIKey()
-		return
+		//return
 	}
 	// Get data from entry boxes
 	firstName := global.Ui.FirstName.Text
