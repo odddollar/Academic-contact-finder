@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"os/exec"
 	"runtime"
+	"strings"
 
 	"github.com/odddollar/CITS3200-Project/global"
 )
@@ -31,14 +32,16 @@ func SendEmailTest() { // (address string, subject string, body string) {
 		URL:         &url.URL{Scheme: "https", Host: "www.example.com"},
 	}
 	bodyContent := fmt.Sprintf(
-		"Name: %s\nSalutation: %s\nEmail: %s\nInstitution: %s\nURL: %s",
+		"Name: %s\nSalutation: %s\nEmail: %s\nInstitution: %s\nURL: %s\n",
 		dummyStruct.Name,
 		dummyStruct.Salutation,
 		dummyStruct.Email,
 		dummyStruct.Institution,
 		dummyStruct.URL.String(),
 	)
-	mailToURL := fmt.Sprintf("mailto:%s?subject=%s&body=%s", address, subject, bodyContent)
+	encodedBodyContent := url.QueryEscape(bodyContent)
+	encodedBodyContent = strings.ReplaceAll(encodedBodyContent, "+", "%20")
+	mailToURL := fmt.Sprintf("mailto:%s?subject=%s&body=%s", address, subject, encodedBodyContent)
 	switch runtime.GOOS {
 	case "windows":
 		// Use PowerShell to open the mailto URL on Windows
