@@ -5,7 +5,6 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/odddollar/CITS3200-Project/email"
 	"github.com/odddollar/CITS3200-Project/global"
 	"github.com/odddollar/CITS3200-Project/widgets"
 )
@@ -16,10 +15,9 @@ func Run() {
 	// Run here again, as if cancel clicked initially then still no api key
 	// This will appear until a valid key is entered every time run is clicked
 	// and will not progress running any futher
-	email.SendEmailTest()
 	if !PresentAPIKey() || !ValidAPIKey() {
 		UpdateAPIKey()
-		//return
+		return
 	}
 	// Get data from entry boxes
 	firstName := global.Ui.FirstName.Text
