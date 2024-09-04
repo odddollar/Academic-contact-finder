@@ -77,13 +77,17 @@ func buildPayload(query string, start, num int, params map[string]string) map[st
 	return payload
 }
 
-func findEmailByNameAndInstitution(urlStr string) ([]string, error) {
+func findEmailByNameAndInstitution(urlStr string, name string) ([]string, error) {
+	var emails []string
+
+	// Perform HTTP GET request
 	resp, err := http.Get(urlStr)
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
 
+	// Read the response body
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
@@ -91,7 +95,22 @@ func findEmailByNameAndInstitution(urlStr string) ([]string, error) {
 
 	// Find and parse email addresses using regex
 	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
-	emails := re.FindAllString(string(body), -1)
+	foundEmails := re.FindAllString(string(body), -1)
+
+	// Convert name to lowercase for case-insensitive comparison
+	name = strings.ToLower(name)
+
+	// Loop through found emails and match against the provided name
+	for _, email := range foundEmails {
+		// Extract the part before the '@' symbol and convert to lowercase
+		localPart := strings.ToLower(strings.Split(email, "@")[0])
+
+		// Check if the local part contains the name
+		if strings.Contains(localPart, name) {
+			emails = append(emails, email)
+		}
+	}
+
 	return emails, nil
 }
 
@@ -171,7 +190,7 @@ func request(firstName, lastName, institution string) []FoundContactStruct {
 		}
 		var newresult FoundContactStruct
 
-		emails, err := findEmailByNameAndInstitution(url)
+		emails, err := findEmailByNameAndInstitution(url, firstName)
 		if err != nil {
 			continue
 		}
