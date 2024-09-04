@@ -26,9 +26,9 @@ func Run() {
 	}
 
 	// Get data from entry boxes
-	firstName := global.Ui.FirstName.Text
-	lastName := global.Ui.LastName.Text
-	institution := global.Ui.Institution.Text
+	firstName := strings.ToLower(global.Ui.FirstName.Text)
+	lastName := strings.ToLower(global.Ui.LastName.Text)
+	institution := strings.ToLower(global.Ui.Institution.Text)
 
 	// Create and show loading bar
 	loading := infiniteLoad()
@@ -73,15 +73,14 @@ func request(firstName, lastName, institution string) {
 	// TEMPORARY URLS YOU WANT TO VISIT
 	urls := []string{
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85079320615&origin=resultslist",
-		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85070927816&origin=resultslist",
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85037348791&origin=resultslist",
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85087366727&origin=resultslist",
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-84922537253&origin=resultslist",
 	}
 
 	// TEMPORARY NAME TO SEARCH FOR
-	desiredFirstName := "chris"
-	desiredLastName := "mcdonald"
+	firstName = "christopher"
+	lastName = "mcdonald"
 
 	results := []global.FoundContactStruct{}
 
@@ -92,8 +91,12 @@ func request(firstName, lastName, institution string) {
 
 		// Iterate through results from url
 		for _, j := range r {
+			fnd := fuzzy.LevenshteinDistance(strings.ToLower(j.FirstName), firstName)
+			lnd := fuzzy.LevenshteinDistance(strings.ToLower(j.LastName), lastName)
+			//fmt.Printf("%s %s: %d %d\n", j.FirstName, j.LastName, fnd, lnd)
+
 			// Check if result qualifies as match
-			if fuzzy.MatchFold(j.FirstName, desiredFirstName) || fuzzy.MatchFold(j.LastName, desiredLastName) {
+			if fnd <= 2 || lnd <= 2 {
 				results = append(results, j)
 			}
 		}
