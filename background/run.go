@@ -137,6 +137,10 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 
 				// Find the <sup> to get affiliation link
 				affiliationLink := s.Find("sup").Text()
+				affiliation := affiliations[affiliationLink]
+				if affiliation == "" {
+					affiliation = "Unknown Institution"
+				}
 
 				// Format results to correct structure
 				up, _ := url.Parse(u)
@@ -145,10 +149,10 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 						strings.Split(name, ", ")[1],
 						strings.Split(name, ", ")[0],
 					),
-					Salutation:  "Unknown",                     // Salutation not provided by scopus
-					Email:       href[7:],                      // Remove "mailto:"
-					Institution: affiliations[affiliationLink], // Get affiliation from map
-					URL:         up,                            // Parsed url as source
+					Salutation:  "Unknown Salutation", // Salutation not provided by scopus
+					Email:       href[7:],             // Remove "mailto:"
+					Institution: affiliation,          // Get affiliation from map
+					URL:         up,                   // Parsed url as source
 				})
 			}
 		})
