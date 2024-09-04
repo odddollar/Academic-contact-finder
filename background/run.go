@@ -19,6 +19,7 @@ func Run() {
 		UpdateAPIKey()
 		return
 	}
+
 	// Get data from entry boxes
 	firstName := global.Ui.FirstName.Text
 	lastName := global.Ui.LastName.Text

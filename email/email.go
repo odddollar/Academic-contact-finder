@@ -1,6 +1,7 @@
 package email
 
 import (
+	"errors"
 	"fmt"
 	"net/url"
 	"os/exec"
@@ -12,14 +13,25 @@ import (
 
 // Send data to email address
 func SendEmail(address string, details []global.FoundContactStruct) {
-	subject := "Requested Emails"
+	// Check that address has actually been entered
+	if address == "" {
+		global.ShowError(errors.New("please enter an email address"))
+		return
+	}
+
+	// Write all details to string
 	var bodyContent strings.Builder
 	for _, detail := range details {
 		bodyContent.WriteString(detail.String())
 	}
+
+	// Escape and format content to maintain newlines and spaces
 	encodedBodyContent := url.QueryEscape(bodyContent.String())
 	encodedBodyContent = strings.ReplaceAll(encodedBodyContent, "+", "%20")
+	subject := "Requested Emails"
 	mailToURL := fmt.Sprintf("mailto:%s?subject=%s&body=%s", address, subject, encodedBodyContent)
+
+	// Execute relevant command for current OS
 	switch runtime.GOOS {
 	case "windows":
 		// Use PowerShell to open the mailto URL on Windows
@@ -31,6 +43,7 @@ func SendEmail(address string, details []global.FoundContactStruct) {
 		// Use open to open the mailto URL on macOS
 		exec.Command("open", mailToURL).Run()
 	}
+
 	// Show confirmation
 	global.ShowSuccess("Email sent to: " + address)
 }
