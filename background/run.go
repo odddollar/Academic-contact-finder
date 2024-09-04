@@ -35,7 +35,7 @@ func Run() {
 	loading.Show()
 
 	// Make request and get results
-	global.AllFoundContacts = request(firstName, lastName, institution)
+	request(firstName, lastName, institution)
 
 	// Hide loading bar
 	loading.Hide()
@@ -55,7 +55,7 @@ func Run() {
 }
 
 // Perform actual requesting and scraping, returning a list of found contacts
-func request(firstName, lastName, institution string) []global.FoundContactStruct {
+func request(firstName, lastName, institution string) {
 	// Create a new Chrome browser context with options to disable headless mode
 	opts := append(
 		chromedp.DefaultExecAllocatorOptions[:],
@@ -99,7 +99,7 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 		}
 	}
 
-	return results
+	global.AllFoundContacts = results
 }
 
 // Take url and chromedp context and scrape data from scopus
