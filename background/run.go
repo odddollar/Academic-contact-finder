@@ -123,6 +123,10 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 
 	var toReturn []global.FoundContactStruct
 
+	// Create affliation map
+	affiliations := generateAffliationMap(doc)
+	fmt.Println(affiliations)
+
 	// Find all <li> elements
 	doc.Find("li").Each(func(i int, s *goquery.Selection) {
 		// Find all <a> elements with href attributes
@@ -131,6 +135,10 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 			if exists && strings.HasPrefix(href, "mailto:") {
 				// Find the <span> within the <button> to get the name
 				name := s.Find("button span").Text()
+
+				// Find the <sup> to get affiliation link
+				affiliationLink := s.Find("sup").Text()
+				fmt.Println(affiliationLink)
 
 				// Format results to correct structure
 				up, _ := url.Parse(u)
@@ -141,11 +149,25 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 					),
 					Salutation:  "Unknown",
 					Email:       href[7:],
-					Institution: "Unknown",
+					Institution: affiliations[affiliationLink],
 					URL:         up,
 				})
 			}
 		})
+	})
+
+	return toReturn
+}
+
+func generateAffliationMap(doc *goquery.Document) map[string]string {
+	toReturn := make(map[string]string)
+
+	affilitationSection := doc.Find("div#affiliation-section").First()
+	affilitationSection.Find("li").Each(func(i int, s *goquery.Selection) {
+		link := strings.Trim(s.Find("sup").Text(), " ")
+		location := s.Find("span").Text()
+
+		toReturn[link] = location
 	})
 
 	return toReturn
