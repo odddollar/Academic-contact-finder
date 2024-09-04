@@ -15,14 +15,7 @@ func SendEmail(address string, details []global.FoundContactStruct) {
 	subject := "Requested Emails"
 	var bodyContent strings.Builder
 	for _, detail := range details {
-		bodyContent.WriteString(fmt.Sprintf(
-			"Name: %s\nSalutation: %s\nEmail: %s\nInstitution: %s\nURL: %s\n\n",
-			detail.Name,
-			detail.Salutation,
-			detail.Email,
-			detail.Institution,
-			detail.URL.String(),
-		))
+		bodyContent.WriteString(detail.String())
 	}
 	encodedBodyContent := url.QueryEscape(bodyContent.String())
 	encodedBodyContent = strings.ReplaceAll(encodedBodyContent, "+", "%20")
