@@ -47,5 +47,5 @@ type FoundContactStruct struct {
 
 // Implement Stringer interface for FoundContactStruct
 func (fcs FoundContactStruct) String() string {
-	return fmt.Sprintf("%s, %s\n%s\n%s\nSource: %s", fcs.Name, fcs.Salutation, fcs.Email, fcs.Institution, fcs.URL.String())
+	return fmt.Sprintf("%s, %s\n%s\n%s\nSource: %s\n\n", fcs.Name, fcs.Salutation, fcs.Email, fcs.Institution, fcs.URL.String())
 }
