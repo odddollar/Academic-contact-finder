@@ -95,11 +95,50 @@ func findEmailByNameAndInstitution(urlStr string) ([]string, error) {
 	return emails, nil
 }
 
+func findInstitutionandName(urlStr string, institution string, name string) (string, string, error) {
+	var institutionresult string
+	var name_result string
+	institutionresult = institution
+	name_result = name
+
+	// Perform HTTP GET request
+	resp, err := http.Get(urlStr)
+	if err != nil {
+		return "N/A", "N/A", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "N/A", "N/A", err
+	}
+
+	// Convert body to string and make it lowercase for case-insensitive search
+	bodyStr := strings.ToLower(string(body))
+	// Convert institution to lowercase for case-insensitive comparison
+	institution = strings.ToLower(institution)
+
+	name = strings.ToLower(institution)
+
+	// Check if the institution string is in the HTML body
+	if !strings.Contains(bodyStr, institution) {
+		institutionresult = "N/A"
+	}
+
+	if !strings.Contains(bodyStr, name) {
+		name_result = "N/A"
+	}
+
+	return institutionresult, name_result, nil
+}
+
 // Perform actual requesting and scraping, returning a list of found contacts
 func request(firstName, lastName, institution string) []FoundContactStruct {
 
 	searchQuery := firstName + " " + lastName + " " + institution
 	totalResults := 20
+	name := firstName + " " + lastName
 
 	var urls []string
 	var global_list []FoundContactStruct
@@ -136,14 +175,15 @@ func request(firstName, lastName, institution string) []FoundContactStruct {
 		if err != nil {
 			continue
 		}
+		institutionresult, name_result, err := findInstitutionandName(url, institution, name)
 
 		if len(emails) > 0 && len(emails[0]) <= 100 {
 			// fmt.Println(url)
 			// fmt.Println(emails)
 			newresult.Email = emails
 			newresult.URL = url
-			newresult.Institution = "N/A"
-			newresult.Name = "N/A"
+			newresult.Institution = institutionresult
+			newresult.Name = name_result
 			newresult.Salutation = "N/A"
 			global_list = append(global_list, newresult)
 
@@ -155,8 +195,8 @@ func request(firstName, lastName, institution string) []FoundContactStruct {
 
 func main() {
 	firstName := "Chris"
-	lastName := "Mcdonald"
-	institution := "University of Western Australia"
+	lastName := "McDonald"
+	institution := "UWA"
 
 	contacts := request(firstName, lastName, institution)
 
