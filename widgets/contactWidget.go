@@ -32,8 +32,9 @@ func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
 	// Format name and salutation onto one line
 	n := canvas.NewText(
 		fmt.Sprintf(
-			"%s, %s",
-			fc.FoundContactStruct.Name,
+			"%s %s, %s",
+			fc.FoundContactStruct.FirstName,
+			fc.FoundContactStruct.LastName,
 			fc.FoundContactStruct.Salutation,
 		),
 		theme.Color(theme.ColorNameForeground),

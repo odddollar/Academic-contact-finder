@@ -80,7 +80,8 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 	}
 
 	// TEMPORARY NAME TO SEARCH FOR
-	desiredName := "chris mcdonald"
+	desiredFirstName := "chris"
+	desiredLastName := "mcdonald"
 
 	results := []global.FoundContactStruct{}
 
@@ -92,7 +93,7 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 		// Iterate through results from url
 		for _, j := range r {
 			// Check if result qualifies as match
-			if fuzzy.MatchFold(j.Name, desiredName) {
+			if fuzzy.MatchFold(j.FirstName, desiredFirstName) || fuzzy.MatchFold(j.LastName, desiredLastName) {
 				results = append(results, j)
 			}
 		}
@@ -145,10 +146,8 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				// Format results to correct structure
 				up, _ := url.Parse(u)
 				toReturn = append(toReturn, global.FoundContactStruct{
-					Name: fmt.Sprintf("%s %s",
-						strings.Split(name, ", ")[1],
-						strings.Split(name, ", ")[0],
-					),
+					FirstName:   strings.Split(name, ", ")[1],
+					LastName:    strings.Split(name, ", ")[0],
 					Salutation:  "Unknown Salutation", // Salutation not provided by scopus
 					Email:       href[7:],             // Remove "mailto:"
 					Institution: affiliation,          // Get affiliation from map
