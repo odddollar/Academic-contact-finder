@@ -66,44 +66,46 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 	allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
 	defer cancel()
 
-	// Create context
+	// Create chromedp context
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	// URL you want to visit
+	// TEMPORARY URLS YOU WANT TO VISIT
 	urls := []string{
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85079320615&origin=resultslist",
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85070927816&origin=resultslist",
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85037348791&origin=resultslist",
-		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85119400640&origin=resultslist",
+		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85087366727&origin=resultslist",
 		"https://www.scopus.com/record/display.uri?eid=2-s2.0-84922537253&origin=resultslist",
 	}
 
+	// TEMPORARY NAME TO SEARCH FOR
 	desiredName := "chris mcdonald"
+
 	results := []global.FoundContactStruct{}
 
 	// Iterate through urls
 	for _, i := range urls {
-		fmt.Println("Source: ", i)
+		// Scrape data from current url
 		r := scrapeScopus(i, ctx)
 
+		// Iterate through results from url
 		for _, j := range r {
+			// Check if result qualifies as match
 			if fuzzy.MatchFold(j.Name, desiredName) {
-				fmt.Printf("Match %s\n", j)
-			} else {
-				fmt.Printf("No match %s\n", j)
+				results = append(results, j)
 			}
 		}
-
-		results = append(results, r...)
 	}
 
 	return results
 }
 
+// Take url and chromedp context and scrape data from scopus
 func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
-	// Create a variable to store the page's HTML
+	// Create variables to store the page's HTML and data found
 	var htmlContent string
+	var toReturn []global.FoundContactStruct
 
 	// Visit the webpage and get the HTML content
 	err := chromedp.Run(ctx,
@@ -121,11 +123,8 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 		global.ShowError(err)
 	}
 
-	var toReturn []global.FoundContactStruct
-
-	// Create affliation map
-	affiliations := generateAffliationMap(doc)
-	fmt.Println(affiliations)
+	// Create affiliation map
+	affiliations := generateAffiliationMap(doc)
 
 	// Find all <li> elements
 	doc.Find("li").Each(func(i int, s *goquery.Selection) {
@@ -138,7 +137,6 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 
 				// Find the <sup> to get affiliation link
 				affiliationLink := s.Find("sup").Text()
-				fmt.Println(affiliationLink)
 
 				// Format results to correct structure
 				up, _ := url.Parse(u)
@@ -147,10 +145,10 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 						strings.Split(name, ", ")[1],
 						strings.Split(name, ", ")[0],
 					),
-					Salutation:  "Unknown",
-					Email:       href[7:],
-					Institution: affiliations[affiliationLink],
-					URL:         up,
+					Salutation:  "Unknown",                     // Salutation not provided by scopus
+					Email:       href[7:],                      // Remove "mailto:"
+					Institution: affiliations[affiliationLink], // Get affiliation from map
+					URL:         up,                            // Parsed url as source
 				})
 			}
 		})
@@ -159,15 +157,23 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 	return toReturn
 }
 
-func generateAffliationMap(doc *goquery.Document) map[string]string {
+// Take document and generate map of superscript identifiers to institutions.
+// E.g. "ᵃ University of Western Australia", will be added to the map as
+// map[a:University of Western Australia]
+func generateAffiliationMap(doc *goquery.Document) map[string]string {
+	// Make empty map
 	toReturn := make(map[string]string)
 
+	// Find <div> that contains all affiliations. Some affiliations are hidden behind
+	// an "Additional affiliations" button, this solves that
 	affilitationSection := doc.Find("div#affiliation-section").First()
+
+	// For each <li> in this <div> find <sup> and <span> and assign to map
 	affilitationSection.Find("li").Each(func(i int, s *goquery.Selection) {
 		link := strings.Trim(s.Find("sup").Text(), " ")
-		location := s.Find("span").Text()
+		affiliation := s.Find("span").Text()
 
-		toReturn[link] = location
+		toReturn[link] = affiliation
 	})
 
 	return toReturn
