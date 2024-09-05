@@ -88,15 +88,23 @@ func request(firstName, lastName, institution string) {
 
 	firstName = "chris"
 	lastName = "mcdonald"
-	institution = "university of western australia"
+	//institution = "university of western australia"
 
 	// Build the request URL
 	apiUrl := "https://api.elsevier.com/content/search/scopus"
 	apiKey := global.A.Preferences().String("Scopus_API_key")
 
+	// Set up query based on whether affiliation provided
+	var query string
+	if institution == "" {
+		query = fmt.Sprintf("AUTHOR-NAME(%s)", firstName+" "+lastName)
+	} else {
+		query = fmt.Sprintf("AUTHOR-NAME(%s) AND AFFIL(%s)", firstName+" "+lastName, institution)
+	}
+
 	// Set up query parameters
 	params := url.Values{}
-	params.Add("query", fmt.Sprintf("AUTHOR-NAME(%s) AND AFFIL(%s)", firstName+" "+lastName, institution))
+	params.Add("query", query)
 	params.Add("apiKey", apiKey)
 
 	// Build the final URL with parameters
