@@ -86,10 +86,6 @@ func request(firstName, lastName, institution string) {
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	firstName = "chris"
-	lastName = "mcdonald"
-	//institution = "university of western australia"
-
 	// Build the request URL
 	apiUrl := "https://api.elsevier.com/content/search/scopus"
 	apiKey := global.A.Preferences().String("Scopus_API_key")
