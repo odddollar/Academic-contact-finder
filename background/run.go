@@ -122,7 +122,6 @@ func request(firstName, lastName, institution string) {
 	if err != nil {
 		global.ShowError(err)
 	}
-	fmt.Println(string(body))
 
 	// Check if the response is successful
 	if resp.StatusCode != http.StatusOK {
@@ -145,12 +144,6 @@ func request(firstName, lastName, institution string) {
 				urls = append(urls, link.Href)
 			}
 		}
-	}
-
-	// Print URLs (for testing)
-	fmt.Println("Extracted URLs:")
-	for _, url := range urls {
-		fmt.Println(url)
 	}
 
 	results := []global.FoundContactStruct{}
@@ -214,7 +207,7 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				affiliationLink := s.Find("sup").Text()
 				affiliation := affiliations[affiliationLink]
 				if affiliation == "" {
-					affiliation = "Unknown Institution"
+					affiliation = affiliations["a"]
 				}
 
 				// Format results to correct structure
