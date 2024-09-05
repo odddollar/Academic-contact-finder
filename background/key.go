@@ -1,6 +1,8 @@
 package background
 
 import (
+	"net/http"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
@@ -14,13 +16,16 @@ func PresentScopusAPIKey() bool {
 	return key != ""
 }
 
-// Makes test request against Scopus API with current key. If API returns
-// error then key isn't valid
-func ValidScopusAPIKey() bool {
-	key := global.A.Preferences().String("Scopus_API_key")
+// Makes test request against API with current key.
+func ValidAPIKey() bool {
+	key := global.A.Preferences().String("API_key")
+	// we need an institution token to make this work outside of the institution network
+	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=" + key
 
-	// UPDATE HERE TO MAKE TEST REQUEST TO ENSURE API KEY WORKS
-	return key != ""
+	//very basic api check, does not error check
+	resp, _ := http.Get(url)
+	defer resp.Body.Close()
+	return resp.StatusCode == http.StatusOK
 }
 
 // Opens dialog for entering new Scopus API key

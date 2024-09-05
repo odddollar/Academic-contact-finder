@@ -66,12 +66,13 @@ func (r *emailMeRenderer) MinSize() fyne.Size {
 func (r *emailMeRenderer) Layout(size fyne.Size) {
 	// Calculate padding
 	padding := theme.Padding()
+	innerPadding := theme.InnerPadding()
 
 	// Calculate width of entry box to make it expand
 	// Find the minimum of two values to allow it to expand up to a certain point
 	entrySize := fyne.NewSize(
 		min(
-			size.Width-r.label.MinSize().Width-r.send.MinSize().Width-4*padding,
+			size.Width-r.label.MinSize().Width-r.send.MinSize().Width-3*innerPadding,
 			400,
 		),
 		size.Height,
