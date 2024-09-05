@@ -96,7 +96,8 @@ type foundContactRenderer struct {
 
 // Returns minimum size of FoundContact widget
 func (r *foundContactRenderer) MinSize() fyne.Size {
-	size := container.NewVBox(
+	// Calculate height
+	height := container.NewVBox(
 		container.NewHBox(
 			r.name,
 			r.copy,
@@ -108,12 +109,26 @@ func (r *foundContactRenderer) MinSize() fyne.Size {
 			r.url,
 		),
 		r.sendEmail,
-	).MinSize()
+	).MinSize().Height
 
 	// Used for better spacing
-	size.Height -= 3*theme.Padding() + 1
+	height -= 3*theme.Padding() + 1
 
-	return size
+	// Calculate width
+	width := max(
+		container.NewHBox(
+			r.name,
+			r.copy,
+		).MinSize().Width+4*theme.Padding(),
+		container.NewHBox(
+			r.email,
+			r.copy,
+		).MinSize().Width+4*theme.Padding(),
+		r.institution.MinSize().Width+4*theme.Padding(),
+		r.sendEmail.MinSize().Width,
+	)
+
+	return fyne.NewSize(width, height)
 }
 
 // Lays out data and resizes FoundContact widget to fit available space
