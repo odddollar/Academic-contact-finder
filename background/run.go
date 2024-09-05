@@ -2,7 +2,11 @@ package background
 
 import (
 	"context"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
+	"net/http"
 	"net/url"
 	"strings"
 	"time"
@@ -13,6 +17,18 @@ import (
 	"github.com/odddollar/CITS3200-Project/global"
 	"github.com/odddollar/CITS3200-Project/widgets"
 )
+
+// Scruct created to store list of URLs found
+type ScopusResponse struct {
+	SearchResults struct {
+		Entry []struct {
+			Link []struct {
+				Ref  string `json:"@ref"`
+				Href string `json:"@href"`
+			} `json:"link"`
+		} `json:"entry"`
+	} `json:"search-results"`
+}
 
 // Initiate api requesting and scraping, then update results
 func Run() {
@@ -70,17 +86,64 @@ func request(firstName, lastName, institution string) {
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	// TEMPORARY URLS YOU WANT TO VISIT
-	urls := []string{
-		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85079320615&origin=resultslist",
-		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85037348791&origin=resultslist",
-		"https://www.scopus.com/record/display.uri?eid=2-s2.0-85087366727&origin=resultslist",
-		"https://www.scopus.com/record/display.uri?eid=2-s2.0-84922537253&origin=resultslist",
+	firstName = "chris"
+	lastName = "mcdonald"
+	institution = "university of western australia"
+
+	// Build the request URL
+	apiUrl := "https://api.elsevier.com/content/search/scopus"
+	apiKey := global.A.Preferences().String("Scopus_API_key")
+
+	// Set up query parameters
+	params := url.Values{}
+	params.Add("query", fmt.Sprintf("AUTHOR-NAME(%s) AND AFFIL(%s)", firstName+" "+lastName, institution))
+	params.Add("apiKey", apiKey)
+
+	// Build the final URL with parameters
+	reqUrl := fmt.Sprintf("%s?%s", apiUrl, params.Encode())
+
+	// Create a new request
+	resp, err := http.Get(reqUrl)
+	if err != nil {
+		global.ShowError(err)
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		global.ShowError(err)
+	}
+	fmt.Println(string(body))
+
+	// Check if the response is successful
+	if resp.StatusCode != http.StatusOK {
+		global.ShowError(errors.New("bad http response"))
 	}
 
-	// TEMPORARY NAME TO SEARCH FOR
-	firstName = "christopher"
-	lastName = "mcdonald"
+	// Parse the JSON response into struct
+	var scopusResponse ScopusResponse
+	err = json.Unmarshal(body, &scopusResponse)
+	if err != nil {
+		global.ShowError(err)
+	}
+
+	var urls []string
+
+	// Extract URLs from response
+	for _, entry := range scopusResponse.SearchResults.Entry {
+		for _, link := range entry.Link {
+			if link.Ref == "scopus" {
+				urls = append(urls, link.Href)
+			}
+		}
+	}
+
+	// Print URLs (for testing)
+	fmt.Println("Extracted URLs:")
+	for _, url := range urls {
+		fmt.Println(url)
+	}
 
 	results := []global.FoundContactStruct{}
 
