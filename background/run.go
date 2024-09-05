@@ -13,7 +13,6 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/chromedp/chromedp"
-	"github.com/lithammer/fuzzysearch/fuzzy"
 	"github.com/odddollar/CITS3200-Project/global"
 	"github.com/odddollar/CITS3200-Project/widgets"
 )
@@ -56,8 +55,10 @@ func Run() {
 	// Hide loading bar
 	loading.Hide()
 
-	// Enable email all button
-	global.Ui.EmailAll.Enable()
+	// Enable email all button if results found
+	if len(global.AllFoundContacts) > 0 {
+		global.Ui.EmailAll.Enable()
+	}
 
 	// Update number of results found
 	global.Ui.NumResults.Text = fmt.Sprintf("Found %d results", len(global.AllFoundContacts))
@@ -151,12 +152,8 @@ func request(firstName, lastName, institution string) {
 
 		// Iterate through results from url
 		for _, j := range r {
-			fnd := fuzzy.LevenshteinDistance(strings.ToLower(j.FirstName), firstName)
-			lnd := fuzzy.LevenshteinDistance(strings.ToLower(j.LastName), lastName)
-			//fmt.Printf("%s %s: %d %d\n", j.FirstName, j.LastName, fnd, lnd)
-
 			// Check if result qualifies as match
-			if fnd <= 2 || lnd <= 2 {
+			if strings.ToLower(j.FirstName) == firstName || strings.ToLower(j.LastName) == lastName {
 				results = append(results, j)
 			}
 		}
