@@ -3,21 +3,20 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
 )
 
+// Scruct created to store list of URL's found
 type ScopusResponse struct {
 	SearchResults struct {
 		Entry []struct {
-			Title string `json:"dc:title"`
-			Link  []struct {
+			Link []struct {
 				Rel  string `json:"@ref"`
 				Href string `json:"@href"`
 			} `json:"link"`
-			PublicationDate string `json:"prism:coverDate"`
 		} `json:"entry"`
 	} `json:"search-results"`
 }
@@ -27,7 +26,7 @@ func main() {
 	//test details
 	firstName := "Chris"
 	lastName := "McDonald"
-	institution := "UWA"
+	institution := "University of Western Australia"
 
 	// Build the request URL
 	apiUrl := "https://api.elsevier.com/content/search/scopus"
@@ -35,8 +34,9 @@ func main() {
 
 	// Set up query parameters
 	params := url.Values{}
-	params.Add("query", fmt.Sprintf("AUTHFIRST(%s) AND AUTHLAST(%s) AND AFFIL(%s)", firstName, lastName, institution))
+	params.Add("query", fmt.Sprintf("AUTHOR-NAME(%s) AND AFFIL(%s)", firstName+" "+lastName, institution))
 	params.Add("apiKey", apiKey)
+	//params.Add("view", "complete")
 
 	// Build the final URL with parameters
 	reqUrl := fmt.Sprintf("%s?%s", apiUrl, params.Encode())
@@ -49,10 +49,11 @@ func main() {
 	defer resp.Body.Close()
 
 	// Read the response body
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatalf("Failed to read response body: %v", err)
 	}
+	fmt.Println(string(body)) //FOR TESTING
 
 	// Check if the response is successful
 	if resp.StatusCode != http.StatusOK {
@@ -66,15 +67,22 @@ func main() {
 		log.Fatalf("Failed to parse JSON response: %v", err)
 	}
 
-	// Print the titles, URLs, and publication dates
+	// Create a Slice to hold the URLs
+	var urls []string
+
+	// extract the URLs from the response
 	for _, entry := range scopusResponse.SearchResults.Entry {
-		var paperUrl string
 		for _, link := range entry.Link {
-			if link.Rel == "scopus" { // Assuming "scopus" relation contains the paper URL
-				paperUrl = link.Href
-				break
+			if link.Rel == "scopus" {
+				urls = append(urls, link.Href)
 			}
 		}
-		fmt.Printf("Title: %s\nURL: %s\nPublication Date: %s\n\n", entry.Title, paperUrl, entry.PublicationDate)
 	}
+
+	// Print the URLs (for testing)
+	fmt.Println("Extracted URLs:")
+	for _, url := range urls {
+		fmt.Println(url)
+	}
+
 }
