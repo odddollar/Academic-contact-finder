@@ -12,8 +12,8 @@ import (
 // Show a dialog box with about information
 func aboutCallback() {
 	// Button to clear api key if desired
-	b := widget.NewButton("Clear API key", func() {
-		global.A.Preferences().SetString("API_key", "")
+	b := widget.NewButton("Clear API keys", func() {
+		global.A.Preferences().SetString("Scopus_API_key", "")
 
 		// Show success dialog
 		global.ShowSuccess("API key cleared")

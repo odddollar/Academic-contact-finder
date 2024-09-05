@@ -38,7 +38,8 @@ var AllFoundContacts []FoundContactStruct
 // Struct containing data from found contacts.
 // An array of these are returned by the web-scraper/api accessor
 type FoundContactStruct struct {
-	Name        string
+	FirstName   string
+	LastName    string
 	Salutation  string
 	Email       string
 	Institution string
@@ -47,5 +48,22 @@ type FoundContactStruct struct {
 
 // Implement Stringer interface for FoundContactStruct
 func (fcs FoundContactStruct) String() string {
-	return fmt.Sprintf("%s, %s\n%s\n%s\nSource: %s\n\n", fcs.Name, fcs.Salutation, fcs.Email, fcs.Institution, fcs.URL.String())
+	// Change name formatting if salutation provided
+	var nameSal string
+	if fcs.Salutation == "" {
+		nameSal = fmt.Sprintf(
+			"%s %s",
+			fcs.FirstName,
+			fcs.LastName,
+		)
+	} else {
+		nameSal = fmt.Sprintf(
+			"%s %s, %s",
+			fcs.FirstName,
+			fcs.LastName,
+			fcs.Salutation,
+		)
+	}
+
+	return fmt.Sprintf("%s\n%s\n%s\nSource: %s\n\n", nameSal, fcs.Email, fcs.Institution, fcs.URL.String())
 }

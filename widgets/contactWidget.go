@@ -29,15 +29,25 @@ func NewFoundContact(s global.FoundContactStruct) *FoundContact {
 
 // Returns new renderer for FoundContact
 func (fc *FoundContact) CreateRenderer() fyne.WidgetRenderer {
-	// Format name and salutation onto one line
-	n := canvas.NewText(
-		fmt.Sprintf(
-			"%s, %s",
-			fc.FoundContactStruct.Name,
+	// Change name formatting if salutation provided
+	var nameSal string
+	if fc.FoundContactStruct.Salutation == "" {
+		nameSal = fmt.Sprintf(
+			"%s %s",
+			fc.FoundContactStruct.FirstName,
+			fc.FoundContactStruct.LastName,
+		)
+	} else {
+		nameSal = fmt.Sprintf(
+			"%s %s, %s",
+			fc.FoundContactStruct.FirstName,
+			fc.FoundContactStruct.LastName,
 			fc.FoundContactStruct.Salutation,
-		),
-		theme.Color(theme.ColorNameForeground),
-	)
+		)
+	}
+
+	// Format name and salutation onto one line
+	n := canvas.NewText(nameSal, theme.Color(theme.ColorNameForeground))
 	n.TextSize = theme.TextSubHeadingSize()
 	n.TextStyle.Bold = true
 

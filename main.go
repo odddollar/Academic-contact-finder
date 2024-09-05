@@ -96,8 +96,8 @@ func main() {
 	global.W.SetContent(layout)
 
 	// Ensure API key is present and valid
-	if !background.PresentAPIKey() || !background.ValidAPIKey() {
-		background.UpdateAPIKey()
+	if !background.PresentScopusAPIKey() || !background.ValidScopusAPIKey() {
+		background.UpdateScopusAPIKey()
 	}
 
 	// Show window and run app
