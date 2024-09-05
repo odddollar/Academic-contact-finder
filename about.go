@@ -16,7 +16,7 @@ func aboutCallback() {
 		global.A.Preferences().SetString("Scopus_API_key", "")
 
 		// Show success dialog
-		global.ShowSuccess("API key cleared")
+		global.ShowSuccess("API keys cleared")
 	})
 
 	// Separate markdown widgets for better spacing
