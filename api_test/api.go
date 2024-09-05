@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
+
+	"github.com/odddollar/CITS3200-Project/global"
 )
 
 // Scruct created to store list of URL's found
@@ -14,7 +15,7 @@ type ScopusResponse struct {
 	SearchResults struct {
 		Entry []struct {
 			Link []struct {
-				Rel  string `json:"@ref"`
+				Ref  string `json:"@ref"`
 				Href string `json:"@href"`
 			} `json:"link"`
 		} `json:"entry"`
@@ -22,8 +23,7 @@ type ScopusResponse struct {
 }
 
 func main() {
-
-	//test details
+	// Test details
 	firstName := "Chris"
 	lastName := "McDonald"
 	institution := "University of Western Australia"
@@ -36,53 +36,49 @@ func main() {
 	params := url.Values{}
 	params.Add("query", fmt.Sprintf("AUTHOR-NAME(%s) AND AFFIL(%s)", firstName+" "+lastName, institution))
 	params.Add("apiKey", apiKey)
-	//params.Add("view", "complete")
 
 	// Build the final URL with parameters
 	reqUrl := fmt.Sprintf("%s?%s", apiUrl, params.Encode())
 
-	// Create a new HTTP GET request
+	// Create a new request
 	resp, err := http.Get(reqUrl)
 	if err != nil {
-		log.Fatalf("Failed to make request: %v", err)
+		global.ShowError(err)
 	}
 	defer resp.Body.Close()
 
 	// Read the response body
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatalf("Failed to read response body: %v", err)
+		global.ShowError(err)
 	}
-	fmt.Println(string(body)) //FOR TESTING
 
 	// Check if the response is successful
 	if resp.StatusCode != http.StatusOK {
-		log.Fatalf("Error: Received status code %d", resp.StatusCode)
+		global.ShowError(err)
 	}
 
-	// Parse the JSON response into a Go struct
+	// Parse the JSON response into struct
 	var scopusResponse ScopusResponse
 	err = json.Unmarshal(body, &scopusResponse)
 	if err != nil {
-		log.Fatalf("Failed to parse JSON response: %v", err)
+		global.ShowError(err)
 	}
 
-	// Create a Slice to hold the URLs
 	var urls []string
 
-	// extract the URLs from the response
+	// Extract URLs from response
 	for _, entry := range scopusResponse.SearchResults.Entry {
 		for _, link := range entry.Link {
-			if link.Rel == "scopus" {
+			if link.Ref == "scopus" {
 				urls = append(urls, link.Href)
 			}
 		}
 	}
 
-	// Print the URLs (for testing)
+	// Print URLs (for testing)
 	fmt.Println("Extracted URLs:")
 	for _, url := range urls {
 		fmt.Println(url)
 	}
-
 }
