@@ -215,10 +215,10 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				toReturn = append(toReturn, global.FoundContactStruct{
 					FirstName:   strings.Split(name, ", ")[1],
 					LastName:    strings.Split(name, ", ")[0],
-					Salutation:  "Unknown Salutation", // Salutation not provided by scopus
-					Email:       href[7:],             // Remove "mailto:"
-					Institution: affiliation,          // Get affiliation from map
-					URL:         up,                   // Parsed url as source
+					Salutation:  "",          // Salutation not provided by scopus
+					Email:       href[7:],    // Remove "mailto:"
+					Institution: affiliation, // Get affiliation from map
+					URL:         up,          // Parsed url as source
 				})
 			}
 		})
