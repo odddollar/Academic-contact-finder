@@ -48,5 +48,22 @@ type FoundContactStruct struct {
 
 // Implement Stringer interface for FoundContactStruct
 func (fcs FoundContactStruct) String() string {
-	return fmt.Sprintf("%s %s, %s\n%s\n%s\nSource: %s\n\n", fcs.FirstName, fcs.LastName, fcs.Salutation, fcs.Email, fcs.Institution, fcs.URL.String())
+	// Change name formatting if salutation provided
+	var nameSal string
+	if fcs.Salutation == "" {
+		nameSal = fmt.Sprintf(
+			"%s %s",
+			fcs.FirstName,
+			fcs.LastName,
+		)
+	} else {
+		nameSal = fmt.Sprintf(
+			"%s %s, %s",
+			fcs.FirstName,
+			fcs.LastName,
+			fcs.Salutation,
+		)
+	}
+
+	return fmt.Sprintf("%s\n%s\n%s\nSource: %s\n\n", nameSal, fcs.Email, fcs.Institution, fcs.URL.String())
 }
