@@ -11,5 +11,5 @@ func ShowSuccess(message string) {
 
 // Standard dialog to show error
 func ShowError(err error) {
-	dialog.ShowInformation("Error", err.Error(), W)
+	dialog.ShowError(err, W)
 }
