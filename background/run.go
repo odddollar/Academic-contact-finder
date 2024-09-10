@@ -45,6 +45,12 @@ func Run() {
 	lastName := strings.ToLower(global.Ui.LastName.Text)
 	institution := strings.ToLower(global.Ui.Institution.Text)
 
+	// Ensure that at least last name entered
+	if lastName == "" {
+		global.ShowError(errors.New("Please enter a last name"))
+		return
+	}
+
 	// Create and show loading bar
 	loading := infiniteLoad()
 	loading.Show()
@@ -122,7 +128,7 @@ func request(firstName, lastName, institution string) {
 
 	// Check if the response is successful
 	if resp.StatusCode != http.StatusOK {
-		global.ShowError(errors.New("bad http response"))
+		global.ShowError(errors.New("Bad http response"))
 	}
 
 	// Parse the JSON response into struct
@@ -160,6 +166,16 @@ func request(firstName, lastName, institution string) {
 	}
 
 	global.AllFoundContacts = results
+	// u, _ := url.Parse("example.com")
+	// global.AllFoundContacts = []global.FoundContactStruct{
+	// 	{
+	// 		FirstName:   "chris",
+	// 		LastName:    "mcdonald",
+	// 		Email:       "thisisanemail@gmail.com",
+	// 		Institution: "the university of western australia, perth, western australia, australia, planet earth, the solar system, planet earth this is me adding more text to make the window wider",
+	// 		URL:         u,
+	// 	},
+	// }
 }
 
 // Take url and chromedp context and scrape data from scopus
@@ -196,6 +212,17 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				// Find the <span> within the <button> to get the name
 				name := s.Find("button span").Text()
 
+				// Prevent error if person only has one name
+				var firstName, lastName string
+				if len(strings.Split(name, ", ")) > 1 {
+					firstName = strings.Split(name, ", ")[1]
+					lastName = strings.Split(name, ", ")[0]
+				} else {
+					firstName = name
+					lastName = ""
+					fmt.Println(name)
+				}
+
 				// Find the <sup> to get affiliation link
 				affiliationLink := s.Find("sup").Text()
 				affiliation := affiliations[affiliationLink]
@@ -206,8 +233,8 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				// Format results to correct structure
 				up, _ := url.Parse(u)
 				toReturn = append(toReturn, global.FoundContactStruct{
-					FirstName:   strings.Split(name, ", ")[1],
-					LastName:    strings.Split(name, ", ")[0],
+					FirstName:   firstName,
+					LastName:    lastName,
 					Salutation:  "",          // Salutation not provided by scopus
 					Email:       href[7:],    // Remove "mailto:"
 					Institution: affiliation, // Get affiliation from map
