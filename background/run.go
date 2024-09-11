@@ -166,16 +166,6 @@ func request(firstName, lastName, institution string) {
 	}
 
 	global.AllFoundContacts = results
-	// u, _ := url.Parse("example.com")
-	// global.AllFoundContacts = []global.FoundContactStruct{
-	// 	{
-	// 		FirstName:   "chris",
-	// 		LastName:    "mcdonald",
-	// 		Email:       "thisisanemail@gmail.com",
-	// 		Institution: "the university of western australia, perth, western australia, australia, planet earth, the solar system, planet earth this is me adding more text to make the window wider",
-	// 		URL:         u,
-	// 	},
-	// }
 }
 
 // Take url and chromedp context and scrape data from scopus
