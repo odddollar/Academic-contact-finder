@@ -21,9 +21,9 @@ func Run() {
 	// }
 
 	// Get data from entry boxes
-	firstName := strings.ToLower(global.Ui.FirstName.Text)
-	lastName := strings.ToLower(global.Ui.LastName.Text)
-	institution := strings.ToLower(global.Ui.Institution.Text)
+	firstName := strings.ToLower(strings.Trim(global.Ui.FirstName.Text, " "))
+	lastName := strings.ToLower(strings.Trim(global.Ui.LastName.Text, " "))
+	institution := strings.ToLower(strings.Trim(global.Ui.Institution.Text, " "))
 
 	// Ensure that at least last name entered
 	if lastName == "" {
