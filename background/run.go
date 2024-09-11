@@ -210,7 +210,6 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				} else {
 					firstName = name
 					lastName = ""
-					fmt.Println(name)
 				}
 
 				// Find the <sup> to get affiliation link

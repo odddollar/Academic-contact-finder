@@ -95,6 +95,11 @@ func main() {
 	)
 	global.W.SetContent(layout)
 
+	// Ask if want to set default
+	if !email.DefaultEmailPresent() {
+		email.ChangeDefaultEmail()
+	}
+
 	// Ensure API key is present and valid
 	if !background.PresentScopusAPIKey() || !background.ValidScopusAPIKey() {
 		background.UpdateScopusAPIKey()
