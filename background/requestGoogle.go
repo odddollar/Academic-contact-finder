@@ -34,8 +34,7 @@ func requestGoogle(firstName, lastName, institution string) {
 	params.Add("cx", searchEngineID)
 
 	// Build final url with parameters
-	reqUrl := fmt.Sprintf("%s?%s", apiUrl, params.Encode())
-	fmt.Println(reqUrl)
+	reqUrl := fmt.Sprintf("%s%s", apiUrl, params.Encode())
 
 	// Send GET request to Google Search API
 	resp, err := http.Get(reqUrl)
@@ -54,7 +53,6 @@ func requestGoogle(firstName, lastName, institution string) {
 	if err != nil {
 		global.ShowError(err)
 	}
-	fmt.Println(string(body))
 
 	// Parse JSON response into struct
 	var result SearchResult
