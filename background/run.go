@@ -15,10 +15,10 @@ func Run() {
 	// Run here again, as if cancel clicked initially then still no api key
 	// This will appear until a valid key is entered every time run is clicked
 	// and will not progress running any futher
-	if !PresentScopusAPIKey() || !ValidScopusAPIKey() {
-		UpdateScopusAPIKey()
-		return
-	}
+	// if !PresentScopusAPIKey() || !ValidScopusAPIKey() {
+	// 	UpdateScopusAPIKey()
+	// 	return
+	// }
 
 	// Get data from entry boxes
 	firstName := strings.ToLower(global.Ui.FirstName.Text)
@@ -39,7 +39,7 @@ func Run() {
 	global.AllFoundContacts = nil
 
 	// Make requests and get results
-	requestScopus(firstName, lastName, institution)
+	// requestScopus(firstName, lastName, institution)
 	requestGoogle(firstName, lastName, institution)
 
 	// Hide loading bar

@@ -2,210 +2,69 @@ package background
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
-	"io/ioutil"
-	"log"
+	"io"
 	"net/http"
 	"net/url"
-	"regexp"
-	"strings"
 
 	"github.com/odddollar/CITS3200-Project/global"
 )
 
-const (
-	apiKey         = "AIzaSyAa3v8ulaMd6MXQ1oCJDzNCG4pHV6Ms8OU"
-	searchEngineID = "227c94475aca5432c"
-)
-
+// Struct created to store list of URLs found
 type SearchResult struct {
 	Items []struct {
 		Link string `json:"link"`
 	} `json:"items"`
 }
 
-func makeRequest(payload map[string]string) (*SearchResult, error) {
+// Perform actual requesting and scraping of google
+func requestGoogle(firstName, lastName, institution string) {
+	apiKey := "AIzaSyAa3v8ulaMd6MXQ1oCJDzNCG4pHV6Ms8OU"
+	searchEngineID := "227c94475aca5432c"
+	apiUrl := "https://www.googleapis.com/customsearch/v1?"
+
+	// Setup query data
+	searchQuery := fmt.Sprintf("%s %s %s", firstName, lastName, institution)
+
 	// Build the query parameters
-	queryParams := url.Values{}
-	for key, value := range payload {
-		queryParams.Add(key, value)
-	}
-	queryParams.Add("key", apiKey)
-	queryParams.Add("cx", searchEngineID)
+	params := url.Values{}
+	params.Add("q", searchQuery)
+	params.Add("key", apiKey)
+	params.Add("cx", searchEngineID)
+
+	// Build final url with parameters
+	reqUrl := fmt.Sprintf("%s?%s", apiUrl, params.Encode())
+	fmt.Println(reqUrl)
 
 	// Send GET request to Google Search API
-	resp, err := http.Get("https://www.googleapis.com/customsearch/v1?" + queryParams.Encode())
+	resp, err := http.Get(reqUrl)
 	if err != nil {
-		return nil, err
+		global.ShowError(err)
 	}
 	defer resp.Body.Close()
 
+	// Check if response is successful
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("request failed with status code: %d", resp.StatusCode)
+		global.ShowError(errors.New("Bad http response"))
 	}
 
 	// Parse JSON response
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		global.ShowError(err)
 	}
+	fmt.Println(string(body))
 
+	// Parse JSON response into struct
 	var result SearchResult
 	err = json.Unmarshal(body, &result)
 	if err != nil {
-		return nil, err
+		global.ShowError(err)
 	}
+	fmt.Println(result)
 
-	return &result, nil
-}
-
-func buildPayload(query string, start, num int, params map[string]string) map[string]string {
-	payload := map[string]string{
-		"q":     query,
-		"start": fmt.Sprintf("%d", start),
-		"num":   fmt.Sprintf("%d", num),
-	}
-	for key, value := range params {
-		payload[key] = value
-	}
-	return payload
-}
-
-func findEmailByNameAndInstitution(urlStr string, name string) ([]string, error) {
-	var emails []string
-
-	// Perform HTTP GET request
-	resp, err := http.Get(urlStr)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	// Read the response body
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	// Find and parse email addresses using regex
-	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
-	foundEmails := re.FindAllString(string(body), -1)
-
-	// Convert name to lowercase for case-insensitive comparison
-	name = strings.ToLower(name)
-
-	// Loop through found emails and match against the provided name
-	for _, email := range foundEmails {
-		// Extract the part before the '@' symbol and convert to lowercase
-		localPart := strings.ToLower(strings.Split(email, "@")[0])
-
-		// Check if the local part contains the name
-		if strings.Contains(localPart, name) {
-			emails = append(emails, email)
-		}
-	}
-
-	return emails, nil
-}
-
-func findInstitutionandName(urlStr string, institution string, name string) (string, string, error) {
-	var institutionresult string
-	var name_result string
-	institutionresult = institution
-	name_result = name
-
-	// Perform HTTP GET request
-	resp, err := http.Get(urlStr)
-	if err != nil {
-		return "N/A", "N/A", err
-	}
-	defer resp.Body.Close()
-
-	// Read the response body
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return "N/A", "N/A", err
-	}
-
-	// Convert body to string and make it lowercase for case-insensitive search
-	bodyStr := strings.ToLower(string(body))
-	// Convert institution to lowercase for case-insensitive comparison
-	institution = strings.ToLower(institution)
-
-	name = strings.ToLower(institution)
-
-	// Check if the institution string is in the HTML body
-	if !strings.Contains(bodyStr, institution) {
-		institutionresult = "N/A"
-	}
-
-	if !strings.Contains(bodyStr, name) {
-		name_result = "N/A"
-	}
-
-	return institutionresult, name_result, nil
-}
-
-// Perform actual requesting and scraping, returning a list of found contacts
-func requestGoogle(firstName, lastName, institution string) {
-
-	searchQuery := firstName + " " + lastName + " " + institution
-	totalResults := 20
-	name := firstName + " " + lastName
-
-	var urls []string
-
-	remainder := totalResults % 10
-	pages := totalResults / 10
-	if remainder > 0 {
-		pages++
-	}
-
-	for i := 0; i < pages; i++ {
-		numResults := 10
-		if i == pages-1 && remainder > 0 {
-			numResults = remainder
-		}
-		payload := buildPayload(searchQuery, (i+1)*10, numResults, nil)
-		result, err := makeRequest(payload)
-		if err != nil {
-			log.Fatal(err)
-		}
-		for _, item := range result.Items {
-			urls = append(urls, item.Link)
-		}
-	}
-
-	// fmt.Println("URLs found:")
 	var results []global.FoundContactStruct
-	for _, urlString := range urls {
-		if strings.Contains(urlString, "pdf") {
-			continue
-		}
-		var newresult global.FoundContactStruct
-
-		emails, err := findEmailByNameAndInstitution(urlString, firstName)
-		if err != nil {
-			continue
-		}
-		institutionresult, name_result, err := findInstitutionandName(urlString, institution, name)
-		if err != nil {
-			continue
-		}
-		if len(emails) > 0 && len(emails[0]) <= 100 {
-			// fmt.Println(url)
-			// fmt.Println(emails)
-			newresult.Email = emails[0]
-			parsedURL, _ := url.Parse(urlString)
-			newresult.URL = parsedURL
-			newresult.Institution = institutionresult
-			newresult.FirstName = name_result
-			newresult.Salutation = "N/A"
-			results = append(results, newresult)
-
-		}
-
-	}
 
 	global.AllFoundContacts = append(global.AllFoundContacts, results...)
 }
