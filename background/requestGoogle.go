@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/chromedp/chromedp"
@@ -107,6 +108,11 @@ func requestGoogle(firstName, lastName, institution string) {
 
 	// Iterate through urls
 	for _, i := range urls {
+		// Skip pdfs
+		if strings.Contains(i, ".pdf") {
+			continue
+		}
+
 		// Scrape data from current url
 		r := scrapeSite(i, ctx)
 
