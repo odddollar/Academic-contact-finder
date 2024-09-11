@@ -100,7 +100,7 @@ func requestScopus(firstName, lastName, institution string) {
 		}
 	}
 
-	results := []global.FoundContactStruct{}
+	var results []global.FoundContactStruct
 
 	// Iterate through urls
 	for _, i := range urls {
