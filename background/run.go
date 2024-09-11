@@ -35,8 +35,12 @@ func Run() {
 	loading := infiniteLoad()
 	loading.Show()
 
-	// Make scopus request and get results
+	// Clear found contact array
+	global.AllFoundContacts = nil
+
+	// Make requests and get results
 	requestScopus(firstName, lastName, institution)
+	requestGoogle(firstName, lastName, institution)
 
 	// Hide loading bar
 	loading.Hide()

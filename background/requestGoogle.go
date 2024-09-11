@@ -11,48 +11,7 @@ import (
 	"strings"
 
 	"github.com/odddollar/CITS3200-Project/global"
-	"github.com/odddollar/CITS3200-Project/widgets"
 )
-
-// Initiate api requesting and scraping, then update results
-func _() {
-	// Ensure API key is present and valid
-	// Run here again, as if cancel clicked initially then still no api key
-	// This will appear until a valid key is entered every time run is clicked
-	// and will not progress running any futher
-	// if !PresentAPIKey() || !ValidAPIKey() {
-	// 	UpdateAPIKey()
-	// 	return
-	// }
-
-	// Get data from entry boxes
-	firstName := global.Ui.FirstName.Text
-	lastName := global.Ui.LastName.Text
-	institution := global.Ui.Institution.Text
-
-	// Create and show loading bar
-	loading := infiniteLoad()
-	loading.Show()
-
-	// Make request and get results
-	global.AllFoundContacts = request(firstName, lastName, institution)
-
-	// Hide loading bar
-	loading.Hide()
-
-	// Enable email all button
-	global.Ui.EmailAll.Enable()
-
-	// Update number of results found
-	global.Ui.NumResults.Text = fmt.Sprintf("Found %d results", len(global.AllFoundContacts))
-	global.Ui.NumResults.Refresh()
-
-	// Iterate through returned results and update UI
-	global.Ui.Output.RemoveAll()
-	for i := 0; i < len(global.AllFoundContacts); i++ {
-		global.Ui.Output.Add(widgets.NewFoundContact(global.AllFoundContacts[i]))
-	}
-}
 
 const (
 	apiKey         = "AIzaSyAa3v8ulaMd6MXQ1oCJDzNCG4pHV6Ms8OU"
@@ -188,7 +147,7 @@ func findInstitutionandName(urlStr string, institution string, name string) (str
 }
 
 // Perform actual requesting and scraping, returning a list of found contacts
-func request(firstName, lastName, institution string) []global.FoundContactStruct {
+func requestGoogle(firstName, lastName, institution string) {
 
 	searchQuery := firstName + " " + lastName + " " + institution
 	totalResults := 20
@@ -218,6 +177,7 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 	}
 
 	// fmt.Println("URLs found:")
+	var results []global.FoundContactStruct
 	for _, urlString := range urls {
 		if strings.Contains(urlString, "pdf") {
 			continue
@@ -241,10 +201,11 @@ func request(firstName, lastName, institution string) []global.FoundContactStruc
 			newresult.Institution = institutionresult
 			newresult.FirstName = name_result
 			newresult.Salutation = "N/A"
-			global.AllFoundContacts = append(global.AllFoundContacts, newresult)
+			results = append(results, newresult)
 
 		}
 
 	}
-	return global.AllFoundContacts
+
+	global.AllFoundContacts = append(global.AllFoundContacts, results...)
 }
