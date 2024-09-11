@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"regexp"
 	"time"
 
 	"github.com/chromedp/chromedp"
@@ -111,6 +112,14 @@ func scrapeSite(u string, ctx context.Context) []global.FoundContactStruct {
 	if err != nil {
 		global.ShowError(err)
 	}
+
+	// Parse email regex
+	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
+
+	// Find first email
+	foundEmail := re.FindString(htmlContent)
+
+	fmt.Println(foundEmail)
 
 	return toReturn
 }
