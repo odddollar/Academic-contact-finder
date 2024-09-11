@@ -1,4 +1,4 @@
-package main
+package background
 
 import (
 	"encoding/json"
@@ -9,7 +9,50 @@ import (
 	"net/url"
 	"regexp"
 	"strings"
+
+	"github.com/odddollar/CITS3200-Project/global"
+	"github.com/odddollar/CITS3200-Project/widgets"
 )
+
+// Initiate api requesting and scraping, then update results
+func _() {
+	// Ensure API key is present and valid
+	// Run here again, as if cancel clicked initially then still no api key
+	// This will appear until a valid key is entered every time run is clicked
+	// and will not progress running any futher
+	// if !PresentAPIKey() || !ValidAPIKey() {
+	// 	UpdateAPIKey()
+	// 	return
+	// }
+
+	// Get data from entry boxes
+	firstName := global.Ui.FirstName.Text
+	lastName := global.Ui.LastName.Text
+	institution := global.Ui.Institution.Text
+
+	// Create and show loading bar
+	loading := infiniteLoad()
+	loading.Show()
+
+	// Make request and get results
+	global.AllFoundContacts = request(firstName, lastName, institution)
+
+	// Hide loading bar
+	loading.Hide()
+
+	// Enable email all button
+	global.Ui.EmailAll.Enable()
+
+	// Update number of results found
+	global.Ui.NumResults.Text = fmt.Sprintf("Found %d results", len(global.AllFoundContacts))
+	global.Ui.NumResults.Refresh()
+
+	// Iterate through returned results and update UI
+	global.Ui.Output.RemoveAll()
+	for i := 0; i < len(global.AllFoundContacts); i++ {
+		global.Ui.Output.Add(widgets.NewFoundContact(global.AllFoundContacts[i]))
+	}
+}
 
 const (
 	apiKey         = "AIzaSyAa3v8ulaMd6MXQ1oCJDzNCG4pHV6Ms8OU"
@@ -20,14 +63,6 @@ type SearchResult struct {
 	Items []struct {
 		Link string `json:"link"`
 	} `json:"items"`
-}
-
-type FoundContactStruct struct {
-	Name        string
-	Salutation  string
-	Email       []string
-	Institution string
-	URL         string
 }
 
 func makeRequest(payload map[string]string) (*SearchResult, error) {
@@ -153,14 +188,13 @@ func findInstitutionandName(urlStr string, institution string, name string) (str
 }
 
 // Perform actual requesting and scraping, returning a list of found contacts
-func request(firstName, lastName, institution string) []FoundContactStruct {
+func request(firstName, lastName, institution string) []global.FoundContactStruct {
 
 	searchQuery := firstName + " " + lastName + " " + institution
 	totalResults := 20
 	name := firstName + " " + lastName
 
 	var urls []string
-	var global_list []FoundContactStruct
 
 	remainder := totalResults % 10
 	pages := totalResults / 10
@@ -184,70 +218,33 @@ func request(firstName, lastName, institution string) []FoundContactStruct {
 	}
 
 	// fmt.Println("URLs found:")
-	for _, url := range urls {
-		if strings.Contains(url, "pdf") {
+	for _, urlString := range urls {
+		if strings.Contains(urlString, "pdf") {
 			continue
 		}
-		var newresult FoundContactStruct
+		var newresult global.FoundContactStruct
 
-		emails, err := findEmailByNameAndInstitution(url, firstName)
+		emails, err := findEmailByNameAndInstitution(urlString, firstName)
 		if err != nil {
 			continue
 		}
-		institutionresult, name_result, err := findInstitutionandName(url, institution, name)
-
+		institutionresult, name_result, err := findInstitutionandName(urlString, institution, name)
+		if err != nil {
+			continue
+		}
 		if len(emails) > 0 && len(emails[0]) <= 100 {
 			// fmt.Println(url)
 			// fmt.Println(emails)
-			newresult.Email = emails
-			newresult.URL = url
+			newresult.Email = emails[0]
+			parsedURL, _ := url.Parse(urlString)
+			newresult.URL = parsedURL
 			newresult.Institution = institutionresult
-			newresult.Name = name_result
+			newresult.FirstName = name_result
 			newresult.Salutation = "N/A"
-			global_list = append(global_list, newresult)
+			global.AllFoundContacts = append(global.AllFoundContacts, newresult)
 
 		}
 
 	}
-	return global_list
+	return global.AllFoundContacts
 }
-
-func main() {
-	firstName := "Chris"
-	lastName := "McDonald"
-	institution := "UWA"
-
-	contacts := request(firstName, lastName, institution)
-
-	fmt.Println("Found Contacts:")
-	for _, contact := range contacts {
-		fmt.Printf("URL: %s\n", contact.URL)
-		fmt.Printf("Email: %v\n", contact.Email)
-		fmt.Printf("Institution: %s\n", contact.Institution)
-		fmt.Printf("Name: %s\n", contact.Name)
-		fmt.Printf("Salutation: %s\n", contact.Salutation)
-		fmt.Println("---")
-	}
-}
-
-// func main() {
-// 	firstName := "Chris"
-// 	lastName := "Mcdonald"
-// 	institution := "University of Western Australia"
-
-// 	fmt.Printf(request(firstName, lastName, institution))
-
-// }
-
-// func main() {
-
-// 	// Use the request function instead of Google Search API to match the desired output
-// 	contacts := request("Chris", "Mcdonald", "University of Western Australia")
-
-// 	// Output the found contacts
-// 	fmt.Println("Contacts found:")
-// 	for _, contact := range contacts {
-// 		fmt.Printf("Name: %s\nEmail: %s\nInstitution: %s\nSalutation: %s\nURL: %s\n\n",
-// 			contact.Name, contact.Email, contact.Institution, contact.Salutation, contact.URL)
-// 	}
-// }
