@@ -12,11 +12,12 @@ import (
 // Show a dialog box with about information
 func aboutCallback() {
 	// Button to clear api key if desired
-	b := widget.NewButton("Clear API keys", func() {
+	b := widget.NewButton("Clear settings and API keys", func() {
 		global.A.Preferences().SetString("Scopus_API_key", "")
+		global.A.Preferences().SetString("Default_email", "")
 
 		// Show success dialog
-		global.ShowSuccess("API keys cleared")
+		global.ShowSuccess("Settings and API keys cleared")
 	})
 
 	// Separate markdown widgets for better spacing
