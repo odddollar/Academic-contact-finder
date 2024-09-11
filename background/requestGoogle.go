@@ -44,44 +44,63 @@ func requestGoogle(firstName, lastName, institution string) {
 	// Setup query data
 	searchQuery := fmt.Sprintf("%s %s %s", firstName, lastName, institution)
 
-	// Build the query parameters
-	params := url.Values{}
-	params.Add("q", searchQuery)
-	params.Add("key", apiKey)
-	params.Add("cx", searchEngineID)
-
-	// Build final url with parameters
-	reqUrl := fmt.Sprintf("%s%s", googleApiUrl, params.Encode())
-
-	// Send GET request to Google Search API
-	resp, err := http.Get(reqUrl)
-	if err != nil {
-		global.ShowError(err)
-	}
-	defer resp.Body.Close()
-
-	// Check if response is successful
-	if resp.StatusCode != http.StatusOK {
-		global.ShowError(errors.New("Bad http response"))
+	// Calculate number of results and pages to ask from google
+	totalResults := 20
+	remainder := totalResults % 10
+	pages := totalResults / 10
+	if remainder > 0 {
+		pages++
 	}
 
-	// Read response body
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		global.ShowError(err)
-	}
-
-	// Parse JSON response into struct
-	var googleResults SearchResult
-	err = json.Unmarshal(body, &googleResults)
-	if err != nil {
-		global.ShowError(err)
-	}
-
-	// Get urls
 	var urls []string
-	for _, i := range googleResults.Items {
-		urls = append(urls, i.Link)
+
+	// Iterate through number of pages on google
+	for i := 0; i < pages; i++ {
+		numResults := 10
+		if i == pages-1 && remainder > 0 {
+			numResults = remainder
+		}
+
+		// Build the query parameters
+		params := url.Values{}
+		params.Add("key", apiKey)
+		params.Add("cx", searchEngineID)
+		params.Add("q", searchQuery)
+		params.Add("start", fmt.Sprintf("%d", i*10))
+		params.Add("num", fmt.Sprintf("%d", numResults))
+
+		// Build final url with parameters
+		reqUrl := fmt.Sprintf("%s%s", googleApiUrl, params.Encode())
+
+		// Send GET request to Google Search API
+		resp, err := http.Get(reqUrl)
+		if err != nil {
+			global.ShowError(err)
+		}
+		defer resp.Body.Close()
+
+		// Check if response is successful
+		if resp.StatusCode != http.StatusOK {
+			global.ShowError(errors.New("Bad http response"))
+		}
+
+		// Read response body
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			global.ShowError(err)
+		}
+
+		// Parse JSON response into struct
+		var googleResults SearchResult
+		err = json.Unmarshal(body, &googleResults)
+		if err != nil {
+			global.ShowError(err)
+		}
+
+		// Get urls
+		for _, i := range googleResults.Items {
+			urls = append(urls, i.Link)
+		}
 	}
 
 	var results []global.FoundContactStruct
@@ -117,9 +136,9 @@ func scrapeSite(u string, ctx context.Context) []global.FoundContactStruct {
 	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
 
 	// Find first email
-	foundEmail := re.FindString(htmlContent)
+	foundEmails := re.FindAllString(htmlContent, -1)
 
-	fmt.Println(foundEmail)
+	fmt.Println(foundEmails)
 
 	return toReturn
 }
