@@ -16,7 +16,7 @@ import (
 	"github.com/odddollar/CITS3200-Project/global"
 )
 
-// Scruct created to store list of URLs found
+// Struct created to store list of URLs found
 type ScopusResponse struct {
 	SearchResults struct {
 		Entry []struct {
@@ -28,9 +28,9 @@ type ScopusResponse struct {
 	} `json:"search-results"`
 }
 
-// Perform actual requesting and scraping, returning a list of found contacts
+// Perform actual requesting and scraping, returning list of found contacts
 func requestScopus(firstName, lastName, institution string) {
-	// Create a new Chrome browser context with options to disable headless mode
+	// Create new Chrome browser context with options to disable headless mode
 	opts := append(
 		chromedp.DefaultExecAllocatorOptions[:],
 		chromedp.Flag("headless", false),        // Disable headless mode
@@ -61,7 +61,7 @@ func requestScopus(firstName, lastName, institution string) {
 	params.Add("query", query)
 	params.Add("apiKey", apiKey)
 
-	// Build the final URL with parameters
+	// Build final URL with parameters
 	reqUrl := fmt.Sprintf("%s?%s", apiUrl, params.Encode())
 
 	// Create a new request
@@ -71,18 +71,18 @@ func requestScopus(firstName, lastName, institution string) {
 	}
 	defer resp.Body.Close()
 
-	// Read the response body
+	// Check if response is successful
+	if resp.StatusCode != http.StatusOK {
+		global.ShowError(errors.New("Bad http response"))
+	}
+
+	// Read response body
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		global.ShowError(err)
 	}
 
-	// Check if the response is successful
-	if resp.StatusCode != http.StatusOK {
-		global.ShowError(errors.New("Bad http response"))
-	}
-
-	// Parse the JSON response into struct
+	// Parse JSON response into struct
 	var scopusResponse ScopusResponse
 	err = json.Unmarshal(body, &scopusResponse)
 	if err != nil {
