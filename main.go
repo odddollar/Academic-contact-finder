@@ -51,7 +51,7 @@ func main() {
 	global.Ui.EmailAll = widget.NewButton("Email all", email.EmailAll)
 	global.Ui.EmailAll.Importance = widget.HighImportance
 	global.Ui.EmailAll.Disable()
-	global.Ui.ChangeDefaultEmail = widget.NewButton("Change default email", email.ChangeDefaultEmail)
+	global.Ui.ChangeDefaultEmail = widget.NewButton("Set default email", email.ChangeDefaultEmail)
 
 	// Create window layout
 	layout := container.NewBorder(
