@@ -9,6 +9,11 @@ import (
 	"github.com/odddollar/CITS3200-Project/widgets"
 )
 
+const (
+	scopusApiUrl = "https://api.elsevier.com/content/search/scopus"
+	googleApiUrl = "https://www.googleapis.com/customsearch/v1?"
+)
+
 // Initiate api requesting and scraping, then update results
 func Run() {
 	// Ensure API key is present and valid

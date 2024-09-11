@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"time"
 
 	"github.com/chromedp/chromedp"
 	"github.com/odddollar/CITS3200-Project/global"
@@ -24,7 +25,6 @@ type SearchResult struct {
 func requestGoogle(firstName, lastName, institution string) {
 	apiKey := "AIzaSyAa3v8ulaMd6MXQ1oCJDzNCG4pHV6Ms8OU"
 	searchEngineID := "227c94475aca5432c"
-	apiUrl := "https://www.googleapis.com/customsearch/v1?"
 
 	// Create new Chrome browser context with options to disable headless mode
 	opts := append(
@@ -50,7 +50,7 @@ func requestGoogle(firstName, lastName, institution string) {
 	params.Add("cx", searchEngineID)
 
 	// Build final url with parameters
-	reqUrl := fmt.Sprintf("%s%s", apiUrl, params.Encode())
+	reqUrl := fmt.Sprintf("%s%s", googleApiUrl, params.Encode())
 
 	// Send GET request to Google Search API
 	resp, err := http.Get(reqUrl)
@@ -64,7 +64,7 @@ func requestGoogle(firstName, lastName, institution string) {
 		global.ShowError(errors.New("Bad http response"))
 	}
 
-	// Parse JSON response
+	// Read response body
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		global.ShowError(err)
@@ -98,5 +98,19 @@ func requestGoogle(firstName, lastName, institution string) {
 
 // Take url and chromedp context and scrape data from site
 func scrapeSite(u string, ctx context.Context) []global.FoundContactStruct {
-	return []global.FoundContactStruct{}
+	// Create variables to store the page's HTML and data found
+	var htmlContent string
+	var toReturn []global.FoundContactStruct
+
+	// Visit the webpage and get the HTML content
+	err := chromedp.Run(ctx,
+		chromedp.Navigate(u),
+		chromedp.Sleep(1*time.Second), // Adding sleep for reliability
+		chromedp.OuterHTML("html", &htmlContent),
+	)
+	if err != nil {
+		global.ShowError(err)
+	}
+
+	return toReturn
 }

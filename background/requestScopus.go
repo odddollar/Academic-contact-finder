@@ -45,7 +45,6 @@ func requestScopus(firstName, lastName, institution string) {
 	defer cancel()
 
 	// Build the request URL
-	apiUrl := "https://api.elsevier.com/content/search/scopus"
 	apiKey := global.A.Preferences().String("Scopus_API_key")
 
 	// Set up query based on whether affiliation provided
@@ -62,7 +61,7 @@ func requestScopus(firstName, lastName, institution string) {
 	params.Add("apiKey", apiKey)
 
 	// Build final URL with parameters
-	reqUrl := fmt.Sprintf("%s?%s", apiUrl, params.Encode())
+	reqUrl := fmt.Sprintf("%s?%s", scopusApiUrl, params.Encode())
 
 	// Create a new request
 	resp, err := http.Get(reqUrl)
