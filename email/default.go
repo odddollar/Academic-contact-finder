@@ -7,6 +7,11 @@ import (
 	"github.com/odddollar/CITS3200-Project/global"
 )
 
+// Check if a default email is present
+func DefaultEmailPresent() bool {
+	return global.A.Preferences().String("Default_email") != ""
+}
+
 // Change default email address
 func ChangeDefaultEmail() {
 	// Get current address (will return "" if there isn't one)
@@ -23,7 +28,7 @@ func ChangeDefaultEmail() {
 
 	// Show window and update default email if "Save" selected
 	d := dialog.NewForm(
-		"Change default email",
+		"Set default email",
 		"Save",
 		"Cancel",
 		options,

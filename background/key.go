@@ -19,8 +19,8 @@ func PresentScopusAPIKey() bool {
 // Makes test request against API with current key.
 func ValidScopusAPIKey() bool {
 	key := global.A.Preferences().String("Scopus_API_key")
-	
-  // Need an institution token to make this work outside of the institution network
+
+	// Need an institution token to make this work outside of the institution network
 	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=" + key
 
 	// Very basic api check
@@ -49,7 +49,7 @@ func UpdateScopusAPIKey() {
 
 	// Show window and update key if "Save" selected
 	d := dialog.NewForm(
-		"API key missing or invalid",
+		"API key missing, invalid, or unauthorised",
 		"Save",
 		"Cancel",
 		options,
