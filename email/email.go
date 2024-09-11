@@ -15,7 +15,7 @@ import (
 func SendEmail(address string, details []global.FoundContactStruct) {
 	// Check that address has actually been entered
 	if address == "" {
-		global.ShowError(errors.New("please enter an email address"))
+		global.ShowError(errors.New("Please enter an email address"))
 		return
 	}
 
