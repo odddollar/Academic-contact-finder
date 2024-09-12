@@ -185,16 +185,16 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 		institution = findExactMatch(htmlContent, htmlContentLower, institution)
 	}
 
-	// Compile salutation regex
+	// Compile salutation regex and search for highest salutation
 	salutationRe := regexp.MustCompile(`(?i)(\b(?:Prof\.?|Professor)\b|\b(?:Assoc(?:\.|\b)\s*Prof\.?|Associate Professor)\b|\b(?:Asst(?:\.|\b)\s*Prof\.?|Assistant Professor)\b|\b(?:Dr\.?|Doctor)\b)`)
-	fmt.Println("Found salutations", salutationRe.FindAllString(htmlContent, -1))
+	salutation := getHighestSalutation(salutationRe.FindAllString(htmlContent, -1))
 
 	// Format results to correct structure
 	up, _ := url.Parse(u)
 	result := global.FoundContactStruct{
 		FirstName:   firstName,
 		LastName:    lastName,
-		Salutation:  "",
+		Salutation:  salutation,
 		Email:       email,
 		Institution: institution,
 		URL:         up,
@@ -220,4 +220,16 @@ func findExactMatch(original, originalLower, toFind string) string {
 
 	// Extract exact substring from original string using index and length of desired string
 	return original[index : index+len(toFind)]
+}
+
+// Take list of found salutations and return highest one
+func getHighestSalutation(foundSalutations []string) string {
+	fmt.Println(foundSalutations)
+
+	// Return nothing if no salutations found
+	if len(foundSalutations) == 0 {
+		return ""
+	}
+
+	return foundSalutations[0]
 }
