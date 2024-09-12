@@ -114,7 +114,7 @@ func requestGoogle(firstName, lastName, institution string) {
 		}
 
 		// Scrape data from current url
-		r := scrapeSite(i, ctx)
+		r := scrapeSite(i, ctx, firstName, lastName, institution)
 
 		fmt.Println(r)
 	}
@@ -123,7 +123,7 @@ func requestGoogle(firstName, lastName, institution string) {
 }
 
 // Take url and chromedp context and scrape data from site
-func scrapeSite(u string, ctx context.Context) []global.FoundContactStruct {
+func scrapeSite(u string, ctx context.Context, firstName, lastName, institution string) []global.FoundContactStruct {
 	// Create variables to store the page's HTML and data found
 	var htmlContent string
 	var toReturn []global.FoundContactStruct
@@ -141,10 +141,26 @@ func scrapeSite(u string, ctx context.Context) []global.FoundContactStruct {
 	// Parse email regex
 	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
 
-	// Find first email
+	// Find all emails and filter down to matching ones
 	foundEmails := re.FindAllString(htmlContent, -1)
+	var matchingEmails []string
+	for _, i := range foundEmails {
+		// Extract the part before the "@" symbol and convert to lowercase
+		localPart := strings.ToLower(strings.Split(i, "@")[0])
 
-	fmt.Println(foundEmails)
+		// Check if local part contains first or last name
+		if strings.Contains(localPart, firstName) || strings.Contains(localPart, lastName) {
+			matchingEmails = append(matchingEmails, i)
+		}
+	}
+
+	// If more than one email found then just use first
+	var email string
+	if len(matchingEmails) >= 1 {
+		email = matchingEmails[0]
+	}
+
+	fmt.Println(matchingEmails, email)
 
 	return toReturn
 }
