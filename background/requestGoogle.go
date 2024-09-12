@@ -153,7 +153,9 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 		localPart := strings.ToLower(strings.Split(i, "@")[0])
 
 		// Check if local part contains first or last name
-		if strings.Contains(localPart, firstName) || strings.Contains(localPart, lastName) {
+		if strings.Contains(localPart, firstName) && firstName != "" {
+			matchingEmails = append(matchingEmails, i)
+		} else if strings.Contains(localPart, lastName) && lastName != "" {
 			matchingEmails = append(matchingEmails, i)
 		}
 	}
