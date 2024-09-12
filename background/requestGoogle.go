@@ -104,8 +104,6 @@ func requestGoogle(firstName, lastName, institution string) {
 		}
 	}
 
-	var results []global.FoundContactStruct
-
 	// Iterate through urls
 	for _, i := range urls {
 		// Skip pdfs
@@ -114,19 +112,22 @@ func requestGoogle(firstName, lastName, institution string) {
 		}
 
 		// Scrape data from current url
-		r := scrapeSite(i, ctx, firstName, lastName, institution)
+		r, valid := scrapeSite(i, ctx, firstName, lastName, institution)
 
-		fmt.Println(r)
+		// Append found valid result directly to array
+		if valid {
+			fmt.Println(r)
+			global.AllFoundContacts = append(global.AllFoundContacts, r)
+		}
 	}
-
-	global.AllFoundContacts = append(global.AllFoundContacts, results...)
 }
 
-// Take url and chromedp context and scrape data from site
-func scrapeSite(u string, ctx context.Context, firstName, lastName, institution string) []global.FoundContactStruct {
-	// Create variables to store the page's HTML and data found
+// Take url and chromedp context and scrape data from site.
+// Each site will return maximum one found result, with bool indicating if result
+// is valid (i.e. has an email been found)
+func scrapeSite(u string, ctx context.Context, firstName, lastName, institution string) (global.FoundContactStruct, bool) {
+	// Store page's html content
 	var htmlContent string
-	var toReturn []global.FoundContactStruct
 
 	// Visit the webpage and get the HTML content
 	err := chromedp.Run(ctx,
@@ -137,6 +138,9 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	if err != nil {
 		global.ShowError(err)
 	}
+
+	// Convert html to lowercase
+	htmlContent = strings.ToLower(htmlContent)
 
 	// Parse email regex
 	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
@@ -162,5 +166,37 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 
 	fmt.Println(matchingEmails, email)
 
-	return toReturn
+	// Set first name, last name, or institution to N/A if one isn't found
+	if !strings.Contains(htmlContent, firstName) || firstName == "" {
+		firstName = "N/A"
+	} else {
+		firstName = strings.ToTitle(firstName)
+	}
+	if !strings.Contains(htmlContent, lastName) {
+		lastName = "N/A"
+	} else {
+		lastName = strings.ToTitle(lastName)
+	}
+	if !strings.Contains(htmlContent, institution) || institution == "" {
+		institution = "N/A"
+	} else {
+		institution = strings.ToTitle(institution)
+	}
+
+	// Format results to correct structure
+	up, _ := url.Parse(u)
+	result := global.FoundContactStruct{
+		FirstName:   firstName,
+		LastName:    lastName,
+		Salutation:  "",
+		Email:       email,
+		Institution: institution,
+		URL:         up,
+	}
+
+	// "Invalid" result if no email found
+	if email == "" {
+		return result, false
+	}
+	return result, true
 }

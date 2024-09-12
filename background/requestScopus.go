@@ -165,6 +165,8 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				// Find the <sup> to get affiliation link
 				affiliationLink := s.Find("sup").Text()
 				affiliation := affiliations[affiliationLink]
+
+				// If no affiliation <sup> found, then only one affiliation in map
 				if affiliation == "" {
 					affiliation = affiliations["a"]
 				}
