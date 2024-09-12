@@ -140,13 +140,13 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	}
 
 	// Convert html to lowercase
-	htmlContent = strings.ToLower(htmlContent)
+	htmlContentLower := strings.ToLower(htmlContent)
 
 	// Parse email regex
 	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
 
 	// Find all emails and filter down to matching ones
-	foundEmails := re.FindAllString(htmlContent, -1)
+	foundEmails := re.FindAllString(htmlContentLower, -1)
 	var matchingEmails []string
 	for _, i := range foundEmails {
 		// Extract the part before the "@" symbol and convert to lowercase
@@ -169,20 +169,20 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	fmt.Println(matchingEmails, email)
 
 	// Set first name, last name, or institution to N/A if one isn't found
-	if !strings.Contains(htmlContent, firstName) || firstName == "" {
+	if !strings.Contains(htmlContentLower, firstName) || firstName == "" {
 		firstName = "N/A"
 	} else {
-		firstName = strings.ToTitle(firstName)
+		firstName = findExactMatch(htmlContent, htmlContentLower, firstName)
 	}
-	if !strings.Contains(htmlContent, lastName) {
+	if !strings.Contains(htmlContentLower, lastName) {
 		lastName = "N/A"
 	} else {
-		lastName = strings.ToTitle(lastName)
+		lastName = findExactMatch(htmlContent, htmlContentLower, lastName)
 	}
-	if !strings.Contains(htmlContent, institution) || institution == "" {
+	if !strings.Contains(htmlContentLower, institution) || institution == "" {
 		institution = "N/A"
 	} else {
-		institution = strings.ToTitle(institution)
+		institution = findExactMatch(htmlContent, htmlContentLower, institution)
 	}
 
 	// Format results to correct structure
@@ -201,4 +201,19 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 		return result, false
 	}
 	return result, true
+}
+
+// Searches for case-insensitive occurrence of short string within long string
+// and returns exact case-sensitive substring from original string
+func findExactMatch(original, originalLower, toFind string) string {
+	// Find starting index of desired string in original lower string (case insensitive)
+	index := strings.Index(originalLower, toFind)
+
+	// Failsafe to prevent program crashing
+	if index == -1 {
+		return "N/A"
+	}
+
+	// Extract exact substring from original string using index and length of desired string
+	return original[index : index+len(toFind)]
 }
