@@ -143,10 +143,10 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	htmlContentLower := strings.ToLower(htmlContent)
 
 	// Parse email regex
-	re := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
+	emailRe := regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)
 
 	// Find all emails and filter down to matching ones
-	foundEmails := re.FindAllString(htmlContentLower, -1)
+	foundEmails := emailRe.FindAllString(htmlContentLower, -1)
 	var matchingEmails []string
 	for _, i := range foundEmails {
 		// Extract the part before the "@" symbol and convert to lowercase
@@ -184,6 +184,10 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	} else {
 		institution = findExactMatch(htmlContent, htmlContentLower, institution)
 	}
+
+	// Compile salutation regex
+	salutationRe := regexp.MustCompile(`(?i)(\b(?:Prof\.?|Professor)\b|\b(?:Assoc(?:\.|\b)\s*Prof\.?|Associate Professor)\b|\b(?:Asst(?:\.|\b)\s*Prof\.?|Assistant Professor)\b|\b(?:Dr\.?|Doctor)\b)`)
+	fmt.Println("Found salutations", salutationRe.FindAllString(htmlContent, -1))
 
 	// Format results to correct structure
 	up, _ := url.Parse(u)
