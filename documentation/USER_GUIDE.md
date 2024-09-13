@@ -166,3 +166,28 @@ Upon the first time using the application, you will be prompted to enter your **
 
     The application uses a combination of API calls and web scraping to gather publicly available information from Scopus, an academic database, and websites online.
 
+- **Is the data I input stored or shared?**
+
+    No, the data you input is not stored or shared. The application processes your input only temporarily to search for contact details. Once the search is completed and the results are delivered, the input data is not retained or shared.
+
+- **Is there a limit to how many searches I can perform?**
+
+    While there is no limit to how many searches can be performed by Scopus API key, the Google API key is limited to 100 search queries per day for free. 
+
+- **Is there any way to copy the results directly to my clipboard?**
+
+    Yes, clicking the clipboard icon on the right-hand side of the results will copy a formatted version of the results to your clipboard.
+
+- **Can I search for researchers worldwide, or are there geographic restrictions?**
+
+    The application can search for researchers globally, provided that their contact information is publicly available by the services used. 
+
+- **Why can’t I find the researchers' contact details?**
+
+    If the researcher's contact details are not publicly accessible or listed in Scopus, the application will not be able to retrieve the information. 
+
+    Otherwise, ensure that the information you have entered in the search fields is spelt correctly and uses the researchers full name as opposed to nicknames. For institutions, use the full name of the institution rather than abbreviations. For example, enter the ‘University of Western Australia’ instead of ‘UWA.’
+
+- **Which Wi-Fi network should I be connected to in order to use this?**
+
+    To access results from Scopus, you need to be connected to a Wi-Fi network that provides access to Scopus, such as your office network. If you are not connected to such a network, the ‘Academic Contact Finder’ will return results from Google Search instead.
