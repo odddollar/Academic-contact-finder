@@ -132,3 +132,37 @@ Upon the first time using the application, you will be prompted to enter your **
 
 ## 9. FAQs
 
+- **What is an API key?**
+
+    An API key is a unique identifier used to authenticate a user, developer, or program to an API (Application Programming Interface). It allows our application to communicate with external services, namely Scopus and Google, and access data based on the permissions granted by the key.
+
+- **Why do I need an API key?**
+
+    You will need an API key to access the data from Scopus and Google that provides the contact details of researchers. The API keys verify that our application has the proper authorisation to use these services, ensuring security and monitoring usage.
+
+- **Why do I need two different API Keys?**
+
+    Different services require their own API keys for access. The Scopus API key allows our application to search for researcher details within the Scopus database, while the Google API key is used to find publicly available information through Google Search. Each service has its own API and needs its own key for interaction.
+
+    For best results, both API keys should be provided.
+
+- **Should I be sharing my Google API key with others?**
+
+    No, you should not share your Google API key with others. Sharing your API key can expose your account to security risks. For this reason, it is important to keep your API key private.
+
+    If others wish to use the ‘Academic Research Finder,’ they will need to generate their own Google API key by following the instructions provided above. 
+
+- **How up to date is the information provided?**
+
+    While our application aims to provide the most up-to-date information for each researcher, it will only return results from Scopus or Google. This does not guarantee that all information is current.
+
+- **How accurate is the information provided?**
+
+    While our application aims to provide the most accurate information for each researcher, it can only return results found from Scopus or Google. 
+
+    There may be instances where the associated email appears incorrect. Since we provide the source from which the details were obtained, this can be manually verified.
+
+- **How does the application find contact details?**
+
+    The application uses a combination of API calls and web scraping to gather publicly available information from Scopus, an academic database, and websites online.
+
