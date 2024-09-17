@@ -1,12 +1,12 @@
 
 
-<img src="../images/Big_Header.png" style="margin: auto;">
+<img src="../images/Big_Header.png" style="margin: auto; text-align: centre;">
 
 
 
 
 
-<h1 style="text-align: center; font-size: 70px; color: #6576A8;">User Guide</h1>
+<h1 style="text-align: center; font-size: 70px; color: #6576A8; font-family: Futura; ">User Guide</h1>
 
 
 
@@ -56,7 +56,7 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 - **Internet Connection**: Required for API requests and web scraping
   - You must be connected to an **academic institution network** to attain results from Scopus.  
 
-- **API Key**: A valid Scopus API key **OR** A valid Google API key
+- **API Key**: A valid Scopus API key **AND/OR** A valid Google API key
   - If you provide both you be able to attain the most accurate results
 
 
@@ -97,13 +97,38 @@ If you have already been provided with a Scopus API key you can skip the **Regis
 
    <img src="../images/MyAPIKey.png" style="margin: auto;">
 
-
+5. This API key will only be **valid for 1 year**!
 
 ### Register for a Google API Key
 
-1.
+1. Visit the site: https://developers.google.com/custom-search/v1/introduction
 
+2. Click the "**Programmable Search Engine**" hyperlink as seen below:
 
+   <img src="../images/ProgrammableSearchEngine.png" style="margin: auto;">
+
+3. Press "**Get Started**" once taken to the next page.
+4. You will now be prompted to **create a new search engine**. You man name it anything you wish, however, ensure you select **search the entire web**. You can now press "**create**".
+
+​	<img src="../images/CreateSearchEngine.png" style="margin: auto;">
+
+5. Once you have created your new search engine click "**customize**".
+
+6. Copy the **Search Engine ID** as seen below since this is required.
+
+   <img src="../images/SearchEngineID.png" style="margin: auto;">
+
+6. Navigate back to the original page and click "**Get A Key**" as seen below.	
+
+   <img src="../images/GetAKey.png" style="margin: auto;">
+
+7. You'll be prompted to **create a new project**, you may name this whatever you wish. Select "**Yes**" to agreeing to terms of service, then click **Next**. 
+
+   <img src="../images/NewProject.png" style="margin: auto;">
+
+8. Now press on "**Show Key**" and **copy** the key since you'll need it for the application.	
+
+   <img src="../images/YourAPIKey.png" style="margin: auto;">
 
 ### Enter API Keys into Application
 
@@ -135,6 +160,7 @@ If you have already been provided with a Scopus API key you can skip the **Regis
 2. **Processing**:
    - The app will perform API requests from "Scopus" first.
    - If limited results is found through this method it will automatically perform web scraping.
+   - browswer window opening
 
 ### Viewing Results
 
@@ -142,7 +168,8 @@ If you have already been provided with a Scopus API key you can skip the **Regis
    - Once search is complete, the results will be displayed at the bottom of the screen.
 
 2. **Order of Results**:
-   - You may sort results in order based on publication dates.
+   - All results returned by **Scopus** will contain the **most recent** results first.
+   - All results attained from **web scraping** will be shown after the Scopus results and will be ordered based on how they're found using **Google's SEO**. 
 
 ## 6. Emailing Results
 
@@ -222,3 +249,5 @@ If you have already been provided with a Scopus API key you can skip the **Regis
 - **Which Wi-Fi network should I be connected to in order to use this?**
 
     To access results from Scopus, you need to be connected to a Wi-Fi network that provides access to Scopus, such as your office network. If you are not connected to such a network, the ‘Academic Contact Finder’ will return results from Google Search instead.
+    
+- **Why is the application opening up a browser window?**
