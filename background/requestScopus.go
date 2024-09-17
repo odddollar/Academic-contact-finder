@@ -43,7 +43,7 @@ func requestScopus(firstName, lastName, institution string) {
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	// Build the request URL
+	// Get api key
 	apiKey := global.A.Preferences().String("Scopus_API_key")
 
 	// Set up query based on whether affiliation provided

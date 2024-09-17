@@ -24,9 +24,6 @@ type SearchResult struct {
 
 // Perform actual requesting and scraping of google
 func requestGoogle(firstName, lastName, institution string) {
-	apiKey := "AIzaSyAa3v8ulaMd6MXQ1oCJDzNCG4pHV6Ms8OU"
-	searchEngineID := "227c94475aca5432c"
-
 	// Create new Chrome browser context with options to disable headless mode
 	opts := append(
 		chromedp.DefaultExecAllocatorOptions[:],
@@ -40,6 +37,10 @@ func requestGoogle(firstName, lastName, institution string) {
 	// Create chromedp context
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
+
+	// Get api keys
+	apiKey := global.A.Preferences().String("Google_API_key")
+	searchEngineID := global.A.Preferences().String("Google_search_id")
 
 	// Setup query data
 	searchQuery := fmt.Sprintf("%s %s %s", firstName, lastName, institution)
