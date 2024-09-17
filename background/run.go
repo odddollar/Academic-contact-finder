@@ -16,14 +16,14 @@ const (
 
 // Initiate api requesting and scraping, then update results
 func Run() {
-	// Ensure API key is present and valid
-	// Run here again, as if cancel clicked initially then still no api key
+	// Ensure API key is present
+	// Run here again, as if cancel clicked initially then still no api key.
 	// This will appear until a valid key is entered every time run is clicked
 	// and will not progress running any futher
-	// if !PresentScopusAPIKey() || !ValidScopusAPIKey() {
-	// 	UpdateScopusAPIKey()
-	// 	return
-	// }
+	if !PresentGoogleAPIKey() {
+		UpdateGoogleAPIKey()
+		return
+	}
 
 	// Get data from entry boxes
 	firstName := strings.ToLower(strings.Trim(global.Ui.FirstName.Text, " "))
@@ -44,7 +44,7 @@ func Run() {
 	global.AllFoundContacts = nil
 
 	// Make requests and get results
-	// requestScopus(firstName, lastName, institution)
+	requestScopus(firstName, lastName, institution)
 	requestGoogle(firstName, lastName, institution)
 
 	// Hide loading bar

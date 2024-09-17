@@ -100,12 +100,15 @@ func main() {
 		email.ChangeDefaultEmail()
 	}
 
-	// Ensure API key is present and valid
+	// Check if google key present
+	if !background.PresentGoogleAPIKey() {
+		background.UpdateGoogleAPIKey()
+	}
+
+	// Check if scopus key present and valid
 	if !background.PresentScopusAPIKey() || !background.ValidScopusAPIKey() {
 		background.UpdateScopusAPIKey()
 	}
-
-	background.UpdateGoogleAPIKey()
 
 	// Show window and run app
 	global.W.Resize(fyne.NewSize(1024, 0))

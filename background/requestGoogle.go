@@ -3,7 +3,6 @@ package background
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -80,9 +79,11 @@ func requestGoogle(firstName, lastName, institution string) {
 		}
 		defer resp.Body.Close()
 
-		// Check if response is successful
+		// Check if response is successful.
+		// If not then key probably isn't valid
 		if resp.StatusCode != http.StatusOK {
-			global.ShowError(errors.New("Bad http response"))
+			UpdateGoogleAPIKey()
+			return
 		}
 
 		// Read response body
