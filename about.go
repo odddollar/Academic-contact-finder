@@ -14,6 +14,8 @@ func aboutCallback() {
 	// Button to clear api key if desired
 	b := widget.NewButton("Clear settings and API keys", func() {
 		global.A.Preferences().SetString("Scopus_API_key", "")
+		global.A.Preferences().SetString("Google_API_key", "")
+		global.A.Preferences().SetString("Google_search_id", "")
 		global.A.Preferences().SetString("Default_email", "")
 
 		// Show success dialog
