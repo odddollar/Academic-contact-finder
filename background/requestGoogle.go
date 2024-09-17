@@ -83,7 +83,10 @@ func requestGoogle(firstName, lastName, institution string) {
 		// Check if response is successful.
 		// If not then key probably isn't valid
 		if resp.StatusCode != http.StatusOK {
-			UpdateGoogleAPIKey()
+			// Fixes dialog disappearing immediately
+			go func() {
+				UpdateGoogleAPIKey()
+			}()
 			return
 		}
 
