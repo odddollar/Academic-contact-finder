@@ -49,7 +49,7 @@ func UpdateScopusAPIKey() {
 
 	// Show window and update key if "Save" selected
 	d := dialog.NewForm(
-		"API key missing, invalid, or unauthorised",
+		"Scopus API key missing, invalid, or unauthorised",
 		"Save",
 		"Cancel",
 		options,

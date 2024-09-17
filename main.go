@@ -105,6 +105,8 @@ func main() {
 		background.UpdateScopusAPIKey()
 	}
 
+	background.UpdateGoogleAPIKey()
+
 	// Show window and run app
 	global.W.Resize(fyne.NewSize(1024, 0))
 	global.W.Show()
