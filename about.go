@@ -19,7 +19,7 @@ func aboutCallback() {
 		global.A.Preferences().SetString("Default_email", "")
 
 		// Show success dialog
-		global.ShowSuccess("Settings and API keys cleared")
+		global.ShowSuccess("Settings and API keys cleared.\nPlease restart program.")
 	})
 
 	// Separate markdown widgets for better spacing
