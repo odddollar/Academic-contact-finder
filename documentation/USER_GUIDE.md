@@ -76,12 +76,37 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 
 Upon the first time using the application, you will be prompted to enter your **Scopus API key** and your **Google API key**.
 
-1. **Enter the API Key**:
-   - Copy the API key you have been provided through Scopus and the one you have attained through Google. 
-   - Paste the keys into the respective fields when prompted.
+### Register for a Scopus API Key
 
-2. **Save the API Key**:
-   - Click the "Save" button to store your API keys. 
+1. Visit the site: https://dev.elsevier.com/index.jsp
+
+2. You will be prompted to **Sign In** 
+
+   * If you do not have an account, use your **academic institution details** to sign in. 
+   * Scopus **does not** provide API keys if you are not part of an academic institution.
+
+3. Click on "**I want an API Key**", as seen below
+
+   <img src="../images/IWantAnAPIKey.png" style="margin: auto;">
+
+4. Click "**My API Key**" and you will then find your personal API key.
+
+   <img src="../images/MyAPIKey.png" style="margin: auto;">
+
+
+
+### Register for a Google API Key
+
+1. 
+
+
+
+### Enter API Keys into Application
+
+1. Upon opening the application for the first time you will be prompted to enter both your **Scopus API key** and **Google API key**. 
+2. **Copy and paste** the API keys into their respective fields.
+
+3. Click the "**Save**" button to store your API keys. 
 
 
 
@@ -115,20 +140,28 @@ Upon the first time using the application, you will be prompted to enter your **
 
 1. **Setting Default Email Address**:
    - Press the button "Change default email address" to change your email which is currently entered.
+   
 2. **Email All Results**:
    - By pressing "Email All" at the bottom of the screen, you will then be allowed to select "Outlook". 
+   
    - Once selected, you will be able to send all results that the app has found to your email address
-
+   
+     <img src="../images/EmailAllButton.png" style="margin: auto;">
+   
 3. **Send Individual Results**:
    - If you only wish to email yourself one of the results, simply press the "Send" button inside the result you wish to choose
 
-## 7. Managing the Scopus API Key
+
+
+## 7. Troubleshooting
+
+#### hello
 
 
 
-## 8. Troubleshooting
 
 
+## 8. FAQs
 
-## 9. FAQs
+
 
