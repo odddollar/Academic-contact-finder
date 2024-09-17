@@ -54,6 +54,8 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 - **Memory**: Minimum 4 GB RAM
 - **Storage**: Minimum 100 MB of available space
 - **Internet Connection**: Required for API requests and web scraping
+  - You must be connected to an **academic institution network** to attain results from Scopus.  
+
 - **API Key**: A valid Scopus API key **OR** A valid Google API key
   - If you provide both you be able to attain the most accurate results
 
@@ -75,6 +77,8 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 ## 4. Initial Setup
 
 Upon the first time using the application, you will be prompted to enter your **Scopus API key** and your **Google API key**.
+
+If you have already been provided with a Scopus API key you can skip the **Register for a Scopus API Key** step. 
 
 ### Register for a Scopus API Key
 
@@ -117,8 +121,12 @@ Upon the first time using the application, you will be prompted to enter your **
 1. **Enter Name in Fields Provided**:
    - Provide first and last name for the most accurate results.
    - However, if only a last name is entered, the search will still be performed.
+   
 2. **Enter Institution Details**:
+   
    - Provide the name for the researcher's institution if that information is known.
+   
+     <img src="../images/SearchArea.png" style="margin: auto;">
 
 ### Performing the Search
 
@@ -141,6 +149,8 @@ Upon the first time using the application, you will be prompted to enter your **
 1. **Setting Default Email Address**:
    - Press the button "Change default email address" to change your email which is currently entered.
 
+     <img src="../images/ChangeDefaultEmail.png" style="margin: auto;">
+   
 2. **Email All Results**:
    - By pressing "Email All" at the bottom of the screen, you will then be allowed to select "Outlook".
 
@@ -151,21 +161,7 @@ Upon the first time using the application, you will be prompted to enter your **
 3. **Send Individual Results**:
    - If you only wish to email yourself one of the results, simply press the "Send" button inside the result you wish to choose
 
-
-
-## 7. Troubleshooting
-
-#### hello
-
-
-
-
-
-## 8. FAQs
-
-
-
-## 9. FAQs
+## 7. FAQs
 
 - **What is an API key?**
 
