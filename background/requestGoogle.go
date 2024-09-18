@@ -191,7 +191,7 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	}
 
 	// Compile salutation regex and search for highest salutation
-	salutationRe := regexp.MustCompile(`(?i)(\b(?:Prof\.?|Professor)\b|\b(?:Assoc(?:\.|\b)\s*Prof\.?|Associate Professor)\b|\b(?:Asst(?:\.|\b)\s*Prof\.?|Assistant Professor)\b|\b(?:Dr\.?|Doctor)\b)`)
+	salutationRe := regexp.MustCompile(`(?i)(\b(?:Prof\.?|Professor)\b|\b(?:Assoc(?:\.|\b)\s*(?:Prof(?:\.|\b)|Professor)|Associate\s*(?:Prof(?:\.|\b)|Professor))\b|\b(?:Asst(?:\.|\b)\s*(?:Prof(?:\.|\b)|Professor)|Assistant\s*(?:Prof(?:\.|\b)|Professor))\b|\b(?:Dr\.?|Doctor)\b)`)
 	salutation := getHighestSalutation(salutationRe.FindAllString(htmlContent, -1))
 
 	// Format results to correct structure
