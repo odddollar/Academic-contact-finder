@@ -132,12 +132,15 @@ If you have already been provided with a Scopus API key you can skip the **Regis
 
 ### Enter API Keys into Application
 
-1. Upon opening the application for the first time you will be prompted to enter both your **Scopus API key** and **Google API key**.
-2. **Copy and paste** the API keys into their respective fields.
+1. Upon opening the application for the first time you will first be prompted to enter your **Scopus API key** as seen below. Press "**Save**" once you have **copy and pasted** your key.
 
-3. Click the "**Save**" button to store your API keys.
+   <img src="../images/EnterScopusAPI.png" style="margin: auto;">
 
+2. You will then be prompted to enter your Google **Search engine ID** and **API key** in their respective fields. Press "**Save**" once you have **copy and pasted** these values in.
 
+   <img src="../images/EnterGoogleDetails.png" style="margin: auto;">
+
+3. The application now has all the API details it requires to function. 
 
 ## 5. Using the App
 
@@ -160,7 +163,7 @@ If you have already been provided with a Scopus API key you can skip the **Regis
 2. **Processing**:
    - The app will perform API requests from "Scopus" first.
    - If limited results is found through this method it will automatically perform web scraping.
-   - browswer window opening
+   - A browser window will open while the application searches the web. 
 
 ### Viewing Results
 
@@ -251,3 +254,5 @@ If you have already been provided with a Scopus API key you can skip the **Regis
     To access results from Scopus, you need to be connected to a Wi-Fi network that provides access to Scopus, such as your office network. If you are not connected to such a network, the ‘Academic Contact Finder’ will return results from Google Search instead.
     
 - **Why is the application opening up a browser window?**
+
+    As the application searches both Scopus and the web for results, a browser window will appear. You do not have to interact with this window since it is simply the application automatically conducting the search process. 
