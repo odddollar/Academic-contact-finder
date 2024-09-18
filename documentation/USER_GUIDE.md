@@ -1,6 +1,6 @@
 
 
-<img src="../images/Big_Header.png" style="margin: auto; text-align: centre;">
+<img src="../images/Big_Header.png" style="margin: auto; text-align: centre; width: 100%;">
 
 
 
@@ -182,14 +182,18 @@ If you have already been provided with a Scopus API key you can skip the **Regis
      <img src="../images/ChangeDefaultEmail.png" style="margin: auto;">
    
 2. **Email All Results**:
-   - By pressing "Email All" at the bottom of the screen, you will then be allowed to select "Outlook".
+   - By pressing "Email All" at the bottom of the screen, If you're using a **Mac** the mail app will open with the email laid out in a similar format to the display on the application. If you're using **Windows**, a few options will appear, you must select **Outlook** before you can send the email. 
 
-   - Once selected, you will be able to send all results that the app has found to your email address
+   - Once selected, you will be able to send all results that the app has found to your email address.
 
      <img src="../images/EmailAllButton.png" style="margin: auto;">
 
 3. **Send Individual Results**:
-   - If you only wish to email yourself one of the results, simply press the "Send" button inside the result you wish to choose
+   - If you only wish to email yourself one of the results, simply press the "Send" button inside the result you wish to choose.
+   
+   - Similarly to the email all functionality, if you're using **Mac**, the mail app will open and allow you to send the result that way. If using **Windows**, you must select **Outlook** before being able to send the results to yourself.
+   
+     <img src="../images/EmailResult.png" style="margin: auto;">
 
 ## 7. FAQs
 
