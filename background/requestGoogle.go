@@ -121,7 +121,6 @@ func requestGoogle(firstName, lastName, institution string) {
 
 		// Append found valid result directly to array
 		if valid {
-			fmt.Println(r)
 			global.AllFoundContacts = append(global.AllFoundContacts, r)
 		}
 	}
@@ -170,8 +169,6 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	if len(matchingEmails) >= 1 {
 		email = matchingEmails[0]
 	}
-
-	fmt.Println(matchingEmails, email)
 
 	// Set first name, last name, or institution to N/A if one isn't found
 	if !strings.Contains(htmlContentLower, firstName) || firstName == "" {
@@ -274,6 +271,5 @@ func getHighestSalutation(foundSalutations []string) string {
 		}
 	}
 
-	fmt.Println(foundSalutations, highestTierName)
 	return highestTierName
 }
