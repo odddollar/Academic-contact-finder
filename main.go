@@ -7,6 +7,7 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/background"
@@ -38,6 +39,10 @@ func main() {
 
 	// Create about button
 	global.Ui.About = widget.NewButtonWithIcon("", theme.InfoIcon(), aboutCallback)
+
+	// Create results results order button
+	global.Ui.ReverseOrder = widget.NewButtonWithIcon("", theme.MediaMusicIcon(), background.ReverseResultsOrder)
+	global.Ui.ReverseOrder.Disable()
 
 	// Create results found label
 	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
@@ -80,7 +85,12 @@ func main() {
 				global.Ui.Search,
 			),
 			widget.NewSeparator(),
-			global.Ui.NumResults,
+			container.NewHBox(
+				global.Ui.ReverseOrder,
+				layout.NewSpacer(),
+				global.Ui.NumResults,
+			),
+			widget.NewSeparator(),
 		),
 		container.NewBorder(
 			nil,
