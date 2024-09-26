@@ -225,6 +225,12 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
     For best results, both API keys should be provided.
 
+- **What do I do when the Scopus API key expires?**
+
+   As the Scopus API key is only valid for 1 year, a new key will have to be generated once it expires. The ‘Academic Contact Finder’ will prompt you for a new key if the entered key is invalid or has expired. 
+   
+   Please contact Mr Jay Jay Jegathesan (jay.jay@uwa.edu.au) in order to obtain a new key.
+
 - **Should I be sharing my Google API key with others?**
 
     No, you should not share your Google API key with others. Sharing your API key can expose your account to security risks. For this reason, it is important to keep your API key private.
@@ -269,8 +275,8 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
 - **Which Wi-Fi network should I be connected to in order to use this?**
 
-    To access results from Scopus, you need to be connected to a Wi-Fi network that provides access to Scopus, such as your office network. If you are not connected to such a network, the ‘Academic Contact Finder’ will return results from Google Search instead.
+    To access results from Scopus, you will need to be connected to a Wi-Fi network that provides access to Scopus, such as your office or institutional network. If you are not connected to such a network, the ‘Academic Contact Finder’ will only return the results found using Google Search.
     
 - **Why is the application opening up a browser window?**
 
-    As the application searches both Scopus and the web for results, a browser window will appear. You do not have to interact with this window since it is simply the application automatically conducting the search process. 
+    As the application searches both Scopus and the web for results, a browser window will appear. You do not have to interact with this window as this is the application automatically conducting the search process. 
