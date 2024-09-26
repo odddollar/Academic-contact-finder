@@ -66,7 +66,19 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 
 ### Download the Software
 
-- visit the GitHub repository and download the latest version
+1. visit the GitHub repository using the following link
+
+   - https://github.com/odddollar/CITS3200-Project
+
+2. Click the green **"Code"** dropdown as displayed below
+
+   <img src="../images/GithubCode.png" style="margin: auto;">
+
+3. Now select **"Download ZIP"** once 
+
+   <img src="../images/DownloadZIP.png" style="margin: auto;">
+
+4. Now **unzip** the folder and store it wherever you wish.
 
 ### Launch the Software
 
