@@ -1,4 +1,5 @@
 //go:generate fyne bundle -o static.go images/Header.png
+//go:generate fyne bundle -o static.go -append images/Swap.svg
 
 package main
 
@@ -40,8 +41,9 @@ func main() {
 	// Create about button
 	global.Ui.About = widget.NewButtonWithIcon("", theme.InfoIcon(), aboutCallback)
 
-	// Create results results order button
-	global.Ui.ReverseOrder = widget.NewButtonWithIcon("", theme.MediaMusicIcon(), background.ReverseResultsOrder)
+	// Create reverse results order button
+	// TODO: Fix svg icon
+	global.Ui.ReverseOrder = widget.NewButtonWithIcon("", theme.NewThemedResource(resourceSwapSvg), background.ReverseResultsOrder)
 	global.Ui.ReverseOrder.Disable()
 
 	// Create results found label
@@ -53,7 +55,7 @@ func main() {
 	global.Ui.Output = container.NewVBox()
 
 	// Create buttons for sending emails and updating default address
-	global.Ui.EmailAll = widget.NewButton("Email all", email.EmailAll)
+	global.Ui.EmailAll = widget.NewButtonWithIcon("Email all", theme.MailSendIcon(), email.EmailAll)
 	global.Ui.EmailAll.Importance = widget.HighImportance
 	global.Ui.EmailAll.Disable()
 	global.Ui.ChangeDefaultEmail = widget.NewButton("Set default email", email.ChangeDefaultEmail)
