@@ -50,9 +50,10 @@ func Run() {
 	// Hide loading bar
 	loading.Hide()
 
-	// Enable email all button if results found
+	// Enable email all and reverse buttons if results found
 	if len(global.AllFoundContacts) > 0 {
 		global.Ui.EmailAll.Enable()
+		global.Ui.ReverseOrder.Enable()
 	}
 
 	// Update number of results found
