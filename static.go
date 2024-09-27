@@ -13,5 +13,5 @@ var resourceHeaderPng = &fyne.StaticResource{
 var resourceSwapSvg = &fyne.StaticResource{
 	StaticName: "Swap.svg",
 	StaticContent: []byte(
-		"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"black\" stroke-width=\"2\"><path d=\"M3 8 L8 3 L13 8\"/><path d=\"M8 3 L8 15\"/><path d=\"M21 16 L16 21 L11 16\"/><path d=\"M16 21 L16 9\"/></svg>\r\n"),
+		"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 48 48\"><path d=\"M16 34l2.83 2.83L26 29.66V44h4V29.66l7.17 7.17L40 34l-12-12-12 12z\"/><path d=\"M32 14l-2.83-2.83L22 18.34V4h-4v14.34l-7.17-7.17L8 14l12 12 12-12z\"/></svg>\r\n"),
 }

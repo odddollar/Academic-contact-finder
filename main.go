@@ -42,7 +42,6 @@ func main() {
 	global.Ui.About = widget.NewButtonWithIcon("", theme.InfoIcon(), aboutCallback)
 
 	// Create reverse results order button
-	// TODO: Fix svg icon
 	global.Ui.ReverseOrder = widget.NewButtonWithIcon("", theme.NewThemedResource(resourceSwapSvg), background.ReverseResultsOrder)
 	global.Ui.ReverseOrder.Disable()
 
