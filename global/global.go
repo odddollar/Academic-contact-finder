@@ -26,6 +26,7 @@ var Ui struct {
 	Institution        *widget.Entry
 	Search             *widget.Button
 	About              *widget.Button
+	ReverseOrder       *widget.Button
 	NumResults         *canvas.Text
 	Output             *fyne.Container
 	EmailAll           *widget.Button

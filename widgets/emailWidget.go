@@ -35,7 +35,7 @@ func (em *EmailMe) CreateRenderer() fyne.WidgetRenderer {
 	e.SetText(global.A.Preferences().String("Default_email"))
 	e.SetPlaceHolder("Type email address here")
 
-	s := widget.NewButton("Send", func() {
+	s := widget.NewButtonWithIcon("Send", theme.MailSendIcon(), func() {
 		email.SendEmail(e.Text, []global.FoundContactStruct{em.details})
 	})
 	s.Importance = widget.HighImportance

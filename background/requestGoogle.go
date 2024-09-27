@@ -121,7 +121,6 @@ func requestGoogle(firstName, lastName, institution string) {
 
 		// Append found valid result directly to array
 		if valid {
-			fmt.Println(r)
 			global.AllFoundContacts = append(global.AllFoundContacts, r)
 		}
 	}
@@ -170,8 +169,6 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	if len(matchingEmails) >= 1 {
 		email = matchingEmails[0]
 	}
-
-	fmt.Println(matchingEmails, email)
 
 	// Set first name, last name, or institution to N/A if one isn't found
 	if !strings.Contains(htmlContentLower, firstName) || firstName == "" {
@@ -229,12 +226,50 @@ func findExactMatch(original, originalLower, toFind string) string {
 
 // Take list of found salutations and return highest one
 func getHighestSalutation(foundSalutations []string) string {
-	fmt.Println(foundSalutations)
+	// Compile regular expressions for each tier
+	assocProfRegex := regexp.MustCompile(`(?i)(\b(?:Assoc(?:\.|\b)\s*(?:Prof(?:\.|\b)|Professor)|Associate\s*(?:Prof(?:\.|\b)|Professor))\b)`)
+	asstProfRegex := regexp.MustCompile(`(?i)(\b(?:Asst(?:\.|\b)\s*(?:Prof(?:\.|\b)|Professor)|Assistant\s*(?:Prof(?:\.|\b)|Professor))\b)`)
+	profRegex := regexp.MustCompile(`(?i)(\b(?:Prof\.?|Professor)\b)`)
 
 	// Return nothing if no salutations found
 	if len(foundSalutations) == 0 {
 		return ""
 	}
 
-	return foundSalutations[0]
+	// Keep track of highest tier
+	var highestTier int
+	var highestTierName string
+
+	// Iterate through salutations
+	for _, i := range foundSalutations {
+		// Find tier of salutation. Order matters as regex for professor
+		// also matches "associate professor" and "assistant professor"
+		if assocProfRegex.MatchString(i) {
+			// Associate professor is now highest tier
+			if highestTier < 3 {
+				highestTier = 3
+				highestTierName = "Associate Professor"
+			}
+		} else if asstProfRegex.MatchString(i) {
+			// Assistant professor is now highest tier
+			if highestTier < 2 {
+				highestTier = 2
+				highestTierName = "Assistant Professor"
+			}
+		} else if profRegex.MatchString(i) {
+			// Professor is now highest tier
+			if highestTier < 4 {
+				highestTier = 4
+				highestTierName = "Professor"
+			}
+		} else {
+			// Doctor is now highest tier
+			if highestTier == 0 {
+				highestTier = 1
+				highestTierName = "Doctor"
+			}
+		}
+	}
+
+	return highestTierName
 }

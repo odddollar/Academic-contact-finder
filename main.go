@@ -1,4 +1,5 @@
 //go:generate fyne bundle -o static.go images/Header.png
+//go:generate fyne bundle -o static.go -append images/Swap.svg
 
 package main
 
@@ -7,6 +8,7 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/odddollar/CITS3200-Project/background"
@@ -39,6 +41,10 @@ func main() {
 	// Create about button
 	global.Ui.About = widget.NewButtonWithIcon("", theme.InfoIcon(), aboutCallback)
 
+	// Create reverse results order button
+	global.Ui.ReverseOrder = widget.NewButtonWithIcon("", theme.NewThemedResource(resourceSwapSvg), background.ReverseResultsOrder)
+	global.Ui.ReverseOrder.Disable()
+
 	// Create results found label
 	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
@@ -48,10 +54,10 @@ func main() {
 	global.Ui.Output = container.NewVBox()
 
 	// Create buttons for sending emails and updating default address
-	global.Ui.EmailAll = widget.NewButton("Email all", email.EmailAll)
+	global.Ui.EmailAll = widget.NewButtonWithIcon("Email all", theme.MailSendIcon(), email.EmailAll)
 	global.Ui.EmailAll.Importance = widget.HighImportance
 	global.Ui.EmailAll.Disable()
-	global.Ui.ChangeDefaultEmail = widget.NewButton("Set default email", email.ChangeDefaultEmail)
+	global.Ui.ChangeDefaultEmail = widget.NewButtonWithIcon("Set default email", theme.MailComposeIcon(), email.ChangeDefaultEmail)
 
 	// Create window layout
 	layout := container.NewBorder(
@@ -80,7 +86,12 @@ func main() {
 				global.Ui.Search,
 			),
 			widget.NewSeparator(),
-			global.Ui.NumResults,
+			container.NewHBox(
+				global.Ui.ReverseOrder,
+				layout.NewSpacer(),
+				global.Ui.NumResults,
+			),
+			widget.NewSeparator(),
 		),
 		container.NewBorder(
 			nil,
