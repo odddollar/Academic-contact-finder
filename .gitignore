@@ -1,2 +1,3 @@
 *.exe
 keys.txt
+.DS_Store
