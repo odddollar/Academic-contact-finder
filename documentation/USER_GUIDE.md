@@ -64,25 +64,24 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 
 ## 3. Installation
 
-### Download the Software
+### Download the Release
 
 1. Visit the GitHub repository using the following link
 
-   - https://github.com/odddollar/CITS3200-Project
+   - https://github.com/odddollar/Academic-contact-finder
 
-2. Click on the green **'Code'** dropdown button as displayed below:
+2. Click on the green **latest version** release as seen below:
 
-   <img src="../images/GithubCode.png" style="margin: auto;">
+   <img src="../images/OpenRelease.png" style="margin: auto;">
 
-3. Select **'Download ZIP'** 
+3. If you're using **MacOS** click the **zip file** which shown below, the file will automatically download to your **downloads** folder. **Double click** the zip file to unzip it. If you're using **Windows**, click the **exe** file as seen below. Similarly, this will automatically download to your **downloads folder**, however, you won't have to unzip it. 
 
-   <img src="../images/DownloadZIP.png" style="margin: auto;">
-
-4. **Unzip** the downloaded folder and store it on your device
+   <img src="../images/Mac&Windows.png" style="margin: auto;">
 
 ### Launch the Software
 
-* Following installataion, running the **.exe** file will open the application
+* Whether you're on Mac **or** Windows, simply **double click** the application to launch it.
+* If a Windows SmartScreen notification appears saying '**Windows protected your PC**', click '**More info**', then '**Run anyway**'
 
 
 
@@ -154,6 +153,8 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
 3. The application now has all the API details it requires to function. 
 
+
+
 ## 5. Using the App
 
 ### Entering Researcher Details
@@ -181,10 +182,12 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
 1. **Review the Results**:
    - Once the search has completed, the results will be displayed under the search fields.
-
 2. **Order of Results**:
    - All results returned by **Scopus** will contain the **most recent** results first.
    - All results returned by **web scraping** will be shown after the Scopus results, and will be returned in order of how they were found - using **Google's Search Engine Optimisation (SEO)**. 
+   - The results can be **reversed** with the<img src="../images/Swap.svg" style="margin: auto;"> button.
+
+
 
 ## 6. Emailing Results
 
@@ -208,6 +211,8 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
    - If using **Windows**, select **Outlook** in order to send the results to the default email address.
    
      <img src="../images/EmailResult.png" style="margin: auto;">
+
+
 
 ## 7. FAQs
 
