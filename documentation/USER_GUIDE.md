@@ -2,7 +2,7 @@
 
 
 
-<img src="../images/Big_Header.png" style="margin: auto; text-align: centre; width: 100%;">
+<img src="../images/BigHeader.png" style="margin: auto; text-align: centre; width: 100%;">
 
 
 
