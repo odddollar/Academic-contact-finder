@@ -1,4 +1,6 @@
 *.exe
 *.zip
+*.pdf
+*.docx
 keys.txt
 .DS_Store
