@@ -147,8 +147,10 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
    <img src="../images/EnterGoogleDetails.png" style="margin: auto;">
 
-3. The application now has all the API details it requires to function.
-4. These details will be saved to your local computer so they don't have to be entered every time the application is opened. If a problem is detected with an API key (such as it having expired), then the prompt to enter that key will appear again.
+3. These details will be saved to your local computer so they don't have to be entered every time the application is opened. If a problem is detected with an API key (such as it having expired), then the prompt to enter that key will appear again.
+4. You can also enter the default email address to use to send found results to.
+
+    <img src="../images/SetDefaultEmail.png" style="margin: auto;">
 
 
 
@@ -173,7 +175,7 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
 ## 6. Emailing Results
 
-1. Click the **Change default email** button to change the email initially entered.
+1. If desired, click the **Change default email** button to change the email initially entered.
 
    <img src="../images/ChangeDefaultEmail.png" style="margin: auto;">
 
