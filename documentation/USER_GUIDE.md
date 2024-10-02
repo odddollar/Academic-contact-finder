@@ -98,15 +98,19 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 1. Visit the site: https://dev.elsevier.com/index.jsp
 2. You will be prompted to **Sign In**.
    - If you do not already have a registered account, use your academic institution details to sign in.
-3. Click **I want an API Key**. Fill out the required details and read/accept the teams and conditions, then click **Submit**.
+3. Click **I want an API Key**, then **Create API Key**.
 
    <img src="../images/IWantAnAPIKey.png" style="margin: auto;">
 
-4. Click **My API Key**, where you will then find your personal API key.
+4. Give the key a **Label**, and enter a relevant **Website URL**, such as a company website address. Read/accept the terms and conditions, then click **Submit**.
+
+   <img src="../images/CreateScopusKey.png" style="margin: auto;">
+
+5. Click **My API Key**, where you will then find your personal API key.
 
    <img src="../images/MyAPIKey.png" style="margin: auto;">
 
-5. This API key will be valid for 1 year.
+6. This API key will be valid for 1 year.
 
 ### Register for a Google API Key
 
