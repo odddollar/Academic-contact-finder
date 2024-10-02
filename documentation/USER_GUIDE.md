@@ -116,7 +116,7 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 
     <img src="../images/OpenRelease.png" style="margin: auto;">
 
-3. If you're using MacOS click the **.zip** file which shown below, the file will automatically download to your **Downloads** folder. Double click the **.zip** file to unzip it. If you're using Windows, click the **.exe** file as seen below. Similarly, this will automatically download to your **Downloads** folder, however, you won't have to unzip it.
+3. If you're using MacOS click the **.zip** file shown below, the file will automatically download to your **Downloads** folder. Double click the **.zip** file to unzip it. If you're using Windows, click the **.exe** file. Similarly, this will automatically download to your **Downloads** folder, however, you won't have to unzip it.
 
     <img src="../images/Mac&Windows.png" style="margin: auto;">
 
@@ -140,21 +140,21 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 > Scopus only provides API keys if you are part of an academic institution, such as a research facility or university.
 
 1. Visit the site: https://dev.elsevier.com/index.jsp
+
 2. You will be prompted to **Sign In**.
    - If you do not already have a registered account, use your academic institution details to sign in.
+   
 3. Click **I want an API Key**, then **Create API Key**.
 
    <img src="../images/IWantAnAPIKey.png" style="margin: auto;">
 
-4. Give the key a **Label**, and enter a relevant **Website URL**, such as a company website address. Read/accept the terms and conditions, then click **Submit**.
+4. Give the key a **Label**, and enter a relevant **Website URL**, such as a company website address. Read and accept the terms and conditions, then click **Submit**.
 
    <img src="../images/CreateScopusKey.png" style="margin: auto;">
 
-5. Click **My API Key**, where you will then find your personal API key.
+5. Click **My API Key**, where you will then find your personal API key. This will be valid for 1 year.
 
    <img src="../images/MyAPIKey.png" style="margin: auto;">
-
-6. This API key will be valid for 1 year.
 
 ### Register for a Google API Key
 
@@ -173,11 +173,11 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
    <img src="../images/SearchEngineID.png" style="margin: auto;">
 
-7. Navigate back to the original page and click **Get A Key**.
+7. Navigate back to the original page and click **Get a Key**.
 
    <img src="../images/GetAKey.png" style="margin: auto;">
 
-8. You will be prompted to **Select or create project**. Create a project and name this whatever you wish. Read/accept the terms and conditions, then click **Next**.
+8. You will be prompted to **Select or create project**. Create a project and name this whatever you wish. Read and accept the terms and conditions, then click **Next**.
 
    <img src="../images/NewProject.png" style="margin: auto;">
 
@@ -298,7 +298,7 @@ The application can search for researchers globally, provided that their contact
 
 If the researcher's contact details are not publicly accessible or listed in Scopus or Google, the application will not be able to retrieve the information.
 
-Otherwise, ensure that the information you have entered in the search fields is spelt correctly and uses the researcher's most commonly used name as opposed to nicknames. For institutions, use the full name of the institution rather than abbreviations. For example, enter the 'University of Western Australia' instead of 'UWA'.
+Otherwise, ensure that the information you have entered in the search fields is spelt correctly and uses the researcher's most commonly used name as opposed to nicknames or abbreviations. For institutions too the full name should generally be used. For example, enter the 'University of Western Australia' instead of 'UWA'.
 
 **Which Wi-Fi network should I be connected to in order to use this?**
 
