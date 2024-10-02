@@ -56,7 +56,7 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 - **Memory**: Minimum 4 GB RAM.
 - **Storage**: Minimum 100 MB of available space.
 - **Internet Connection**: Required for API requests and web scraping.
-  - You must be connected to an **academic institution network** to obtain results from Scopus.  
+  - You must be connected to an **academic institution network** to obtain results from Scopus.
 - **API Key**: A valid Scopus API key **and/or** a valid Google API key.
   - If you provide both keys, you will be able to obtain the most accurate results.
 
@@ -72,7 +72,7 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 
     <img src="../images/OpenRelease.png" style="margin: auto;">
 
-3. If you're using MacOS click the **.zip** file which shown below, the file will automatically download to your **Downloads** folder. Double click the **.zip** file to unzip it. If you're using Windows, click the **.exe** file as seen below. Similarly, this will automatically download to your **Downloads** folder, however, you won't have to unzip it. 
+3. If you're using MacOS click the **.zip** file which shown below, the file will automatically download to your **Downloads** folder. Double click the **.zip** file to unzip it. If you're using Windows, click the **.exe** file as seen below. Similarly, this will automatically download to your **Downloads** folder, however, you won't have to unzip it.
 
     <img src="../images/Mac&Windows.png" style="margin: auto;">
 
@@ -87,13 +87,13 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 
 The first time you open the application, you will be prompted to enter your **Scopus API key** and your **Google API key**.
 
-If you have already been provided with a Scopus API key, you can skip the **Register for a Scopus API Key** step below and proceed to the **Register for a Google API Key** step. 
+If you have already been provided with a Scopus API key, you can skip the **Register for a Scopus API Key** step below and proceed to the **Register for a Google API Key** step.
 
 ### Register for a Scopus API Key
 
 > [!NOTE]
-> 
-> Scopus does not provide API keys if you are not part of an academic institution, such as a research facility or university.
+>
+> Scopus only provides API keys if you are part of an academic institution, such as a research facility or university.
 
 1. Visit the site: https://dev.elsevier.com/index.jsp
 2. You will be prompted to **Sign In**.
@@ -129,7 +129,7 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 
    <img src="../images/SearchEngineID.png" style="margin: auto;">
 
-7. Navigate back to the original page and click **Get A Key**.	
+7. Navigate back to the original page and click **Get A Key**.
 
    <img src="../images/GetAKey.png" style="margin: auto;">
 
@@ -167,13 +167,13 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
    <img src="../images/SearchArea.png" style="margin: auto;">
 
 2. After entering the necessary details, click the **Search** button.
-3. The app will perform the API requests from Scopus first. After Scopus has been searched, the app will automatically start searching Google. A browser window will open while the application searches the web. This is normal and does not have to be interacted with. 
+3. The app will perform the API requests from Scopus first. After Scopus has been searched, the app will automatically start searching Google. A browser window will open while the application searches the web. This is normal and does not have to be interacted with.
 
 ### Viewing Results
 
 1. Once the search has completed, the results will be displayed in the program window.
-2. All results returned by Scopus will contain the most recent results first. All results returned by Google will be shown after the Scopus results, and will be returned in order of how they were found based on Google's Search Engine Optimisation (SEO). 
-   - The results can be reversed with the <img src="../images/Swap.svg" style="margin: auto;"> button.
+2. All results returned by Scopus will contain the most recent results first. All results returned by Google will be shown after the Scopus results, and will be returned in order of how they were found based on Google's Search Engine Optimisation (SEO).
+   - The results can be reversed with the<img src="../images/Swap.svg" style="margin: auto;">button.
 
 
 
@@ -212,7 +212,7 @@ For best results, both API keys should be provided, and a Google key is mandator
 
 **What do I do when the Scopus API key expires?**
 
-As the Scopus API key is only valid for 1 year, a new key will have to be generated once it expires. The program will prompt you for a new key if the entered key is invalid or has expired. 
+As the Scopus API key is only valid for 1 year, a new key will have to be generated once it expires. The program will prompt you for a new key if the entered key is invalid or has expired.
 
 **Should I be sharing my Google API key with others?**
 
