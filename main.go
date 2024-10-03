@@ -27,9 +27,9 @@ func main() {
 	global.Ui.Title.FillMode = canvas.ImageFillOriginal
 
 	// Create search entry widgets
-	global.Ui.FirstNameLabel = widget.NewLabel("First Name:")
+	global.Ui.FirstNameLabel = widget.NewLabel("First name:")
 	global.Ui.FirstName = widget.NewEntry()
-	global.Ui.LastNameLabel = widget.NewLabel("Last Name:")
+	global.Ui.LastNameLabel = widget.NewLabel("Last name:")
 	global.Ui.LastName = widget.NewEntry()
 	global.Ui.InstitutionLabel = widget.NewLabel("Institution:")
 	global.Ui.Institution = widget.NewEntry()
