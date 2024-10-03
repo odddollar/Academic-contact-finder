@@ -114,11 +114,11 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
    - https://github.com/odddollar/Academic-contact-finder
 2. Click on the green **Latest** version release.
 
-    <img src="../images/OpenRelease.png" style="margin: auto;">
+   <img src="../images/OpenRelease.png" style="margin: auto;">
 
 3. If you're using MacOS click the **.zip** file shown below, the file will automatically download to your **Downloads** folder. Double click the **.zip** file to unzip it. If you're using Windows, click the **.exe** file. Similarly, this will automatically download to your **Downloads** folder, however, you won't have to unzip it.
 
-    <img src="../images/Mac&Windows.png" style="margin: auto;">
+   <img src="../images/Mac&Windows.png" style="margin: auto;">
 
 ### Launch the Software
 
@@ -198,7 +198,7 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 3. These details will be saved to your local computer so they don't have to be entered every time the application is opened. If a problem is detected with an API key (such as it having expired), then the prompt to enter that key will appear again.
 4. You can also enter the default email address to use to send found results to.
 
-    <img src="../images/SetDefaultEmail.png" style="margin: auto;">
+   <img src="../images/SetDefaultEmail.png" style="margin: auto;">
 
 
 
