@@ -125,6 +125,8 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 - Whether you're on Mac or Windows, simply double click the application to launch it.
 - If a Windows SmartScreen notification appears saying **Windows protected your PC**, click **More info**, then **Run anyway**.
 
+   <img src="../images/Smartscreen.png" style="margin: auto;">
+
 
 
 ## 4. Initial Setup
