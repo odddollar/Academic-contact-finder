@@ -112,20 +112,25 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
 
 1. Visit the GitHub repository using the following link.
    - https://github.com/odddollar/Academic-contact-finder
+
 2. Click on the green **Latest** version release.
 
    <img src="../images/OpenRelease.png" style="margin: auto;">
 
-3. If you're using MacOS click the **.zip** file shown below, the file will automatically download to your **Downloads** folder. Double click the **.zip** file to unzip it. If you're using Windows, click the **.exe** file. Similarly, this will automatically download to your **Downloads** folder, however, you won't have to unzip it.
+3. Click the **.zip** file for your respective operating system, which will download to your **Downloads** folder. 
 
    <img src="../images/Mac&Windows.png" style="margin: auto;">
+   
+4. Extract the **.zip** file and you'll have a folder containing the application and this document, **USER_GUIDE.pdf**.
+
+   <img src="../images/Extract.png" style="margin: auto;">
 
 ### Launch the Software
 
 - Whether you're on Mac or Windows, simply double click the application to launch it.
 - If a Windows SmartScreen notification appears saying **Windows protected your PC**, click **More info**, then **Run anyway**.
 
-   <img src="../images/Smartscreen.png" style="margin: auto;">
+   <img src="../images/Smartscreen.png" style="margin: auto; width: 60%">
 
 
 
