@@ -44,6 +44,7 @@ func UpdateScopusAPIKey() {
 
 	// Create form items
 	options := []*widget.FormItem{
+		{Text: "Instructions", Widget: widget.NewLabel("Please refer to user guide")},
 		{Text: "API key", Widget: entry, HintText: "Key for Scopus API"},
 	}
 

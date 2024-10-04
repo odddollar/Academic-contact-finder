@@ -29,6 +29,7 @@ func UpdateGoogleAPIKey() {
 
 	// Create form items
 	options := []*widget.FormItem{
+		{Text: "Instructions", Widget: widget.NewLabel("Please refer to user guide")},
 		{Text: "Search engine ID", Widget: searchEngineIDEntry, HintText: "ID for custom Google search engine"},
 		{Text: "API key", Widget: apiEntry, HintText: "Key for Google API"},
 	}
