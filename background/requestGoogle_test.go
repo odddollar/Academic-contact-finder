@@ -4,7 +4,9 @@ import (
 	"testing"
 )
 
+// Implement unit testing for findExactMatch
 func TestFindExactMatch(t *testing.T) {
+	// Construct test cases
 	var tests = []struct {
 		inputOriginal      string
 		inputOriginalLower string
@@ -23,6 +25,7 @@ func TestFindExactMatch(t *testing.T) {
 		{"/profile/Chris-Mcdonald-2?__cf_chl_rt_tk=xK4mUdozmkpp.kTkHGIXDPcRpvlxOlJO0wn8qqg.bgc-1728201658-0.0.1.1-6356", "/profile/Chris-Mcdonald-2?__cf_chl_rt_tk=xK4mUdozmkpp.kTkHGIXDPcRpvlxOlJO0wn8qqg.bgc-1728201658-0.0.1.1-6356", "Chris", "Chris"},
 	}
 
+	// Check test cases for expected values
 	for _, test := range tests {
 		if findExactMatch(test.inputOriginal, test.inputOriginalLower, test.inputToFind) != test.expected {
 			t.Errorf("Test failed with input %s, %s, %s and output %s", test.inputOriginal, test.inputOriginalLower, test.inputToFind, test.expected)
@@ -30,7 +33,9 @@ func TestFindExactMatch(t *testing.T) {
 	}
 }
 
+// Implement unit testing for getHighestSalutation
 func TestGetHighestSalutation(t *testing.T) {
+	// Construct test cases
 	var tests = []struct {
 		input    []string
 		expected string
@@ -56,6 +61,7 @@ func TestGetHighestSalutation(t *testing.T) {
 		{[]string{"associate professor", "assistant professor", "a. professor", "assoc prof", "asst prof"}, "Professor"},
 	}
 
+	// Check test cases for expected values
 	for _, test := range tests {
 		if getHighestSalutation(test.input) != test.expected {
 			t.Errorf("Test failed with input %s and output %s", test.input, test.expected)
