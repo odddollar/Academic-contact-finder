@@ -116,6 +116,7 @@ func requestScopus(firstName, lastName, institution string) {
 	}
 
 	global.AllFoundContacts = append(global.AllFoundContacts, results...)
+	global.FoundContactsScopus = append(global.FoundContactsScopus, results...)
 }
 
 // Take url and chromedp context and scrape data from scopus
