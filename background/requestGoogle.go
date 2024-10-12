@@ -174,17 +174,17 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	if !strings.Contains(htmlContentLower, firstName) || firstName == "" {
 		firstName = "N/A"
 	} else {
-		firstName = findExactMatch(htmlContent, htmlContentLower, firstName)
+		firstName = cases.Title(language.English, cases.Compact).String(findExactMatch(htmlContent, htmlContentLower, firstName))
 	}
 	if !strings.Contains(htmlContentLower, lastName) {
 		lastName = "N/A"
 	} else {
-		lastName = findExactMatch(htmlContent, htmlContentLower, lastName)
+		lastName = cases.Title(language.English, cases.Compact).String(findExactMatch(htmlContent, htmlContentLower, lastName))
 	}
 	if !strings.Contains(htmlContentLower, institution) || institution == "" {
 		institution = "N/A"
 	} else {
-		institution = findExactMatch(htmlContent, htmlContentLower, institution)
+		institution = cases.Title(language.English, cases.Compact).String(findExactMatch(htmlContent, htmlContentLower, institution))
 	}
 
 	// Compile salutation regex and search for highest salutation
@@ -206,6 +206,14 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	if email == "" {
 		return result, false
 	}
+
+	// Remove duplicate result
+	for _, contact := range global.AllFoundContacts {
+		if contact.FirstName == result.FirstName && contact.LastName == result.LastName && contact.Salutation == result.Salutation && contact.Institution == result.Institution && contact.Email == result.Email {
+			return result, false
+		}
+	}
+	
 	return result, true
 }
 
