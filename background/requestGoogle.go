@@ -174,17 +174,17 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	if !strings.Contains(htmlContentLower, firstName) || firstName == "" {
 		firstName = "N/A"
 	} else {
-		firstName = cases.Title(language.English, cases.Compact).String(findExactMatch(htmlContent, htmlContentLower, firstName))
+		firstName = findExactMatch(htmlContent, htmlContentLower, firstName)
 	}
 	if !strings.Contains(htmlContentLower, lastName) {
 		lastName = "N/A"
 	} else {
-		lastName = cases.Title(language.English, cases.Compact).String(findExactMatch(htmlContent, htmlContentLower, lastName))
+		lastName = findExactMatch(htmlContent, htmlContentLower, lastName)
 	}
 	if !strings.Contains(htmlContentLower, institution) || institution == "" {
 		institution = "N/A"
 	} else {
-		institution = cases.Title(language.English, cases.Compact).String(findExactMatch(htmlContent, htmlContentLower, institution))
+		institution = findExactMatch(htmlContent, htmlContentLower, institution)
 	}
 
 	// Compile salutation regex and search for highest salutation
