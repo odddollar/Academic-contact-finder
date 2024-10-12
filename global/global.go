@@ -27,6 +27,8 @@ var Ui struct {
 	Search             *widget.Button
 	About              *widget.Button
 	ReverseOrder       *widget.Button
+	FilterScopus       *widget.Button
+	FilterGoogle       *widget.Button
 	NumResults         *canvas.Text
 	Output             *fyne.Container
 	EmailAll           *widget.Button
@@ -35,6 +37,8 @@ var Ui struct {
 
 // Hold global state of found contacts.
 var AllFoundContacts []FoundContactStruct
+var FoundContactsScopus []FoundContactStruct
+var FoundContactsGoogle []FoundContactStruct
 
 // Struct containing data from found contacts.
 // An array of these are returned by the web-scraper/api accessor
