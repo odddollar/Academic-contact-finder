@@ -122,6 +122,7 @@ func requestGoogle(firstName, lastName, institution string) {
 		// Append found valid result directly to array
 		if valid {
 			global.AllFoundContacts = append(global.AllFoundContacts, r)
+			global.FoundContactsGoogle = append(global.FoundContactsGoogle, r)
 		}
 	}
 }
