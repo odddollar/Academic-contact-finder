@@ -42,6 +42,8 @@ func Run() {
 
 	// Clear found contact array
 	global.AllFoundContacts = nil
+	global.FoundContactsScopus = nil
+	global.FoundContactsGoogle = nil
 
 	// Make requests and get results
 	requestScopus(firstName, lastName, institution)
@@ -54,6 +56,8 @@ func Run() {
 	if len(global.AllFoundContacts) > 0 {
 		global.Ui.EmailAll.Enable()
 		global.Ui.ReverseOrder.Enable()
+		global.Ui.FilterScopus.Enable()
+		global.Ui.FilterGoogle.Enable()
 	}
 
 	// Update number of results found
