@@ -54,6 +54,7 @@ func Run() {
 	if len(global.AllFoundContacts) > 0 {
 		global.Ui.EmailAll.Enable()
 		global.Ui.ReverseOrder.Enable()
+		global.Ui.Filter.Enable()
 	}
 
 	// Update number of results found
@@ -62,7 +63,7 @@ func Run() {
 
 	// Iterate through returned results and update UI
 	global.Ui.Output.RemoveAll()
-	for i := 0; i < len(global.AllFoundContacts); i++ {
-		global.Ui.Output.Add(widgets.NewFoundContact(global.AllFoundContacts[i]))
+	for _, i := range global.AllFoundContacts {
+		global.Ui.Output.Add(widgets.NewFoundContact(i))
 	}
 }

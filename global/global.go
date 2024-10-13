@@ -27,6 +27,7 @@ var Ui struct {
 	Search             *widget.Button
 	About              *widget.Button
 	ReverseOrder       *widget.Button
+	Filter             *widget.Select
 	NumResults         *canvas.Text
 	Output             *fyne.Container
 	EmailAll           *widget.Button
@@ -45,6 +46,7 @@ type FoundContactStruct struct {
 	Email       string
 	Institution string
 	URL         *url.URL
+	Source      string
 }
 
 // Implement Stringer interface for FoundContactStruct

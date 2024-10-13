@@ -200,6 +200,7 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 		Email:       email,
 		Institution: institution,
 		URL:         up,
+		Source:      "Google",
 	}
 
 	// "Invalid" result if no email found

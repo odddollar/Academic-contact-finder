@@ -9,10 +9,11 @@ import (
 
 // Global colours
 var (
-	Grey        = color.NRGBA{86, 86, 86, 255}
-	Purple      = color.NRGBA{138, 94, 169, 255}
-	LightPurple = color.NRGBA{198, 154, 229, 255}
-	White       = color.NRGBA{255, 255, 255, 255}
+	Grey            = color.NRGBA{86, 86, 86, 255}
+	Purple          = color.NRGBA{138, 94, 169, 255}
+	LightPurple     = color.NRGBA{198, 154, 229, 255}
+	VeryLightPurple = color.NRGBA{230, 190, 255, 255}
+	White           = color.NRGBA{255, 255, 255, 255}
 )
 
 // Theme struct that implements fyne's Theme interface
@@ -25,6 +26,8 @@ func (t MainTheme) Color(name fyne.ThemeColorName, _ fyne.ThemeVariant) color.Co
 		return Purple
 	case theme.ColorNameWarning: // Used for setting things like backgrounds in certain widgets
 		return LightPurple
+	case theme.ColorNameFocus:
+		return VeryLightPurple
 	default:
 		return theme.DefaultTheme().Color(name, theme.VariantLight)
 	}

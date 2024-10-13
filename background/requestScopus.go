@@ -180,6 +180,7 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 					Email:       href[7:],    // Remove "mailto:"
 					Institution: affiliation, // Get affiliation from map
 					URL:         up,          // Parsed url as source
+					Source:      "Scopus",
 				})
 			}
 		})
