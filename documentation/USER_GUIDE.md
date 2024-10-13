@@ -225,6 +225,7 @@ If you have already been provided with a Scopus API key, you can skip the **Regi
 1. Once the search has completed, the results will be displayed in the program window.
 2. All results returned by Scopus will contain the most recent results first. All results returned by Google will be shown after the Scopus results, and will be returned in order of how they were found based on Google's Search Engine Optimisation (SEO).
    - The results can be reversed with the<img src="../images/Swap.svg" style="margin: auto;">button.
+   - A dropdown menu is available to filter the results by **Scopus only**, **Google only**, or **Both**.
 
 
 
