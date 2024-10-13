@@ -207,6 +207,14 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 	if email == "" {
 		return result, false
 	}
+
+	// Remove duplicate result
+	for _, contact := range global.AllFoundContacts {
+		if contact.FirstName == result.FirstName && contact.LastName == result.LastName && contact.Salutation == result.Salutation && contact.Institution == result.Institution && contact.Email == result.Email {
+			return result, false
+		}
+	}
+	
 	return result, true
 }
 
