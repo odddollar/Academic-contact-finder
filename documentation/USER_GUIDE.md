@@ -103,6 +103,7 @@ Welcome to the **Academic Contact Finder**. This application is a user friendly 
   - You must be connected to an **academic institution network** to obtain results from Scopus.
 - **API Key**: A valid Scopus API key **and/or** a valid Google API key.
   - If you provide both keys, you will be able to obtain the most accurate results.
+- **Google Chrome**: The scraping of the data requires **Google Chrome** to be installed.
 
 
 
