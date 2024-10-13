@@ -48,7 +48,7 @@ func main() {
 	// Create scopus and google filter radio buttons
 	global.Ui.Filter = widget.NewSelect([]string{"Both", "Scopus only", "Google only"}, background.Filter)
 	global.Ui.Filter.Selected = "Both"
-	//global.Ui.Filter.Disable()
+	global.Ui.Filter.Disable()
 
 	// Create results found label
 	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
