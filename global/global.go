@@ -27,8 +27,7 @@ var Ui struct {
 	Search             *widget.Button
 	About              *widget.Button
 	ReverseOrder       *widget.Button
-	FilterScopus       *widget.Button
-	FilterGoogle       *widget.Button
+	Filter             *widget.Select
 	NumResults         *canvas.Text
 	Output             *fyne.Container
 	EmailAll           *widget.Button

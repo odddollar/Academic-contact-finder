@@ -45,12 +45,11 @@ func main() {
 	global.Ui.ReverseOrder = widget.NewButtonWithIcon("", theme.NewThemedResource(resourceSwapSvg), background.ReverseResultsOrder)
 	global.Ui.ReverseOrder.Disable()
 
-	// Create scopus and google filter buttons
-	global.Ui.FilterScopus = widget.NewButtonWithIcon("", theme.NewThemedResource(resourceSwapSvg), background.FilterScopus)
-	global.Ui.FilterScopus.Disable()
-	global.Ui.FilterGoogle = widget.NewButtonWithIcon("", theme.NewThemedResource(resourceSwapSvg), background.FilterGoogle)
-	global.Ui.FilterGoogle.Disable()
-	
+	// Create scopus and google filter radio buttons
+	global.Ui.Filter = widget.NewSelect([]string{"Both", "Scopus only", "Google only"}, background.Filter)
+	global.Ui.Filter.Selected = "Both"
+	//global.Ui.Filter.Disable()
+
 	// Create results found label
 	global.Ui.NumResults = canvas.NewText("Found 0 results", global.Grey)
 	global.Ui.NumResults.Alignment = fyne.TextAlignTrailing
@@ -94,8 +93,7 @@ func main() {
 			widget.NewSeparator(),
 			container.NewHBox(
 				global.Ui.ReverseOrder,
-				global.Ui.FilterScopus,
-				global.Ui.FilterGoogle,
+				global.Ui.Filter,
 				layout.NewSpacer(),
 				global.Ui.NumResults,
 			),

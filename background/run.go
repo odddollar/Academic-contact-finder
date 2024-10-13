@@ -54,8 +54,7 @@ func Run() {
 	if len(global.AllFoundContacts) > 0 {
 		global.Ui.EmailAll.Enable()
 		global.Ui.ReverseOrder.Enable()
-		global.Ui.FilterScopus.Enable()
-		global.Ui.FilterGoogle.Enable()
+		global.Ui.Filter.Enable()
 	}
 
 	// Update number of results found
