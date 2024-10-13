@@ -42,8 +42,6 @@ func Run() {
 
 	// Clear found contact array
 	global.AllFoundContacts = nil
-	global.FoundContactsScopus = nil
-	global.FoundContactsGoogle = nil
 
 	// Make requests and get results
 	requestScopus(firstName, lastName, institution)
@@ -66,7 +64,7 @@ func Run() {
 
 	// Iterate through returned results and update UI
 	global.Ui.Output.RemoveAll()
-	for i := 0; i < len(global.AllFoundContacts); i++ {
-		global.Ui.Output.Add(widgets.NewFoundContact(global.AllFoundContacts[i]))
+	for _, i := range global.AllFoundContacts {
+		global.Ui.Output.Add(widgets.NewFoundContact(i))
 	}
 }

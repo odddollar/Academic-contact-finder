@@ -37,8 +37,6 @@ var Ui struct {
 
 // Hold global state of found contacts.
 var AllFoundContacts []FoundContactStruct
-var FoundContactsScopus []FoundContactStruct
-var FoundContactsGoogle []FoundContactStruct
 
 // Struct containing data from found contacts.
 // An array of these are returned by the web-scraper/api accessor
@@ -49,6 +47,7 @@ type FoundContactStruct struct {
 	Email       string
 	Institution string
 	URL         *url.URL
+	Source      string
 }
 
 // Implement Stringer interface for FoundContactStruct

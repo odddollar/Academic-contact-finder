@@ -122,7 +122,6 @@ func requestGoogle(firstName, lastName, institution string) {
 		// Append found valid result directly to array
 		if valid {
 			global.AllFoundContacts = append(global.AllFoundContacts, r)
-			global.FoundContactsGoogle = append(global.FoundContactsGoogle, r)
 		}
 	}
 }
@@ -201,6 +200,7 @@ func scrapeSite(u string, ctx context.Context, firstName, lastName, institution 
 		Email:       email,
 		Institution: institution,
 		URL:         up,
+		Source:      "Google",
 	}
 
 	// "Invalid" result if no email found
