@@ -52,10 +52,8 @@ func isGoogleAPIKeyValid(apiKey string) bool {
 		go func() {
 			UpdateGoogleAPIKey()
 		}()
-		fmt.Println("Google API Key is invalid")
 		return false
 	}
-	fmt.Println("Google API Key is Valid")
 	return true
 }
 
@@ -166,11 +164,12 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 	preferences.SetString("Scopus_API_key", "existing-api-key")
 
 	// Function to simulate the dialog
+	var apiEntry *widget.Entry // Declare apiEntry outside the function to access it later
 	UpdateScopusAPIKey := func() {
 		apiKey := preferences.String("Scopus_API_key")
 
-		// Set initial text to existing key
-		apiEntry := widget.NewEntry()
+		// Initialize the entry field for the API key
+		apiEntry = widget.NewEntry()
 		apiEntry.SetText(apiKey)
 
 		// Create form items
@@ -181,7 +180,7 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 
 		// Create the dialog
 		d := dialog.NewForm(
-			"Scopus API key missing, invalid, or unauthorised",
+			"Scopus API key missing, invalid, or unauthorized",
 			"Save",
 			"Cancel",
 			options,
@@ -189,8 +188,8 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 				if b {
 					// Simulate checking the API key validity
 					apikeytest := isScopusAPIKeyValid(apiEntry.Text)
-					if apikeytest != true {
-						t.Errorf("API key is invalid: %v", apikeytest)
+					if !apikeytest {
+						t.Errorf("API key is invalid: %v", apiEntry.Text)
 					} else {
 						// Update the preferences if the key is valid
 						preferences.SetString("Scopus_API_key", apiEntry.Text)
@@ -199,7 +198,7 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 			},
 			w,
 		)
-
+		d.Show()
 		// Show the dialog headlessly
 		d.Resize(fyne.NewSize(420, 0))
 		d.Show()
@@ -208,13 +207,14 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 	// Call the function that triggers the dialog
 	UpdateScopusAPIKey()
 
-	// Simulate entering an invalid API key
-	apiEntry := widget.NewEntry()
+	// Simulate entering an invalid API key directly into the dialog's entry field
 	apiEntry.SetText("invalid-api-key")
-	test.Type(apiEntry, "invalid-api-key")
 
 	// Simulate clicking the Save button
-	saveButton := widget.NewButton("Save", nil)
+	saveButton := widget.NewButton("Save", func() {
+		// Call the dialog's save handler
+		UpdateScopusAPIKey() // Call again to simulate clicking Save
+	})
 	test.Tap(saveButton)
 
 	// Check that the API key was not updated due to being invalid
@@ -403,11 +403,9 @@ func TestScopusScraping(t *testing.T) {
 					// Find the <sup> to get affiliation link
 					affiliationLink := s.Find("sup").Text()
 					affiliation := affiliations[affiliationLink]
-					var institutionName string
 					// If no affiliation <sup> found, then only one affiliation in map
 					if affiliation == "" {
 						affiliation = affiliations["a"]
-						fmt.Println("Institution Name:", institutionName)
 					}
 
 					// Assign values to variables for testing
