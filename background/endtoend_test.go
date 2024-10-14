@@ -2,10 +2,10 @@ package background
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"regexp"
 	"strings"
 	"testing"
@@ -52,8 +52,10 @@ func isGoogleAPIKeyValid(apiKey string) bool {
 		go func() {
 			UpdateGoogleAPIKey()
 		}()
+		fmt.Println("Google API Key is invalid")
 		return false
 	}
+	fmt.Println("Google API Key is Valid")
 	return true
 }
 
@@ -97,7 +99,7 @@ func TestUpdateGoogleAPIKey_InvalidKey(t *testing.T) {
 			func(b bool) {
 				if b {
 					// Simulate checking the API key validity
-					apikeytest := isAPIKeyValid(apiEntry.Text)
+					apikeytest := isGoogleAPIKeyValid(apiEntry.Text)
 					if apikeytest != true {
 						t.Errorf("API key is invalid: %v", apikeytest)
 					} else {
@@ -230,11 +232,18 @@ func TestGoogleScraping(t *testing.T) {
 	firstName = "chris"
 	lastName = "mcdonald"
 	institution = "uwa"
+	// Define the expected values
+	expectedFirstName := "Chris"
+	expectedLastName := "McDonald"
+	expectedSalutation := "Professor"
+	expectedEmail := "Chris.McDonald@uwa.edu.au"
+	expectedInstitution := "uwa"
+	expectedURL, _ := url.Parse("www.testing.com")
 
 	fileName := "testgooglescraping.html"
 
 	// Read the file into a byte slice
-	htmlData, err := ioutil.ReadFile(fileName)
+	htmlData, err := os.ReadFile(fileName)
 	if err != nil {
 		log.Fatalf("Error reading file: %v", err)
 	}
@@ -301,21 +310,55 @@ func TestGoogleScraping(t *testing.T) {
 	}
 
 	// Define the expected email address
-	expectedEmail := "Chris.McDonald@uwa.edu.au"
+	// expectedEmail := "Chris.McDonald@uwa.edu.au"
+
+	// Print the values
+	fmt.Println("Google scraping testing")
+	fmt.Println("First Name:", result.FirstName)
+	fmt.Println("Last Name:", result.LastName)
+	fmt.Println("Salutation:", result.Salutation)
+	fmt.Println("Email:", result.Email)
+	fmt.Println("Institution:", result.Institution)
+	fmt.Println(" ")
 
 	// Compare the found email with the expected email
 	if strings.ToLower(result.Email) != strings.ToLower(expectedEmail) {
 		t.Errorf("Expected email '%s', but found '%s'", expectedEmail, result.Email)
 	}
+	// Check each field against the expected values
+	if result.FirstName != expectedFirstName {
+		t.Errorf("Expected first name '%s', but found '%s'", expectedFirstName, result.FirstName)
+	}
+	if result.LastName != expectedLastName {
+		t.Errorf("Expected last name '%s', but found '%s'", expectedLastName, result.LastName)
+	}
+	if result.Salutation != expectedSalutation {
+		t.Errorf("Expected salutation '%s', but found '%s'", expectedSalutation, result.Salutation)
+	}
+	if strings.ToLower(result.Email) != strings.ToLower(expectedEmail) {
+		t.Errorf("Expected email '%s', but found '%s'", expectedEmail, result.Email)
+	}
+	if result.Institution != expectedInstitution {
+		t.Errorf("Expected institution '%s', but found '%s'", expectedInstitution, result.Institution)
+	}
+	if result.URL.String() != expectedURL.String() {
+		t.Errorf("Expected URL '%s', but found '%s'", expectedURL, result.URL.String())
+	}
 
 }
 
 // Testing the logic and reliability of the Scopus scraping
-
 func TestScopusScraping(t *testing.T) {
+	// Define the expected values
+	expectedFirstName := "Chris"
+	expectedLastName := "McDonald"
+	expectedSalutation := ""
+	expectedEmail := "Chris.McDonald@uwa.edu.au"
+	expectedInstitution := "University of Western Australia"
+	expectedURL, _ := url.Parse("www.testing.com")
 
 	// Read the file into a byte slice
-	htmlData, err := ioutil.ReadFile(fileName)
+	htmlData, err := os.ReadFile("testScopusdocument.html")
 	if err != nil {
 		log.Fatalf("Error reading file: %v", err)
 	}
@@ -326,11 +369,15 @@ func TestScopusScraping(t *testing.T) {
 	// Parse the HTML with goquery
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(htmlContent))
 	if err != nil {
-		global.ShowError(err)
+		t.Fatalf("Error parsing HTML: %v", err)
 	}
 
 	// Create affiliation map
 	affiliations := generateAffiliationMap(doc)
+
+	// Variables to hold the extracted data
+	var foundFirstName, foundLastName, foundSalutation, foundEmail, foundInstitution, fullInstitution string
+	var foundURL *url.URL = expectedURL
 
 	// Find all <li> elements
 	doc.Find("li").Each(func(i int, s *goquery.Selection) {
@@ -351,34 +398,69 @@ func TestScopusScraping(t *testing.T) {
 					lastName = ""
 				}
 
-				// Find the <sup> to get affiliation link
-				affiliationLink := s.Find("sup").Text()
-				affiliation := affiliations[affiliationLink]
+				// Only process if the name matches "Chris McDonald"
+				if strings.EqualFold(firstName, "Chris") && strings.EqualFold(lastName, "McDonald") {
+					// Find the <sup> to get affiliation link
+					affiliationLink := s.Find("sup").Text()
+					affiliation := affiliations[affiliationLink]
+					var institutionName string
+					// If no affiliation <sup> found, then only one affiliation in map
+					if affiliation == "" {
+						affiliation = affiliations["a"]
+						fmt.Println("Institution Name:", institutionName)
+					}
 
-				// If no affiliation <sup> found, then only one affiliation in map
-				if affiliation == "" {
-					affiliation = affiliations["a"]
+					// Assign values to variables for testing
+					foundFirstName = firstName
+					foundLastName = lastName
+					foundSalutation = ""  // Assuming no salutation is provided in this test case
+					foundEmail = href[7:] // Remove "mailto:"
+					fullInstitution = affiliation
+
+					// Split the full institution name at the first comma and take the first part
+					institutionParts := strings.Split(fullInstitution, ",")
+					if len(institutionParts) > 0 {
+						foundInstitution = strings.TrimSpace(institutionParts[0]) // Get the first part and trim any whitespace
+					}
+					// Print the values
+					fmt.Println("Scopus scraping testing")
+					fmt.Println("First Name:", foundFirstName)
+					fmt.Println("Last Name:", foundLastName)
+					fmt.Println("Salutation:", foundSalutation)
+					fmt.Println("Email:", foundEmail)
+					fmt.Println("Institution:", foundInstitution)
 				}
-
-				// Format results to correct structure
-				up, _ := url.Parse("www.testwebsite.com")
-				result = append(result, global.FoundContactStruct{
-					FirstName:   firstName,
-					LastName:    lastName,
-					Salutation:  "",          // Salutation not provided by scopus
-					Email:       href[7:],    // Remove "mailto:"
-					Institution: affiliation, // Get affiliation from map
-					URL:         up,          // Parsed url as source
-				})
 			}
 		})
 	})
-	// Define the expected email address
-	expectedEmail := "Chris.McDonald@uwa.edu.au"
 
-	// Compare the found email with the expected email
+	// Create the actual result struct
+	result := global.FoundContactStruct{
+		FirstName:   foundFirstName,
+		LastName:    foundLastName,
+		Salutation:  foundSalutation,
+		Email:       foundEmail,
+		Institution: foundInstitution,
+		URL:         foundURL,
+	}
+
+	// Check each field against the expected values
+	if result.FirstName != expectedFirstName {
+		t.Errorf("Expected first name '%s', but found '%s'", expectedFirstName, result.FirstName)
+	}
+	if result.LastName != expectedLastName {
+		t.Errorf("Expected last name '%s', but found '%s'", expectedLastName, result.LastName)
+	}
+	if result.Salutation != expectedSalutation {
+		t.Errorf("Expected salutation '%s', but found '%s'", expectedSalutation, result.Salutation)
+	}
 	if strings.ToLower(result.Email) != strings.ToLower(expectedEmail) {
 		t.Errorf("Expected email '%s', but found '%s'", expectedEmail, result.Email)
 	}
-
+	if result.Institution != expectedInstitution {
+		t.Errorf("Expected institution '%s', but found '%s'", expectedInstitution, result.Institution)
+	}
+	if result.URL.String() != expectedURL.String() {
+		t.Errorf("Expected URL '%s', but found '%s'", expectedURL, result.URL.String())
+	}
 }
