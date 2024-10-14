@@ -22,10 +22,11 @@ import (
 
 // Testing the api validity as well as the buttons and interface
 
-// Function testing the google API key validity
-func isGoogleAPIKeyValid(apiKey string) bool {
+// Function testing the google API key validity testing is working
+func TestIfGoogleAPIKeyValid(t *testing.T) {
 	searchEngineID := "testinvalidengineID"
 	searchQuery := "Chris McDonald UWA"
+	apiKey := "invalidapikey"
 
 	// Build the query parameters
 	params := url.Values{}
@@ -37,7 +38,7 @@ func isGoogleAPIKeyValid(apiKey string) bool {
 
 	// Build final url with parameters
 	reqUrl := fmt.Sprintf("%s%s", googleApiUrl, params.Encode())
-
+	var result bool
 	// Send GET request to Google Search API
 	resp, err := http.Get(reqUrl)
 	if err != nil {
@@ -47,14 +48,20 @@ func isGoogleAPIKeyValid(apiKey string) bool {
 
 	// Check if response is successful.
 	// If not then key probably isn't valid
+	result = true
 	if resp.StatusCode != http.StatusOK {
 		// Fixes dialog disappearing immediately
-		go func() {
-			UpdateGoogleAPIKey()
-		}()
-		return false
+		result = false
 	}
-	return true
+	// Check if the function returns false as expected
+	if result != false {
+		t.Errorf("Expected false, got %v", result)
+	}
+}
+
+// This function is just used to simulate an invalid API key
+func isAPIKeyValid() bool {
+	return false
 }
 
 // Function testing the google API key functions and validity testing
@@ -97,7 +104,7 @@ func TestUpdateGoogleAPIKey_InvalidKey(t *testing.T) {
 			func(b bool) {
 				if b {
 					// Simulate checking the API key validity
-					apikeytest := isGoogleAPIKeyValid(apiEntry.Text)
+					apikeytest := isAPIKeyValid()
 					if apikeytest != true {
 						t.Errorf("API key is invalid: %v", apikeytest)
 					} else {
@@ -135,20 +142,26 @@ func TestUpdateGoogleAPIKey_InvalidKey(t *testing.T) {
 
 // Testing the Scopus api key validity as well as the buttons and interface
 
-func isScopusAPIKeyValid(apiKey string) bool {
-	key := apiKey
-
-	// Need an institution token to make this work outside of the institution network
+func TestScopusAPIKeyValid(t *testing.T) {
+	key := "Invalid"
+	var result bool
 	url := "https://api.elsevier.com/content/author/author_id/57169566400?apiKey=" + key
 
-	// Very basic api check
 	resp, err := http.Get(url)
 	if err != nil {
 		global.ShowError(err)
 	}
 	defer resp.Body.Close()
 
-	return resp.StatusCode == http.StatusOK
+	result = true
+	if resp.StatusCode != http.StatusOK {
+		result = false
+	}
+	// Check if the function returns false as expected
+	if result != false {
+		t.Errorf("Expected false, got %v", result)
+	}
+
 }
 
 // Function testing the Scopys API key functions and validity testing
@@ -187,7 +200,7 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 			func(b bool) {
 				if b {
 					// Simulate checking the API key validity
-					apikeytest := isScopusAPIKeyValid(apiEntry.Text)
+					apikeytest := isAPIKeyValid()
 					if !apikeytest {
 						t.Errorf("API key is invalid: %v", apiEntry.Text)
 					} else {
