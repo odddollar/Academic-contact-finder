@@ -45,7 +45,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "professor",
 				Email:       "chris@csse.uwa.edu.au",
 				Institution: "university of western australia",
-				URL:         urls[0]},
+				URL:         urls[0],
+				Source:      "Scopus"},
 			"chris mcdonald, professor\nchris@csse.uwa.edu.au\nuniversity of western australia\nSource: https://teaching.csse.uwa.edu.au/units/CITS3002/\n\n",
 		},
 		{
@@ -55,7 +56,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Professor",
 				Email:       "michael.wise@uwa.edu.au",
 				Institution: "The University of Western Australia",
-				URL:         urls[1]},
+				URL:         urls[1],
+				Source:      "Google"},
 			"Michael Wise, Professor\nmichael.wise@uwa.edu.au\nThe University of Western Australia\nSource: https://research-repository.uwa.edu.au/en/persons/michael-wise\n\n",
 		},
 		{
@@ -65,7 +67,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "dr",
 				Email:       "",
 				Institution: "",
-				URL:         urls[2]},
+				URL:         urls[2],
+				Source:      "Scopus"},
 			"jane doe, dr\n\n\nSource: \n\n",
 		},
 		{
@@ -75,7 +78,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Associate Professor",
 				Email:       "fake@email.com",
 				Institution: "WA University",
-				URL:         urls[3]},
+				URL:         urls[3],
+				Source:      "Google"},
 			"John Doe, Associate Professor\nfake@email.com\nWA University\nSource: http://johndoewebsite.com\n\n",
 		},
 		{
@@ -85,7 +89,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Professor",
 				Email:       "barry.marshall@uwa.edu.au",
 				Institution: "The University of Western Australia",
-				URL:         urls[4]},
+				URL:         urls[4],
+				Source:      "Scopus"},
 			"Barry Marshall, Professor\nbarry.marshall@uwa.edu.au\nThe University of Western Australia\nSource: https://research-repository.uwa.edu.au/en/persons/barry-marshall\n\n",
 		},
 		{
@@ -95,7 +100,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Professor",
 				Email:       "Brian.Schmidt@anu.edu.au",
 				Institution: "Australian National University",
-				URL:         urls[5]},
+				URL:         urls[5],
+				Source:      "Google"},
 			"Brian Schmidt, Professor\nBrian.Schmidt@anu.edu.au\nAustralian National University\nSource: https://reporter.anu.edu.au/people/brian-schmidt\n\n",
 		},
 		{
@@ -105,7 +111,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Professor",
 				Email:       "paabo@eva.mpg.de",
 				Institution: "Max Planck Institute for Evolutionary Anthropology",
-				URL:         urls[6]},
+				URL:         urls[6],
+				Source:      "Scopus"},
 			"Svante Pääbo, Professor\npaabo@eva.mpg.de\nMax Planck Institute for Evolutionary Anthropology\nSource: https://www.eva.mpg.de/genetics/staff/paabo/\n\n",
 		},
 		{
@@ -115,7 +122,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Professor",
 				Email:       "",
 				Institution: "The Chinese University of Hong Kong",
-				URL:         urls[7]},
+				URL:         urls[7],
+				Source:      "Google"},
 			"Charles Kun (锟) Kao (高), Professor\n\nThe Chinese University of Hong Kong\nSource: https://charleskkao-memorial.erg.cuhk.edu.hk/\n\n",
 		},
 		{
@@ -125,7 +133,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Professor",
 				Email:       "shamai@princeton.edu",
 				Institution: "Technion – Israel Institute of Technology",
-				URL:         urls[8]},
+				URL:         urls[8],
+				Source:      "Scopus"},
 			"Shlomo [שלמה] Shamai (Shitz) [שמאי], Professor\nshamai@princeton.edu\nTechnion – Israel Institute of Technology\nSource: https://ece.princeton.edu/people/shlomo-shamai-shitz\n\n",
 		},
 		{
@@ -135,7 +144,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Professor",
 				Email:       "shpack@korea.ac.kr",
 				Institution: "KAIST - Korea Advanced Institute of Science & Technology",
-				URL:         urls[9]},
+				URL:         urls[9],
+				Source:      "Google"},
 			"상헌 팩, Professor\nshpack@korea.ac.kr\nKAIST - Korea Advanced Institute of Science & Technology\nSource: https://ieeexplore.ieee.org/author/37267737500\n\n",
 		},
 		{
@@ -145,7 +155,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Doctor",
 				Email:       "",
 				Institution: "The University of Tokyo",
-				URL:         urls[10]},
+				URL:         urls[10],
+				Source:      "Scopus"},
 			"ハルト 渡辺春虎, Doctor\n\nThe University of Tokyo\nSource: https://www.u-tokyo.ac.jp/en/\n\n",
 		},
 		{
@@ -155,7 +166,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Dr",
 				Email:       "xai@space.x",
 				Institution: "Space X University",
-				URL:         urls[11]},
+				URL:         urls[11],
+				Source:      "Google"},
 			"X Æ A-12 M, Dr\nxai@space.x\nSpace X University\nSource: https://www.spacex.com\n\n",
 		},
 		{
@@ -165,7 +177,8 @@ func TestFoundContactStructString(t *testing.T) {
 				Salutation:  "Þ®Θ℉εššð®",
 				Email:       "£πàî└•çºπ",
 				Institution: "ªΦçÅτŠ§ úÑï",
-				URL:         urls[12]},
+				URL:         urls[12],
+				Source:      "Scopus"},
 			"ŽŒß ÉÆæôεµñ, Þ®Θ℉εššð®\n£πàî└•çºπ\nªΦçÅτŠ§ úÑï\nSource: %CE%A3%C2%A3%C3%BE%C2%A7%C2%A6%E2%80%A0%C3%89\n\n",
 		},
 	}
