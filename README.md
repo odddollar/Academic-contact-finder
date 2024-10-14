@@ -36,3 +36,10 @@ go generate
 fyne package --release
 ```
 
+**Testing**
+
+Run the test cases with the command:
+
+```
+go test -v ./...
+```
