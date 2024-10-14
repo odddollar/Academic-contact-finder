@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" id="cnet">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="cnet.css">
+        <title>cnet v4.0.4</title>
+    </head>
+    <body style="margin: 0px; font-size: 1.0em; font-family: Arial, Helvetica, sans-serif;
+        background: white;">
+        <table style="width: 100%; background: #214793;">
+            <tr style="height: 64px;">
+                <td style="color: white; text-align: left; vertical-align: middle;">
+                    <img style="height: 48px;" src="images/uwacrest.png" title="uwacrest">
+                </td>
+                <td style="color: white; font-size: 1.1em; text-align: right; vertical-align: middle; white-space: nowrap;">
+                    <span style='font-size: 1.1em;'>cnet&nbsp;v4.0.4</span>&nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 style="background: #e0b500; width: 100%; height: 2px;">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div style="margin: 4px;">
+            <table>
+                <tr>
+                    <td style="white-space: pre; vertical-align: top; line-height: 1.8;
+                        padding-right: 1em;"><a class="lhs" href="index.php">home</a>
+                        <a class="lhs" href="topology.php">topology&nbsp;files</a>
+                        <a class="lhs" href="options.php">command&#8209;line&nbsp;options</a>
+                        <a class="lhs" href="api.php">the&nbsp;core&nbsp;API</a>
+                        <a class="lhs" href="faq.php">FAQ</a>
+                        <a class='lhs'><a href='install.php'><span style='color: red;'><b>download and
+                        install</b></span></a>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <!--
+                            <a class="lhs" href="supportapi.php">the&nbsp;support&nbsp;API</a>
+                            -->
+                        <h1>The <i>cnet</i> network simulator (v4.0.4)</h1>
+                        <span style='color: red;'>This documentation is still being updated,
+                        in particular the screenshots and support for LANs (Ethernet) need updating.</span>
+                        </p>
+                        <p>
+                        <div class="blueblock">
+                            The cnet network simulator (v4.0.4)<br>
+                            &copy; Copyright (C) 1992-onwards, written by
+                            <a
+                                href="/cdn-cgi/l/email-protection#692a011b001a47240a2d060708050d291c1e08470c0d1c47081c561a1c0b030c0a1d541b0c534c5b590a070c1d4c5b591f5d4759475d"><span
+                                class="__cf_email__"
+                                data-cfemail="a2e1cad0cbd18cefc1e6cdccc3cec6e2d7d5c38cc7c6d78cc3d7">[email&#160;protected]</span></a></i>
+                            <br>
+                            under licence - <a
+                                href='https://www.creativecommons.org/licenses/by-nc-sa/4.0'>creativecommons.org/licenses/by-nc-sa/4.0</a>
+                        </div>
+                        </p>
+                        <p>
+                            <i>cnet</i> enables development of and experimentation with a variety
+                            of data-link layer,
+                            network layer,
+                            and transport layer networking protocols in networks consisting of
+                            any combination of
+                            wide-area-networking (WAN),
+                            local-area-networking (LAN), or
+                            wireless-local-area-networking (WLAN) links.
+                        </p>
+                        <i>cnet</i> has been tested and is supported on the following platforms:
+                        </p>
+                        <ul>
+                            <li> Apple M-series 'Silicon' processor
+                                (built on macOS Sonoma 14.3)
+                            </li>
+                            <li> Apple with 64-bit Intel processor
+                                (built on macOS Sonoma 14.3)
+                            </li>
+                            <li>
+                                Linux on 64-bit Intel processor
+                                (built on Ubuntu 23.10)
+                                <p>
+                            </li>
+                        </ul>
+                        and uses the cross-platform
+                        <a href='https://www.wxwidgets.org'>wxWidgets GUI toolkit</a>.
+                        In particular,
+                        <b><i>cnet</i> does not run natively on Windows</b>,
+                        but you should have success using Windows Subsystem for Linux (WSL-2)
+                        on Windows-11.
+                        </p>
+                        <!--
+                            <p>
+                            The most up-to-date public version of this documentation remains at
+                                <a href="http://www.csse.uwa.edu.au/cnet/">www.csse.uwa.edu.au/cnet/</a>.
+                            </p>
+                            -->
+                        <div style="line-height: 1.4em;">
+                            <table>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <h1>Getting started:</h1>
+                                        <ul>
+                                            <li> <a href="introduction.php">an introduction to <i>cnet</i></a>.</li>
+                                            <li> <a href="themodel.php">the simulation model</a>.</li>
+                                            <li> <a href="topology.php">topology files</a>.</li>
+                                            <li> <a href="attributes.php">global, node, and link attributes</a>.</li>
+                                            <li> <a href="eventdriven.php">the event driven programming style</a>.</li>
+                                            <li>
+                                                <a href="walkthrough.php">a protocol walkthrough</a>.
+                                                <p>
+                                            </li>
+                                            <li>
+                                                <a href="faq.php" style="font-size: 1.4em;">Frequently Asked Questions</a>.
+                                                <p>
+                                            </li>
+                                            <li> <a href="install.php">Downloading and installing <i>cnet</i></a>.</li>
+                                            <li> <a href="changelog.php">Changelog</a>.</li>
+                                        </ul>
+                                    </td>
+                                    <td style="vertical-align: top;">
+                                        <h1>Greater detail:</h1>
+                                        <ul>
+                                            <li> <a href="api.php">the core Application Programming Interface</a></li>
+                                            <!--
+                                                <li> <a href="supportapi.php">the support Application Programming Interface</a></li>
+                                                -->
+                                            <li> <a href="options.php">command line options</a>.</li>
+                                            <li> <a href="datatypes.php">datatypes defined in &lt;cnet.h&gt;</a>.</li>
+                                            <li> <a href="datastructures.php">data structures defined in &lt;cnet.h&gt;</a>.
+                                            </li>
+                                            <li> <a href="units.php"> attribute datatypes and their units</a>.</li>
+                                            <!--
+                                                <li> <a href="lans.php">local area networks (LANs)</a>.</li>
+                                                -->
+                                            <li> <a href="wlans.php">wireless networks (WLANs) and mobile nodes</a>.</li>
+                                            <li> <a href="compilation.php">compilation strings and extension modules</a>.
+                                            </li>
+                                            <li> <a href="environment.php">runtime environment variables</a>.</li>
+                                            <li> <a href="tracing.php">tracing execution</a>.</li>
+                                            <!--
+                                                <li> <a href="drawframes.php">drawing datalink frames</a>.</li>
+                                                -->
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <h1>Using <i>cnet</i> in education</h1>
+                        <i>cnet</i> has been specifically developed for, and is used in,
+                        undergraduate computer networking courses taken
+                        by thousands of students worldwide since 1991.
+                        At The University of Western Australia,
+                        <i>cnet</i> is used primarily in the undergraduate unit
+                        <a href="https://teaching.csse.uwa.edu.au/units/CITS3002/">CITS3002 Computer Networks</a>.
+                        <p>
+                            If you decide to use <i>cnet</i> in the teaching of an undergraduate course,
+                            or need some more info on how to, <i>please</i> let me know.
+                            I'd like to keep a record of sites using <i>cnet</i> and the
+                            types of examples and projects being attempted.
+                            I'll also be able to keep you informed of updates.
+                        </p>
+                        <p>
+                            Please appreciate that there are thousands of students worldwide
+                            using <i>cnet</i>.
+                            I am unable to respond to individual questions about <i>cnet</i>,
+                            unless they are from students enrolled in a course that I'm presenting.
+                            In particular, I will not answer homework or assignment questions.
+                            Please ask <i>your</i> professor or instructor.
+                        </p>
+                        <h1>Acknowledgments</h1>
+                        The following people have generously offered
+                        suggestions,
+                        bug fixes,
+                        and pieces of code,
+                        as <i>cnet</i> has developed over the years.
+                        A big thanks to them all:
+                        <p style="font-size: 0.9em; margin: 1em;">
+                            David Adams (while at UWA),
+                            Dr Greg Baur (University of Western Kentucky),
+                            Prof. Bruce Elenbogen (University Michigan-Dearborn),
+                            Mark Davies (University of Wellington, New Zealand),
+                            Dr Rowan Davies (while at UWA),
+                            Peter Elliott (Univ. of Alberta),
+                            Amer Filipovic (while at UWA),
+                            Dr Matthew Heinsen Egan (UWA),
+                            Prof. John Hine (University of Wellington, New Zealand),
+                            Prof. Chris Johnson (The Australian National University),
+                            Jeremy Kerr (while at UWA),
+                            Prof. David Kotz (Dartmouth College),
+                            Prof. David Laverell (Calvin College, Michigan),
+                            A/Prof. Phil MacKenzie (Boise State University, Idaho),
+                            Ryan Oakley (while at UWA),
+                            Prof. Jeff Ondich (Carleton College, Minnesota),
+                            Dr Asad Pirzada (while at UWA),
+                            Dr Chris Pudney (while at UWA),
+                            Prof Simon Read (St. Mary's College of Maryland),
+                            Dr Mike Robins (while at UWA),
+                            Dr Michael Rogers (Tennessee Technological University),
+                            Dean Scarff (while at UWA),
+                            Prof. James Wilkinson (College of Charleston, South Carolina),
+                            and my 4000+ undergraduate students at The University of Western Australia
+                            and Dartmouth College who have always been able to find the <i>last bug</i>.
+                        </p>
+                        <table>
+                            <tr>
+                                <td style="padding: 4px;">
+                                    <i>cnet</i> development has been supported by an ACM-SIGCSE
+                                    <a href="https://sigcse.org/programs/special/index.html">Special Project Grant</a>
+                                    <p>
+                                        <img src="images/sigcse.png" title="sigcse" height=48>
+                                </td>
+                                <td style="padding: 4px;">
+                                    and an Australian <a href="https://auc.edu.au">Apple University Consortium</a>
+                                    Scholarship.
+                                    <p>
+                                        <img src="images/auc.png" title="auc" height=48>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr style="text-align: center; width: 85%;">
+            <div style="font-size: 0.7em; color: #888888">
+                <i>
+                    cnet v4.0.4 -
+                    <p>"Chris.McDonald@uwa.edu.au"</p>
+                </i>
+            </div>
+        </div>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    </body>
+</html>

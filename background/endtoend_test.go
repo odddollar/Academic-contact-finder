@@ -24,9 +24,9 @@ import (
 
 // Function testing the google API key validity
 func isGoogleAPIKeyValid(apiKey string) bool {
-
 	searchEngineID := "testinvalidengineID"
 	searchQuery := "Chris McDonald UWA"
+
 	// Build the query parameters
 	params := url.Values{}
 	params.Add("key", apiKey)
@@ -225,13 +225,10 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 
 // Testing the logic and reliability of the Google scraping
 func TestGoogleScraping(t *testing.T) {
-	var firstName string
-	var lastName string
-	var institution string
+	firstName := "chris"
+	lastName := "mcdonald"
+	institution := "uwa"
 
-	firstName = "chris"
-	lastName = "mcdonald"
-	institution = "uwa"
 	// Define the expected values
 	expectedFirstName := "Chris"
 	expectedLastName := "McDonald"
@@ -240,7 +237,7 @@ func TestGoogleScraping(t *testing.T) {
 	expectedInstitution := "uwa"
 	expectedURL, _ := url.Parse("www.testing.com")
 
-	fileName := "testgooglescraping.html"
+	fileName := "test_documents/testGooglescraping.html"
 
 	// Read the file into a byte slice
 	htmlData, err := os.ReadFile(fileName)
@@ -250,6 +247,7 @@ func TestGoogleScraping(t *testing.T) {
 
 	// Convert byte slice to string
 	htmlContent := string(htmlData)
+
 	// Convert html to lowercase
 	htmlContentLower := strings.ToLower(htmlContent)
 
@@ -312,19 +310,11 @@ func TestGoogleScraping(t *testing.T) {
 	// Define the expected email address
 	// expectedEmail := "Chris.McDonald@uwa.edu.au"
 
-	// Print the values
-	fmt.Println("Google scraping testing")
-	fmt.Println("First Name:", result.FirstName)
-	fmt.Println("Last Name:", result.LastName)
-	fmt.Println("Salutation:", result.Salutation)
-	fmt.Println("Email:", result.Email)
-	fmt.Println("Institution:", result.Institution)
-	fmt.Println(" ")
-
 	// Compare the found email with the expected email
 	if strings.ToLower(result.Email) != strings.ToLower(expectedEmail) {
 		t.Errorf("Expected email '%s', but found '%s'", expectedEmail, result.Email)
 	}
+
 	// Check each field against the expected values
 	if result.FirstName != expectedFirstName {
 		t.Errorf("Expected first name '%s', but found '%s'", expectedFirstName, result.FirstName)
@@ -358,7 +348,7 @@ func TestScopusScraping(t *testing.T) {
 	expectedURL, _ := url.Parse("www.testing.com")
 
 	// Read the file into a byte slice
-	htmlData, err := os.ReadFile("testScopusdocument.html")
+	htmlData, err := os.ReadFile("test_documents/testScopusdocument.html")
 	if err != nil {
 		log.Fatalf("Error reading file: %v", err)
 	}
@@ -403,6 +393,7 @@ func TestScopusScraping(t *testing.T) {
 					// Find the <sup> to get affiliation link
 					affiliationLink := s.Find("sup").Text()
 					affiliation := affiliations[affiliationLink]
+
 					// If no affiliation <sup> found, then only one affiliation in map
 					if affiliation == "" {
 						affiliation = affiliations["a"]
@@ -420,13 +411,6 @@ func TestScopusScraping(t *testing.T) {
 					if len(institutionParts) > 0 {
 						foundInstitution = strings.TrimSpace(institutionParts[0]) // Get the first part and trim any whitespace
 					}
-					// Print the values
-					fmt.Println("Scopus scraping testing")
-					fmt.Println("First Name:", foundFirstName)
-					fmt.Println("Last Name:", foundLastName)
-					fmt.Println("Salutation:", foundSalutation)
-					fmt.Println("Email:", foundEmail)
-					fmt.Println("Institution:", foundInstitution)
 				}
 			}
 		})
