@@ -22,8 +22,8 @@ import (
 
 // Testing the api validity as well as the buttons and interface
 
-// Simulated function to check API key validity (replace with actual validation logic)
-func isAPIKeyValid(apiKey string) bool {
+// Function testing the google API key validity
+func isGoogleAPIKeyValid(apiKey string) bool {
 
 	searchEngineID := "testinvalidengineID"
 	searchQuery := "Chris McDonald UWA"
@@ -57,6 +57,7 @@ func isAPIKeyValid(apiKey string) bool {
 	return true
 }
 
+// Function testing the google API key functions and validity testing
 func TestUpdateGoogleAPIKey_InvalidKey(t *testing.T) {
 	// Create a new test app with a unique ID
 	a := app.NewWithID("com.example.uniqueID")
@@ -132,6 +133,8 @@ func TestUpdateGoogleAPIKey_InvalidKey(t *testing.T) {
 	}
 }
 
+// Testing the Scopus api key validity as well as the buttons and interface
+
 func isScopusAPIKeyValid(apiKey string) bool {
 	key := apiKey
 
@@ -148,6 +151,7 @@ func isScopusAPIKeyValid(apiKey string) bool {
 	return resp.StatusCode == http.StatusOK
 }
 
+// Function testing the Scopys API key functions and validity testing
 func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 	// Create a new test app with a unique ID
 	a := app.NewWithID("com.example.uniqueID")
@@ -217,7 +221,7 @@ func TestUpdateScopusAPIKey_InvalidKey(t *testing.T) {
 	}
 }
 
-// Testing the logic and reliability of the Google and scopus scraping
+// Testing the logic and reliability of the Google scraping
 func TestGoogleScraping(t *testing.T) {
 	var firstName string
 	var lastName string
@@ -306,7 +310,7 @@ func TestGoogleScraping(t *testing.T) {
 
 }
 
-// Testing scopus scraping
+// Testing the logic and reliability of the Scopus scraping
 
 func TestScopusScraping(t *testing.T) {
 
@@ -378,7 +382,3 @@ func TestScopusScraping(t *testing.T) {
 	}
 
 }
-
-// Testing the whole user experience (as expected)
-
-// Testing the whole user experience (with edge cases)
