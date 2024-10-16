@@ -1,0 +1,1507 @@
+commit 30f7b8fd19c91aeac35d782cf1387bebd348af31
+Author: sersang <sersang01@gmail.com>
+Date:   Mon Oct 14 16:57:05 2024 +0800
+
+    Changed the API key testing
+
+commit 396a84e00a3868a33814cc9d070082103e718249
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Mon Oct 14 14:48:14 2024 +0800
+
+    Added running tests to readme
+
+commit 85069c46693b2d243ed2527c2ed7e2a8ffdf3204
+Merge: c25d5ec 3aedd2e
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Mon Oct 14 14:45:56 2024 +0800
+
+    Merge pull request #25 from odddollar/unit-testing
+    
+    Unit testing
+
+commit 3aedd2ea9944462101c108546905c0f65e44399a
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Mon Oct 14 14:45:30 2024 +0800
+
+    Cleanup
+
+commit c25d5ec41f78b76e3282a95df559c6984d422b58
+Merge: 2603c8e 337dc06
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Mon Oct 14 14:34:25 2024 +0800
+
+    Merge pull request #24 from odddollar/unit-testing-foundcontactstruct-source
+    
+    Add source field to test cases
+
+commit 337dc06a7fe644cecf2e29ee7891baa39286a0b0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Mon Oct 14 14:34:31 2024 +0800
+
+    Removed unnecessary deduplication
+
+commit ee02ecc529232d3cb4cef744352302c5425756ff
+Author: sersang <sersang01@gmail.com>
+Date:   Mon Oct 14 13:05:57 2024 +0800
+
+    Removed some testing print statements
+
+commit e5493dd079adbf19266ca080ee02cb2c1ec2db92
+Author: sersang <sersang01@gmail.com>
+Date:   Mon Oct 14 12:48:14 2024 +0800
+
+    Added Scopus testing file and added extra tests for google
+
+commit 6ba9f4d83fcbfef0a411b0ac5cca83b2780cd0ec
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Mon Oct 14 12:25:30 2024 +0800
+
+    Add source field to test cases
+
+commit 0a4f7c18a67c861ea56df44a4381baa51182e85a
+Author: sersang <sersang01@gmail.com>
+Date:   Mon Oct 14 11:18:08 2024 +0800
+
+    Final changes to testing files
+
+commit 2603c8e3b649b680ba8daccccc74356270eaf290
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 21:03:08 2024 +0800
+
+    Added google chrome to system requirements of guide
+
+commit 2d2037404a0a50406dd1e19e307dbcbfaaba2e5c
+Merge: 960e6b9 af78ed2
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sun Oct 13 20:38:15 2024 +0800
+
+    Merge pull request #23 from odddollar/refining-search-results
+    
+    Remove duplicate Google results
+
+commit 960e6b9aa90b2041f4de2cac469005e4c6f12c82
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 17:38:08 2024 +0800
+
+    Added point on result filtering to guide
+
+commit bbf574039b72d706221befa483505d548d918ec8
+Merge: 4178223 3ee9681
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 17:19:46 2024 +0800
+
+    Merge pull request #22 from odddollar/additional-feature-filter-buttons
+    
+    Filter results
+
+commit 3ee9681b59b8e80c361c58266fba17d6ebd0a11e
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 17:03:28 2024 +0800
+
+    Fixed reversing with filter selected
+
+commit 367ecd1082d44ec68002c20db5819c0bb2afb828
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 16:31:34 2024 +0800
+
+    Changed focus colour to match scheme
+
+commit 09f4abae1aa2d0daafe653d659849bacdb0c89ab
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 16:10:15 2024 +0800
+
+    Updating total found results with filter
+
+commit 65c676199de7f178382985d46c9afb7083d94199
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 15:55:41 2024 +0800
+
+    Output filtering functionality
+
+commit a29d5a0cd2f83f0a91eeee222bce7d2520505660
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sun Oct 13 15:26:16 2024 +0800
+
+    Changed to extra struct field
+
+commit 44031ac8fc7eb13021e1c42201281ae6d60561c0
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 19:30:59 2024 +0800
+
+    Add Scopus and Google filter functions
+
+commit bd3be70085ad9a77523ab732b528511fdedffe30
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 19:30:04 2024 +0800
+
+    Add Scopus and Google filter buttons
+
+commit 930016e515e8e85b5b4d20e54abc58149fb9b69f
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 19:28:09 2024 +0800
+
+    Store Scopus results in separate struct
+
+commit afb1e778f4116dacf9913a07e1093822b27bcbe9
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 19:27:37 2024 +0800
+
+    Store google results in separate struct
+
+commit af3d192f76a57e73c0f107f9627db7c79c285069
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 19:25:31 2024 +0800
+
+    Initialise structs and enable filters
+
+commit e5c4712460e17fa86f9baffabc7700028862e500
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 19:23:56 2024 +0800
+
+    Add Scopus and Google filter UI elements and structs
+
+commit af78ed28ccf4de01feec97d961e000d8b1c210c9
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 18:53:06 2024 +0800
+
+    Undo name capitalisation
+
+commit 8ffc584abe57e28c1817226799576bea755df778
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sat Oct 12 17:54:55 2024 +0800
+
+    Remove duplicate Google results and capitalise names
+
+commit c5bcfab41f073eec41d9e3829a8e3e8a5bc96ac5
+Author: sersang <sersang01@gmail.com>
+Date:   Fri Oct 11 15:09:28 2024 +0800
+
+    Added scraping and api tests
+    Co-authored-by: fr0ggers <fr0ggers@users.noreply.github.com>
+
+commit 4178223716f39ffba441abefdf16b9a5e4fdda86
+Merge: 0b5103f aa2865f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Oct 11 11:10:20 2024 +0800
+
+    Merge pull request #21 from odddollar/test
+    
+    Unit tests
+
+commit aa2865f57a2e20b24fca5cf101b3ed7910c26407
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Fri Oct 11 11:04:10 2024 +0800
+
+    Write missing comments
+
+commit ff49ac5554800842182e9a2c5289c71babf72d7b
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Fri Oct 11 10:22:26 2024 +0800
+
+    Add unit test for FoundContactStruct's String function
+
+commit 156360c8e080ccc408b404751b30ccf3a359cc02
+Author: sersang <sersang01@gmail.com>
+Date:   Sun Oct 6 22:06:24 2024 +0800
+
+    Added  some interface testing
+    
+    Co-authored-by: fr0ggers <fr0ggers@users.noreply.github.com>
+
+commit 73c640087f3d44f2e99fb15e8dd8d7e7a5bdadcb
+Author: ryakinn <ryan.kingsley@outlook.com>
+Date:   Sun Oct 6 17:23:32 2024 +0800
+
+    Add unit tests for Google request functions
+
+commit 0b5103f943101df6575f04ab4220ff64ed0489e3
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Oct 4 11:20:21 2024 +0800
+
+    Added user guide info to user guide
+
+commit 724f14fb14a088164e87f9f6bb38aeb2b1b5571d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Oct 4 10:38:46 2024 +0800
+
+    Added instructions reference to key entries
+
+commit 2a61e6d6bcebd2ee93458b859e4b8a96bd37c401
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Oct 4 10:31:55 2024 +0800
+
+    Added smartscreen screenshot
+
+commit fe1ad0a521bc693b1a32b91c951b560fce6850a6
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Oct 3 09:52:36 2024 +0800
+
+    Fixed image alignment in guide
+
+commit 79aee22afb39c7d2d19c3f161f6d1f9d9f6b7ba5
+Merge: e0247c5 68f2b0b
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Oct 3 09:48:33 2024 +0800
+
+    Merge pull request #20 from odddollar/cleanup
+    
+    Cleanup
+
+commit 68f2b0b8384181567021b4011a821e42ba930238
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 13:11:51 2024 +0800
+
+    Minor user guide changes
+
+commit 541474829629fb0fe167ee40244c9c4d0bc02839
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 13:01:08 2024 +0800
+
+    Put table of contents on separate page
+
+commit 95edcd61fc61edf857107db2d86caea47048b304
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 12:43:34 2024 +0800
+
+    Reworded scopus note
+
+commit 22fdfc9a37a971b37d6e68a4d450661b9fbe8a46
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 12:38:39 2024 +0800
+
+    Expanded section on getting scopus key
+
+commit c8881edc26125db479ccfcaf9bb48438a8afca46
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 12:26:40 2024 +0800
+
+    Added set default email instructions
+
+commit d9d923f519474d1a1ae085b988e7f70b18198daa
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 12:17:44 2024 +0800
+
+    Removed unused images
+
+commit c5c7f1142d414712d52d730c1a384768f0672763
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 12:13:10 2024 +0800
+
+    Tidied up user guide
+
+commit f33e1247041fbc43f323ac96edf133f12858933e
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 12:12:20 2024 +0800
+
+    Updated gitignore
+
+commit aeb0fff2b3163acc87ee52372ceab2b5e1ec2da7
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 12:02:27 2024 +0800
+
+    Made capitalisation more consistent
+
+commit 1e82e2d940a1cdbbe7e2acad83ab9ff38ff1deab
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Oct 2 10:27:37 2024 +0800
+
+    Removed unnecessary documentation files
+
+commit e0247c5e84d18782054f7dcd744daa583c3abef5
+Merge: a471b72 043f9a0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Oct 1 12:57:13 2024 +0800
+
+    Merge pull request #19 from odddollar/13-create-user-guide-document
+    
+    Create user guide document
+
+commit 043f9a0d8ac7a995b3273493fedd42af9385cccd
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Tue Oct 1 12:55:12 2024 +0800
+
+    Download Releases
+    
+    - user documentation updated
+
+commit a471b72af06fffcae4d69a11492f64735cdeeea2
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Oct 1 12:37:30 2024 +0800
+
+    Updated gitignore
+
+commit 41769dc7103e7e8191063f519088cfd4d44eedfc
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Oct 1 12:01:48 2024 +0800
+
+    Updated fyne app version
+
+commit 7dc71bedc479de582c7a8be24116e20dcd432ef3
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Sep 27 11:25:49 2024 +0800
+
+    Updated gitignore
+
+commit 7cad775515d98ae005dbeea07689d0e8f4b80d06
+Merge: a6ea35f 8869e45
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Sep 27 11:21:19 2024 +0800
+
+    Merge pull request #18 from odddollar/swap
+    
+    Swap
+
+commit 8869e4529e1cb617e51a5029bc200fd0e927e710
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Sep 27 11:19:18 2024 +0800
+
+    Fixed svg icon
+
+commit 6e871271f7d0f015e49dd7848a384b4bd64a3700
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Sep 27 10:13:16 2024 +0800
+
+    Added icon to default email button
+
+commit 60bc2d82f883f7516cdbba0af9a0e7bae0a552bd
+Author: fr0ggers <131850163+fr0ggers@users.noreply.github.com>
+Date:   Thu Sep 26 15:50:38 2024 +0800
+
+    Add to FAQs
+
+commit ce73dbc874ba144b0c568693079c6826fa187704
+Author: fr0ggers <131850163+fr0ggers@users.noreply.github.com>
+Date:   Thu Sep 26 15:42:45 2024 +0800
+
+    Edited for errors, improved readability
+
+commit 297ebfc7ffe3fce5af3d95ef4ae7596f5b808545
+Author: fr0ggers <131850163+fr0ggers@users.noreply.github.com>
+Date:   Thu Sep 26 15:02:47 2024 +0800
+
+    Remove unused file
+
+commit 8dc1314695556c9125c51d071a2c34789a650611
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 26 11:58:54 2024 +0800
+
+    Added semi-working svg icon
+
+commit 2cd885e00c75048aed2f5a43a22f03d1d92d2146
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 26 11:06:45 2024 +0800
+
+    Added ability to swap results order
+
+commit 2d850a5cf679ba65f7c6999b762c7f9c6df9a576
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 26 10:58:24 2024 +0800
+
+    Added reverse order button
+
+commit f716f32a70f80b2b180c9a981f2cec4230c8d03a
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Thu Sep 26 09:58:07 2024 +0800
+
+    Download Software
+    
+    - descriptions for downloading the software added to user guide
+
+commit cba77caa06320f3cd0383eb336c7ae65e5a316df
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Mon Sep 23 13:00:31 2024 +0800
+
+    Added icon to send email button
+
+commit 6c07f914366f6a395a75e218086ff9f659c5cf87
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 18 15:43:42 2024 +0800
+
+    Removed debug prints
+
+commit f77b3e2d3ff6625ff98c6b0047f30c4adb45842f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 18 15:42:53 2024 +0800
+
+    Added getting highest tier of salutation
+
+commit a6ea35fe1ade37b94a5755b57242a60249697df4
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 18 14:57:48 2024 +0800
+
+    Regex hotfix
+
+commit 52d2226ce9a6f5e902fe4f8857d0b2e44d1c3915
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Wed Sep 18 12:13:49 2024 +0800
+
+    Final Additions to User guide
+    
+    - Final descriptions added
+    - Last few screenshots added
+    - Logo adjusted
+
+commit 64f37ae61d7745ad1e09b3e79224516e692f377a
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Wed Sep 18 11:46:50 2024 +0800
+
+    Application Screenshots Added
+    
+    - screenshots from the usage of the application have been added to the user guide.
+    - along with information about the browser window opening upon use
+
+commit 4254a175517097ca3f226e897f42d902b5009a3d
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Tue Sep 17 20:09:11 2024 +0800
+
+    Google API Key Steps
+    
+    - screenshots and descriptions added for attaining a google api key and search engine ID.
+
+commit 53febe64fb3af8da7322ff906c5b928616b59018
+Merge: e17a658 4c392c9
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 17 15:59:57 2024 +0800
+
+    Merge pull request #17 from odddollar/google-integration
+    
+    Google integration
+
+commit 4c392c947225a16c2166a039722046bcd5459bda
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 17 15:26:30 2024 +0800
+
+    Fixed dialog disappearing with invalid google key
+
+commit ae64cfda74d7bfd95e988da61a62f4a1270edbb9
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 17 15:20:47 2024 +0800
+
+    Added please restart after clearing keys
+
+commit c7de10c352035add2b4f60d6b696e8b9ea3257fa
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 17 14:47:17 2024 +0800
+
+    Google api key no longer hardcoded
+
+commit 07854224c66a43c47aa92ae63b0ab06d664bb699
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 17 14:35:52 2024 +0800
+
+    Clear button now clears google keys
+
+commit d303b5b71275a38ad84c83364ee09a7d204777a7
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 17 14:32:01 2024 +0800
+
+    Properly managing keys
+
+commit 80075052b936f11e56027af25e8616fa9c0edc20
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 17 13:25:38 2024 +0800
+
+    Added ui for google keys
+
+commit 9f146acc7f1229420c5b6642e17454c67425ee0b
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Tue Sep 17 12:57:55 2024 +0800
+
+    Further Screenshots Added
+    
+    - The addition of more screenshots based on how to use the app have been added
+    - In addition, some information about internet connection has been added
+
+commit af37fe0f80d175e7b51dae63a55b201fd35af0f8
+Merge: c65a0f8 e95927a
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Tue Sep 17 11:11:32 2024 +0800
+
+    Merge branch '13-create-user-guide-document' of https://github.com/odddollar/CITS3200-Project into 13-create-user-guide-document
+
+commit c65a0f8e12f29888484ceb66d725d76e855cced8
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Tue Sep 17 11:09:57 2024 +0800
+
+    Further work on user guide
+    
+    - api key section almost finished
+    - images added to the email section
+
+commit e95927aea9994183c1af00d0fc87efb973bfb240
+Author: fr0ggers <131850163+fr0ggers@users.noreply.github.com>
+Date:   Fri Sep 13 12:44:55 2024 +0800
+
+    Updated user guide to add in more FAQs
+
+commit 0378bc7cdac94369620d9ed3bf308b1c7587a8c7
+Author: fr0ggers <131850163+fr0ggers@users.noreply.github.com>
+Date:   Fri Sep 13 12:34:52 2024 +0800
+
+    Updated user guide to add in FAQs
+
+commit 050847f89ef29765bbc8662c600366cc74a50611
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 12 13:49:00 2024 +0800
+
+    Start of finding highest salutation
+
+commit 5ced9fc7f6eee2c83735dea1808ac1926f1cb64b
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 12 13:13:15 2024 +0800
+
+    Added regex to look for salutations
+
+commit f7f15d5fb7db80008d969dbfecd544c4b86fd57c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 12 12:58:18 2024 +0800
+
+    Returning original cases of found text
+
+commit 8a93dd9c4431dbee2f9b4ce4c30cacaf9248b06c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 12 12:35:07 2024 +0800
+
+    Fixed searching when first or last name blank
+
+commit 8d5909009d1b1cf4b09e89214325a46106ce03ea
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 12 12:27:20 2024 +0800
+
+    Returning found google results to ui
+
+commit 7f09155ad5584df8a9b47fdf9bf36cef43c1f46d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 12 11:33:55 2024 +0800
+
+    Matching email from google data
+
+commit 3f30f77691e7218a72679a19201adecb6e3d20e3
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 20:44:38 2024 +0800
+
+    Clear api keys clear default email
+
+commit 6ab3101b62c82bc9f5786bce1f6131dd154e72c3
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 18:46:10 2024 +0800
+
+    Skip pdfs
+
+commit 474580578f429c769dc7685d0a8416cac58dac4c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 18:35:24 2024 +0800
+
+    Requesting multiple google pages
+
+commit 6528eb65065e64cd3422f335350c78a2df6d86b9
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 18:19:04 2024 +0800
+
+    Searching for first email
+
+commit ef753a58b9737e6d56706a8b8449cc6902a303c4
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 18:04:55 2024 +0800
+
+    Visiting google sites with chromedp
+
+commit 5e9934f8c1d4a2e057a262734d3e52de6533adf9
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 17:58:01 2024 +0800
+
+    Trimming whitespace from entries
+
+commit 97d4a3e8607b6f31f2910170fd6230bb2e3ae1a8
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 17:56:05 2024 +0800
+
+    Setup for using chromedp on google results
+
+commit c4c95a97b481836a9ba5087516db1edb7146eaa8
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 17:20:56 2024 +0800
+
+    Fixed request url
+
+commit 0eb0f09d1f2cca05289fd563a3537507b823f892
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 17:18:19 2024 +0800
+
+    Stripped google down to basics
+
+commit e0655464d2fdabb1c82dd260c3e845c5cc155506
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 17:06:35 2024 +0800
+
+    Minor edits
+
+commit 72f2dda7f897bd7641e70011edd203880d3074ff
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 16:22:03 2024 +0800
+
+    Scopus and google run sequentially
+
+commit 23f290c1b8057059f351de7bcd08cf4fbdfe331c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 15:54:56 2024 +0800
+
+    Renamed files
+
+commit 785f5ee6db77c925f75ce6d34570101f05ef317a
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 15:40:18 2024 +0800
+
+    Changed default email button text
+
+commit 7fe0f7471cbe68dc01e3e5bd8fc2f406197217af
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 15:26:27 2024 +0800
+
+    Capitalised error
+
+commit 6824f96b9a4ce25be083497e01fb2347b5a02e79
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 15:24:51 2024 +0800
+
+    Removed flask files
+
+commit e17a658ca1c591a15b77c1e60049bdde68de8e75
+Merge: b1ee61e df7c81c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 15:19:36 2024 +0800
+
+    Merge pull request #14 from odddollar/2-webscraping-functionality
+    
+    2 webscraping functionality
+
+commit b1ee61e5cd32dc72a6f97ca13c77c477ad055372
+Merge: 8c4ee88 ca1a3b3
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 15:16:34 2024 +0800
+
+    Merge pull request #15 from odddollar/ui-fix
+    
+    UI fix
+
+commit ca1a3b3db657b5c5865d20e53cb6a772c6446c1a
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 13:55:16 2024 +0800
+
+    Asking for default email at first startup
+
+commit b4437cf4a66e74d39d32ee6aa377bca611d04203
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 11 13:34:13 2024 +0800
+
+    Removed test code
+
+commit 228dd88e979d13047bbfe0fb4366a308f96c6fa1
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Wed Sep 11 11:21:36 2024 +0800
+
+    first draft for user guide
+    
+    - created first draft for user guide in markdown
+    - pdf copy of user guide also created
+
+commit df7c81cd534ef35b06baf07da5a1dbe7b1c9cfa4
+Author: sersang <sersang01@gmail.com>
+Date:   Tue Sep 10 22:33:16 2024 +0800
+
+    final function with MVP for webscraping
+
+commit 2100d75d6f8220de3cad1cf2af285f1eb90943e3
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 10 12:32:05 2024 +0800
+
+    Ensuring at least last name entered
+
+commit 28c340dfc5b65454b5958cabbca10714a8c33481
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 10 12:27:15 2024 +0800
+
+    Changed key entry box wording
+
+commit 8c4ee882ade6a2faeb441a0e19fe34737a680a07
+Merge: 120d285 0a179ac
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 14:05:54 2024 +0800
+
+    Merge pull request #12 from odddollar/ui-resize-fix
+    
+    Fixed contact widget minsize
+
+commit 0a179ac96ee7e6d774ea17141fdff82408ebb675
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 14:06:32 2024 +0800
+
+    Fixed contact widget minsize
+
+commit 120d28506debc1f70cfba2ae2daa3e6e2cd9cd5d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 13:12:49 2024 +0800
+
+    Ran go mod tidy
+
+commit c2dca127077cbcf655e40c44149bf41d4ef69dbf
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 13:10:56 2024 +0800
+
+    Fixed typo
+
+commit 7888a809456f1782a094a8fced6b95a24673b8b8
+Merge: 3b3217d 5e07a95
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 13:08:50 2024 +0800
+
+    Merge pull request #11 from odddollar/temp_webscraping
+    
+    Scopus accessing and scraping
+
+commit 5e07a95e8c488d6e025e3a9a7dd772602174dd86
+Merge: b7d26e1 3b3217d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 13:07:57 2024 +0800
+
+    Merge branch 'master' into temp_webscraping
+
+commit b7d26e1193bf07d85d49b2158e20b56461ad28ae
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 13:07:27 2024 +0800
+
+    Changed FoundContactStruct stringer formatting
+
+commit 688e50802dece9625d5f177500c516cf6bf9b1c8
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 13:07:02 2024 +0800
+
+    First or last name must be exact match
+
+commit 9a854afbfb9d710165342e111bfa54a46c9ffe64
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 12:53:26 2024 +0800
+
+    Removed testing data
+
+commit b3bc97fb3efd31d501328c631b4713b927ce2fa5
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 12:45:45 2024 +0800
+
+    Only show salutation if provided
+
+commit b18d88a1561fc7831db40ee5121af1faeab6e3f1
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 12:39:57 2024 +0800
+
+    Fixed case of single institution
+
+commit 189c58a5bccb3fb6bc257c3d7fcd5f0c5ec0c993
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 12:33:28 2024 +0800
+
+    Fixed scopus query to work without institution
+
+commit 0a42808b4b0210c46f7d10711eac7a09d9f2c7c0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 12:29:52 2024 +0800
+
+    Integrated scopus api
+
+commit bf3f7d1b63c728023dc25e262cced752e575784b
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 12:09:38 2024 +0800
+
+    Naming fixes
+
+commit 649fde7366a0e07a54cb239fef8f5f219c05fe4f
+Merge: e04452f 3909d7f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 11:53:26 2024 +0800
+
+    Merge pull request #10 from odddollar/9-api-request-from-scopus
+    
+    9 api request from scopus
+
+commit 3909d7f2e0a2fd9338f498439d383670140f1a2e
+Merge: f4ecd88 e04452f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 11:53:11 2024 +0800
+
+    Merge branch 'temp_webscraping' into 9-api-request-from-scopus
+
+commit f4ecd88a0ca4e11ac4e3629aa8261b3fa22d9593
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Sep 5 11:34:12 2024 +0800
+
+    Minor api request changes
+
+commit 8ff51e7a08048abb521ee152af2509b87262333b
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Thu Sep 5 11:11:16 2024 +0800
+
+    Updated API Request Method
+    
+    - will simply create a list of URL's of works from a given author
+    - Storing of "title" and "publication date" from the struct have been removed and might get added again at a later date
+
+commit 3b3217d8d1812ff4f209c3b4f8310b0740367ef3
+Merge: ec541c9 b86e8e5
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 18:16:33 2024 +0800
+
+    Merge pull request #8 from odddollar/6-email-functionality
+    
+    6 email functionality
+
+commit b86e8e54292b6d27dd9fc107403bdfd58cbc068a
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 18:13:47 2024 +0800
+
+    Added check to ensure email actually entered
+
+commit ec541c94dd12c1f61b58c29803fefc7859c67625
+Author: fr0ggers <131850163+fr0ggers@users.noreply.github.com>
+Date:   Wed Sep 4 16:03:00 2024 +0800
+
+    Add user guide
+
+commit bfd22d06c74bf79d00742b9572a7d5f7f1a8842f
+Author: JamesW293 <jameswigfield1@gmail.com>
+Date:   Wed Sep 4 15:22:18 2024 +0800
+
+    file containing api request code
+    
+    - the code file in this folder is the test for requesting a list of url's
+
+commit e04452ff37880389bb9c95cdb3dd2f8c907b9058
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 15:18:18 2024 +0800
+
+    Added second newline to stringer
+
+commit 07aa57155cd71d45d2fac904435d8f9f8ff8da23
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Wed Sep 4 15:16:41 2024 +0800
+
+    Altered email function to use the String() function, altered the String() function to include newlines at the end for better formatting
+
+commit de3b621b0b4b4fb373f0a4cb490a3764ce4e00e2
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 14:47:21 2024 +0800
+
+    Updated api key function names
+
+commit 8eac37465761e1070f83f413a4192546c2cb04be
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 14:44:45 2024 +0800
+
+    Using Levenshtein distance for fuzzy matching
+
+commit b19af8f9b84587d0c40ed70d47c28895c1bf480a
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 14:13:09 2024 +0800
+
+    Change how AllFoundContacts used
+
+commit df2aa921c8bc94026b8908d1679d9425a4c4191e
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 14:10:42 2024 +0800
+
+    Split name into first and last names
+
+commit 996ddf432cf8a308a44aee115371aa088b573528
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 14:04:39 2024 +0800
+
+    Properly marking unknown institution
+
+commit d1793d82483fecdeb51053a27e3a27551ab47c19
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 13:56:33 2024 +0800
+
+    Cleaned up new functions
+
+commit 0c96def7cbce39d6585ab569f574dc5b3c04d477
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Sep 4 13:33:23 2024 +0800
+
+    Got affiliations found
+
+commit 3f5553d23bb27cc8d4c8e840dc2e2e495e913998
+Author: sersang <sersang01@gmail.com>
+Date:   Wed Sep 4 11:32:53 2024 +0800
+
+    Added check to see if the first name is in the email
+
+commit 505ab5f6f70592c9572f58006d329cdb367d1d04
+Author: sersang <sersang01@gmail.com>
+Date:   Wed Sep 4 11:05:46 2024 +0800
+
+    Added search feature for the Institution and Name
+
+commit 1f1d1ac08ee68856fbf1a08313806aa32f93effd
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Wed Sep 4 01:27:41 2024 +0800
+
+    removed unnecessary import
+
+commit a454188eadd5c9a687401aff5deb2c98625c6f68
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Wed Sep 4 01:22:51 2024 +0800
+
+    Test code removed, emailing should now be implemented fully
+
+commit 12eaa3379f62f8437273af1abce885f3ea3fa79d
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Wed Sep 4 01:21:35 2024 +0800
+
+    Email test and main function working, api check bypassed for testing purposes
+
+commit 640183d1a1f80796775e8f5da48507cce1f55d5a
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Wed Sep 4 01:17:51 2024 +0800
+
+    added email functionality from test function to main email function
+
+commit c6595be00cb1ee9c761cbb35cb300904a4e8834a
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Wed Sep 4 01:11:17 2024 +0800
+
+    improved formatting for email body
+
+commit c0e9c3dc12a2d56adf448a036a90f32156e521ae
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Wed Sep 4 01:02:14 2024 +0800
+
+    Altered email test code to use a struct of the same format as the FoundContactStruct
+
+commit a71be8e876aac5599c4bf51353080b77de345700
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Sep 3 23:44:29 2024 +0800
+
+    Email test code should be multi platform, unable to test
+
+commit 9b7aec5bb685d9f6cb6774955ed8dee690c0fc45
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Sep 3 23:40:29 2024 +0800
+
+    body not filled in using cmd, switched to powershell, fixes the issue, this code currently only works on windows
+
+commit 06e1011472584834e55f204a7cff919011970ee1
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Sep 3 23:17:32 2024 +0800
+
+    removed popups
+
+commit e794423af6f554d21f0d4c82b33b4d049005020c
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Sep 3 22:35:20 2024 +0800
+
+    moved email test call above the api key check
+
+commit d9d6f42b08e49b32cb6d8f7e60194e04bc40fa93
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Sep 3 22:27:16 2024 +0800
+
+    added popup before and after email test
+
+commit 82398dee8d87ec8cc6f7a135790e3803736cd739
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 3 20:18:49 2024 +0800
+
+    Scraping results put into UI
+
+commit 63043028a1338aa823966ad4be701456ca685922
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 3 19:40:25 2024 +0800
+
+    Moved scopus scraping prototype to existing codebase
+
+commit 3918eac76106d3ac92e347a5a1d9f9ebd212f4bc
+Author: sersang <sersang01@gmail.com>
+Date:   Tue Sep 3 17:28:22 2024 +0800
+
+    Create a separate file to test function - works but the struct is wrong
+
+commit b3fa235feefe66a82a1d89711f2e152086e12e61
+Merge: 189b52a d1200a1
+Author: sersang <sersang01@gmail.com>
+Date:   Tue Sep 3 16:18:51 2024 +0800
+
+    Merge branch 'master' into 2-webscraping-functionality
+
+commit be352fc4b5b34554a8c0a5d20f6386c4774f8a5d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Sep 3 12:37:50 2024 +0800
+
+    Iterating through urls and checking results for matches
+
+commit 865bb3e9c90567977df45472718bc53540ad05f7
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Thu Aug 29 20:28:24 2024 +0800
+
+    added a SendEmailTest function that runs whenever the search button is pressed, unsure if functional yet as it has not been tested
+
+commit d1200a1adeeeb94a92e0a8c77f38c64ec42c3e17
+Merge: 7194437 e28013f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 27 17:57:47 2024 +0800
+
+    Merge pull request #5 from odddollar/3-scopus-api-key-validation
+    
+    3 scopus api key validation
+
+commit e28013f53a7df0bf9c9fddd07b43c2badaff2aaf
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 27 17:55:45 2024 +0800
+
+    Removed Valid API key popup, can just add it back when debugging requires it
+
+commit 336df28e6f8ed4edc9341c386446cd00ba68e114
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 27 17:53:18 2024 +0800
+
+    removed Author ID accidentally being used as an API Key
+
+commit 4c2c098b19e76ca83f9ef9ea1b7b029a6c018301
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 27 17:31:57 2024 +0800
+
+    Comments
+
+commit b41cedba70f38bb87a6905b4e4bbe753f54285d5
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 27 14:29:33 2024 +0800
+
+    Added Success Pop-up on successful API Validation
+
+commit 4d380337684bb174be5dbef8eb69e9c6b0749001
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 27 14:28:33 2024 +0800
+
+    Added basic status code checking API key validation
+
+commit 73b486334d6faa74c69b4b6543205fe6f9e95114
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 27 14:25:56 2024 +0800
+
+    Removed complex and non-functional api validation code
+
+commit 189b52a785eebe6d1ba938a206fe829c68243a39
+Author: sersang <sersang01@gmail.com>
+Date:   Sun Aug 25 22:20:01 2024 +0800
+
+    The webscraping now ignores pdf files
+
+commit 945399b045c161479ada94833a676d50e2d93015
+Author: sersang <sersang01@gmail.com>
+Date:   Sun Aug 25 21:54:45 2024 +0800
+
+    Added in google search API parameters and extracting emails from results.
+    
+    Co-authored-by: fr0ggers <fr0ggers@users.noreply.github.com>
+
+commit 71944374849d09292c9226f183d2b6434b59a75d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 20 19:27:22 2024 +0800
+
+    Padding hotfix
+
+commit f132d04fa07ad94c6e7e40f589339dedf55ee776
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 20 17:54:37 2024 +0800
+
+    Api key validation should work, needs to be connected to institution network or get an institution token
+
+commit ceb7afa4743fc5688b58db8b5a31dc8e776fe1bf
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 20 17:52:08 2024 +0800
+
+    added error checking to reading the body
+
+commit 4419f3f602dcb5a649621e102d0b481f82633e79
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 20 17:50:08 2024 +0800
+
+    added HTTP response code check
+
+commit be81fa947b5faf553c5dbdc37b8275cf85493e6b
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 20 17:45:14 2024 +0800
+
+    http request error checking
+
+commit 8068c4ca1ef5d494dc6e6fbfb4d15116c8123075
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Tue Aug 20 17:33:38 2024 +0800
+
+    Updated api validation url to be correct
+
+commit cdce0ae9ba3048970b5b157fde5fa6274a395bcf
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 20 12:28:38 2024 +0800
+
+    Added temporary scraping examples
+
+commit b57c7aef79b95dfcaf2a41d6cc8ae22ebf44fc16
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 20 11:07:09 2024 +0800
+
+    Fixed readme formatting
+
+commit 1ee22e99655129918aa4cde8dd116c4456e1611e
+Author: UpstandingVlad <164867745+UpstandingVlad@users.noreply.github.com>
+Date:   Mon Aug 19 20:12:15 2024 +0800
+
+    added basic API validity check
+
+commit 86dc41a00fbaef52833a3a692897c64da1a5452a
+Merge: 9791dfd 0d8fea9
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sat Aug 17 16:26:20 2024 +0800
+
+    Merge pull request #4 from odddollar/hotfix
+    
+    Hotfix
+
+commit 0d8fea97fb9b096f35f2b156645113a3c91fa500
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sat Aug 17 16:26:19 2024 +0800
+
+    Added stringer interface to FoundContactStruct
+
+commit d35eca8c5a51998c9d3287ba36f727f8d98b2112
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Sat Aug 17 16:16:04 2024 +0800
+
+    Made tick appear for longer
+
+commit 9791dfd96c7f9c2031e75993396e6a2809326aef
+Merge: 8ac14e3 267b0f7
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Aug 16 20:32:16 2024 +0800
+
+    Merge pull request #1 from odddollar/ui
+    
+    UI development
+
+commit 267b0f7569abdaf2640c9d1ebe1f415104e9c79c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Aug 16 20:27:22 2024 +0800
+
+    Change copy icon to tick on success
+
+commit 27527d7245cbfc892f33ee828d576552996ff9b0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Aug 16 20:14:13 2024 +0800
+
+    Added functionality to email all button
+
+commit 85a70da9cc2207d019c9c116ae8a8316fca9b09d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Aug 16 20:01:01 2024 +0800
+
+    Added standard error dialog function
+
+commit 48e174dfb1ba057404c3059318e781c8c7a4c5a2
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Fri Aug 16 19:53:50 2024 +0800
+
+    Added button to clear api key to about window
+
+commit cc217e2f0da204cda56ccf637daf6c9b6a888959
+Author: sersang <sersang01@gmail.com>
+Date:   Fri Aug 16 16:35:51 2024 +0800
+
+    Added Google API function and parsing
+    
+    Co-authored-by: fr0ggers <fr0ggers@users.noreply.github.com>
+
+commit 31ca1b0f6eda1a72ae66f6d5dd05fd35e0b28d4a
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 14:46:50 2024 +0800
+
+    Refresh email boxes when default changed
+
+commit 234b164adaef1c5c29832d2f48c00d32c5743d32
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 14:39:00 2024 +0800
+
+    Updated temporary testing data
+
+commit 2c87c4d5b272be354b985c8df35cf6020031a13e
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 14:37:34 2024 +0800
+
+    Added ability to change default email
+
+commit 065072be5309ce8a802a6b1f172d85be885d2bef
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 14:17:42 2024 +0800
+
+    Email all button only enabled after run
+
+commit b9d1e9af28254f18b63dbe9304f8fca48a7ecdd4
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 14:16:17 2024 +0800
+
+    Added basic validation to api key entry
+
+commit e7335239aed186104d9e5046ea1b528de9d2c111
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 14:13:49 2024 +0800
+
+    Restructured single email me code
+
+commit a46013ff0360704f59e0abff9beb7aaa6e256ad2
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 14:00:18 2024 +0800
+
+    Added additional check to prevent running without api key
+
+commit e9423c18de7f8eede276bd3403984fee3d474b50
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 13:55:19 2024 +0800
+
+    Improved spacing
+
+commit 8a787b776c9b6ca3c4a1cb6a6c9a96ce1a09cb64
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 13:50:31 2024 +0800
+
+    Renamed widget files
+
+commit bab99767db7d3ffaaccb3c761626c7a24614ee17
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 13:48:50 2024 +0800
+
+    Updated copy button text format
+
+commit eb2a3a8fe397cc688b49bbf4a93dd73c1c91c6ea
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 13:47:58 2024 +0800
+
+    Added url source label
+
+commit 49b6acc2433bc156cc6d3a85727fe94a2cbfb3fb
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 15 13:32:02 2024 +0800
+
+    Added source url to found contact
+
+commit 17187d65103d6df7c090f5276201873133f32ba0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 14 20:27:16 2024 +0800
+
+    Added new buttons for emailing all and updating email
+
+commit 6e781833abe1b53cfd0bf102c8e4c014d1b6495c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 17:04:23 2024 +0800
+
+    Updated comment to better show work to be done
+
+commit 2808439318a647224d3ccc897660a32e3dbf5f78
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 16:35:32 2024 +0800
+
+    Adjusted format of copied output text
+
+commit 9065880610486a37c02c8f0f11eae315243db9d5
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 16:35:05 2024 +0800
+
+    Adjusted found contact padding
+
+commit c31e3c35150c363d3321c71b2b67512ec7bb11d6
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 16:20:18 2024 +0800
+
+    Put output box in scrollable container
+
+commit 12674b42324f38f4793605a0414ef47f3a255577
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 16:04:02 2024 +0800
+
+    Added functionality to run button
+
+commit 5c7c8f308ae0bbf8e36af04b6968cb926f886687
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 15:45:58 2024 +0800
+
+    Switched to always use fmt.Sprintf
+
+commit 828631811807a53596343cd0c72fe31017caadd0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 15:32:57 2024 +0800
+
+    Added updating api key if absent or invalid
+
+commit efd0f2fbf6e0421929fd3d16b2fc84a971bdb739
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Tue Aug 13 12:18:33 2024 +0800
+
+    Added copy button to found contact widget
+
+commit 8a1c993e2f00dced5585541dd227ab19525c6ce1
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 8 14:52:59 2024 +0800
+
+    Increased font size slightly
+
+commit 1d5e6080f2b9f980ca1b0c67a99a3373e8806f4d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 8 14:38:09 2024 +0800
+
+    Added email widget to each found contact widget
+
+commit 637ea218963997ee67782a7a3379fa83b22a6f03
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 8 14:27:19 2024 +0800
+
+    Simplified positioning of contact components
+
+commit 2ef648e90721295fb3b1cd5640338a10646989a0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 8 14:23:42 2024 +0800
+
+    Added email widget to send details to address
+
+commit 1d6835e44124602e2ffe91d5dde8f45298bb44aa
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 8 13:42:15 2024 +0800
+
+    Added about dialog
+
+commit 31c12fc58d60ec9ed7c3cd456f2009a34d7bbc04
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 19:38:39 2024 +0800
+
+    Force light theme
+
+commit 159aebc2a4dc46764d55aecce1ffe5b00a892621
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 17:56:20 2024 +0800
+
+    Fixed theme not applying properly
+
+commit 6db395e5817c3722e717086109f2d0ec2c8b6b0d
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 17:50:14 2024 +0800
+
+    Made icon bigger
+
+commit 034bf5b6b9ff53e460a25257ee0b0769474d34d0
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 17:39:07 2024 +0800
+
+    Sort of working single theme
+
+commit d16f3234379a37d45e681951ef3e5cb348c7205f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 17:08:21 2024 +0800
+
+    Fixed bottom padding with custom spacer widget
+
+commit 0266ae5d31619dceb41f09a7a26cf10bd32a9b3f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 17:06:00 2024 +0800
+
+    Made name contain salutation too
+
+commit 7a451ef88396285e5c8e7d68411947ec627b5585
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 17:01:17 2024 +0800
+
+    Basis of found contact widget design
+
+commit f75f45a403e2b11d3ef99248b5f0dc62f9ac2c16
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 16:33:06 2024 +0800
+
+    Added basis of found contact widget
+
+commit 32bf43f022720672f808925e8a4ce5872e308b63
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 16:10:49 2024 +0800
+
+    Added copy button widget
+
+commit ff2f4e3fb12d6bbb0573da2bac3088ed2b07db5c
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 15:21:16 2024 +0800
+
+    Made textbox selection ring purple
+
+commit 208baabcfe75e37a48fd89e6893a3d50ce29b5e8
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 15:20:56 2024 +0800
+
+    Updated icon
+
+commit 57cadd1e2f75f49f210038e7a443d8bce4c6e2e1
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 15:10:42 2024 +0800
+
+    Added stubs for found contact widget
+
+commit 43aeb8b0e6d4cafda63ffb787891d52ae1f9661f
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 11:45:49 2024 +0800
+
+    Replaced title with image
+
+commit 8f3aed8b7169098eae049e6a9e413628bed5c840
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 11:26:26 2024 +0800
+
+    Added beginning of theming
+
+commit 2e4c1e24b33c24dfd324cc674449ead91ddbee96
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Wed Aug 7 09:51:30 2024 +0800
+
+    Moved globals to separate package
+
+commit 8ac14e31e4fc0862e64dc2829e06fc08b1e9e6be
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 1 15:00:18 2024 +0800
+
+    Updated text colours to match theme
+
+commit c61763ddedc2af9c5ce44ddcdd4b0f60956f8be1
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 1 14:49:04 2024 +0800
+
+    Added placeholder output layout
+
+commit 763670a1f1f96cfc26711d562daf44aa0f3990eb
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 1 12:43:01 2024 +0800
+
+    Update compilation instructions
+
+commit 2d9a8c36aef968bf9b6865f36eae00971c4a4080
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 1 12:35:56 2024 +0800
+
+    Fixed entry box alignment
+
+commit bf79662662b97031690e0ff731f62ceb7ae6d793
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 1 12:32:14 2024 +0800
+
+    Added metadata files
+
+commit faafe3055cd7da4c1890d78a28c9b09248e38024
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 1 12:21:36 2024 +0800
+
+    Added basic readme
+
+commit 5919987b32c4e416d89db50a15e872cc710b79f7
+Author: Simon Eason <sie.eason@gmail.com>
+Date:   Thu Aug 1 12:04:52 2024 +0800
+
+    Very basic ui layout
