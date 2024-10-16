@@ -157,13 +157,18 @@ func scrapeScopus(u string, ctx context.Context) []global.FoundContactStruct {
 				if len(strings.Split(name, ", ")) > 1 {
 					firstName = strings.Split(name, ", ")[1]
 					lastName = strings.Split(name, ", ")[0]
-				} else {
-					firstName = name
-					lastName = ""
+				} else { // No ", " present, so try to split by space
+					if len(strings.Split(name, " ")) > 1 {
+						firstName = strings.Split(name, " ")[1]
+						lastName = strings.Split(name, " ")[0]
+					} else { // No ", " or " " present
+						firstName = name
+						lastName = ""
+					}
 				}
 
 				// Find the <sup> to get affiliation link
-				affiliationLink := s.Find("sup").Text()
+				affiliationLink := s.Find("sup").First().Text()
 				affiliation := affiliations[affiliationLink]
 
 				// If no affiliation <sup> found, then only one affiliation in map
